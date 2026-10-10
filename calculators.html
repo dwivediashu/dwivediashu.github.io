@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-FUHcQ2eAriX0uFkzSl3IMMKjVKRe7/fhKONHrk1cZCw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Statistical calculators</title>
+<meta name="description" content="Free statistical calculators for researchers and students: means, proportions, chi-squared, correlation, rates, kappa, relative risk, odds ratio, diagnostic tests, ROC AUC comparison.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F6B58'/%3E%3Cpath d='M14 46h36M18 44V30M28 44V20M38 44V26M48 44V14' stroke='%23F2F0EA' stroke-width='5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@500;600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#F2F0EA;--panel:#FBFAF7;--ink:#1D1B16;--ink-2:#545046;--ink-3:#84806F;--line:#D8D4C8;--line-2:#C7C2B2;--clay:#9C5B36;--accent:#1F6B58;--accent-soft:rgba(31,107,88,.10);--bad:#B4402A;--r:14px;
+--display:'STIX Two Text',Georgia,serif;--body:'Public Sans',-apple-system,Segoe UI,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--shadow:0 1px 2px rgba(29,27,22,.05),0 12px 32px -12px rgba(29,27,22,.14)}
+@media (prefers-color-scheme:dark){:root{--paper:#171511;--panel:#201D17;--ink:#EDE9DD;--ink-2:#B5AF9E;--ink-3:#847E6C;--line:#333027;--line-2:#403C30;--clay:#C97B4F;--accent:#56B797;--accent-soft:rgba(86,183,151,.12);--bad:#E0775F}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55}
+header.top{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+header.top .in{max-width:1240px;margin:0 auto;padding:0 16px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand small{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--ink-3);margin-left:.5rem;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font:inherit;font-size:.82rem;font-weight:600;border-radius:999px;padding:.45rem .95rem;border:1px solid var(--line-2);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{border-color:var(--ink)}
+.layout{max-width:1240px;margin:0 auto;padding:1.4rem 16px 3rem;display:grid;grid-template-columns:270px minmax(0,1fr);gap:1.6rem;align-items:start}
+#nav{position:sticky;top:74px;max-height:calc(100vh - 90px);overflow:auto;padding-right:.3rem}
+.ng{margin-bottom:1rem}
+.ng p{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.3rem}
+.ng a{display:block;font-size:.86rem;color:var(--ink-2);text-decoration:none;padding:.32rem .6rem;border-radius:8px;border-left:2px solid transparent}
+.ng a:hover{background:var(--accent-soft);color:var(--ink)}
+.ng a.on{background:var(--accent-soft);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+#pick{display:none}
+@media(max-width:900px){.layout{grid-template-columns:1fr}#nav{display:none}#pick{display:block;width:100%;font:inherit;font-size:.92rem;padding:.6rem .7rem;border-radius:10px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);margin-bottom:1rem}}
+#panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:1.6rem}
+.grp{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+#panel h1{font-family:var(--display);font-size:1.7rem;font-weight:600;line-height:1.2;margin:.25rem 0 .35rem}
+.desc{color:var(--ink-2);font-size:.92rem;margin-bottom:1.2rem;max-width:62ch}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.9rem}
+.cgrid label{display:flex;flex-direction:column;justify-content:flex-end;gap:.35rem;font-size:.8rem;font-weight:600;color:var(--ink-2)}
+.cgrid label.wide{grid-column:1/-1}
+.cgrid input,.cgrid select,.cgrid textarea{font:inherit;font-size:.95rem;font-weight:400;color:var(--ink);background:var(--paper);border:1px solid var(--line-2);border-radius:9px;padding:.6rem .75rem;width:100%}
+.cgrid textarea{font-family:var(--mono);font-size:.86rem}
+.cgrid input:focus,.cgrid select:focus,.cgrid textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.out{margin-top:1.3rem}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.res div{background:var(--accent-soft);border-radius:10px;padding:.75rem .9rem}
+.res b{display:block;font-family:var(--display);font-size:1.3rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;word-break:break-word}
+.res span{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+table.at{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:1rem}
+table.at th,table.at td{padding:.5rem .6rem;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+table.at th:first-child,table.at td:first-child{text-align:left}
+table.at th{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.verdict{margin-top:.9rem;padding:.65rem .85rem;border-radius:10px;font-size:.9rem;border-left:3px solid var(--accent);background:var(--accent-soft)}
+.verdict.ns{border-left-color:var(--ink-3);background:var(--paper)}
+.err{color:var(--bad);font-size:.9rem}
+.note{font-size:.8rem;color:var(--ink-3);margin-top:.6rem}
+.acts{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;padding-top:1rem;border-top:1px solid var(--line)}
+.nomo{display:block;width:100%;max-width:420px;margin:1rem auto 0;color:var(--ink-2)}
+.foot{font-size:.78rem;color:var(--ink-3);margin-top:1rem;line-height:1.6}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="./">Ashutosh Dwivedi<small>Statistical calculators</small></a>
+  <a class="btn" href="./#tools">← Back to tools</a>
+</div></header>
+<div class="layout">
+  <nav id="nav" aria-label="Calculators"></nav>
+  <div>
+    <select id="pick" aria-label="Choose a calculator"></select>
+    <section id="panel"></section>
+    <p class="foot">Results update as you type. All calculations run in your browser — nothing is sent anywhere. Methods: Student/Welch t, F-test, exact binomial and Clopper–Pearson intervals, N−1 χ² for 2×2 tables, Fisher’s exact test, Fisher z for correlations, exact Poisson intervals, Feltz–Miller test for CVs, Cohen’s kappa with Fleiss–Cohen–Everitt SE, log-method CIs for RR, OR and likelihood ratios. Checked against SciPy and statsmodels.</p>
+  </div>
+</div>
+<script>
+const MC = (() => {
+  /* ---------- special functions ---------- */
+  const gammaln = x => { const c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+    let y = x, t = x + 5.5; t -= (x + 0.5) * Math.log(t); let s = 1.000000000190015; for (let j = 0; j < 6; j++) s += c[j] / ++y; return -t + Math.log(2.5066282746310005 * s / x); };
+  const betacf = (a, b, x) => { const FP = 1e-300; let qab = a + b, qap = a + 1, qam = a - 1, c = 1, d = 1 - qab * x / qap; if (Math.abs(d) < FP) d = FP; d = 1 / d; let h = d;
+    for (let m = 1; m <= 400; m++){ const m2 = 2 * m; let aa = m * (b - m) * x / ((qam + m2) * (a + m2)); d = 1 + aa * d; if (Math.abs(d) < FP) d = FP; c = 1 + aa / c; if (Math.abs(c) < FP) c = FP; d = 1 / d; h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2)); d = 1 + aa * d; if (Math.abs(d) < FP) d = FP; c = 1 + aa / c; if (Math.abs(c) < FP) c = FP; d = 1 / d; const del = d * c; h *= del; if (Math.abs(del - 1) < 3e-15) break; } return h; };
+  const betai = (a, b, x) => { if (x <= 0) return 0; if (x >= 1) return 1; const bt = Math.exp(gammaln(a + b) - gammaln(a) - gammaln(b) + a * Math.log(x) + b * Math.log(1 - x));
+    return x < (a + 1) / (a + b + 2) ? bt * betacf(a, b, x) / a : 1 - bt * betacf(b, a, 1 - x) / b; };
+  const gammp = (a, x) => { if (x <= 0) return 0; const gl = gammaln(a);
+    if (x < a + 1){ let ap = a, sum = 1 / a, del = sum; for (let n = 0; n < 2000; n++){ ap++; del *= x / ap; sum += del; if (Math.abs(del) < Math.abs(sum) * 3e-16) break; } return sum * Math.exp(-x + a * Math.log(x) - gl); }
+    let b = x + 1 - a, c = 1e300, d = 1 / b, h = d; for (let i = 1; i < 2000; i++){ const an = -i * (i - a); b += 2; d = an * d + b; if (Math.abs(d) < 1e-300) d = 1e-300; c = b + an / c; if (Math.abs(c) < 1e-300) c = 1e-300; d = 1 / d; const del = d * c; h *= del; if (Math.abs(del - 1) < 3e-16) break; }
+    return 1 - Math.exp(-x + a * Math.log(x) - gl) * h; };
+  const tP2 = (t, df) => betai(df / 2, 0.5, df / (df + t * t));
+  const fUpper = (F, d1, d2) => F <= 0 ? 1 : betai(d2 / 2, d1 / 2, d2 / (d2 + d1 * F));
+  const chiP = (x, k) => x <= 0 ? 1 : 1 - gammp(k / 2, x / 2);
+  const zP2 = z => z === 0 ? 1 : 1 - gammp(0.5, z * z / 2);
+  const normCdf = z => z >= 0 ? 1 - zP2(z) / 2 : zP2(z) / 2;
+  const bisect = (f, lo, hi, it = 200) => { for (let i = 0; i < it; i++){ const m = (lo + hi) / 2; if (f(m)) lo = m; else hi = m; } return (lo + hi) / 2; };
+  const tInv2 = (p, df) => bisect(m => tP2(m, df) > p, 0, 1e4);
+  const zInv2 = p => bisect(m => zP2(m) > p, 0, 40);
+  const Z = zInv2(0.05);
+  const betaInv = (p, a, b) => bisect(m => betai(a, b, m) < p, 0, 1);
+  const chiInv = (p, k) => bisect(m => (1 - chiP(m, k)) < p, 0, 1e6, 300);   /* lower-tail quantile */
+  const lnC = (n, k) => gammaln(n + 1) - gammaln(k + 1) - gammaln(n - k + 1);
+  const binomPmf = (k, n, p) => p === 0 ? (k === 0 ? 1 : 0) : p === 1 ? (k === n ? 1 : 0) : Math.exp(lnC(n, k) + k * Math.log(p) + (n - k) * Math.log(1 - p));
+  const binomTwoSided = (k, n, p) => { const po = binomPmf(k, n, p); let s = 0; for (let i = 0; i <= n; i++){ const q = binomPmf(i, n, p); if (q <= po * (1 + 1e-7)) s += q; } return Math.min(1, s); };
+  const cp = (x, n) => [x === 0 ? 0 : betaInv(0.025, x, n - x + 1), x === n ? 1 : betaInv(0.975, x + 1, n - x)];   /* Clopper-Pearson */
+  const fInv2 = (p, d1, d2) => bisect(m => fUpper(m, d1, d2) > p, 0, 1e6, 300);       /* upper-tail critical */
+
+  /* ---------- calculators ---------- */
+  const oneMean = (m, sd, n, mu) => { const se = sd / Math.sqrt(n), df = n - 1, t = (m - mu) / se, tc = tInv2(.05, df); return { se, df, t, p: tP2(t, df), lo: m - tc * se, hi: m + tc * se, diff: m - mu }; };
+  const twoMeans = (m1, s1, n1, m2, s2, n2) => {
+    const sp = Math.sqrt(((n1 - 1) * s1 * s1 + (n2 - 1) * s2 * s2) / (n1 + n2 - 2)), se = sp * Math.sqrt(1 / n1 + 1 / n2), df = n1 + n2 - 2, t = (m1 - m2) / se, tc = tInv2(.05, df);
+    const sew = Math.sqrt(s1 * s1 / n1 + s2 * s2 / n2), dfw = (s1 * s1 / n1 + s2 * s2 / n2) ** 2 / ((s1 * s1 / n1) ** 2 / (n1 - 1) + (s2 * s2 / n2) ** 2 / (n2 - 1)), tw = (m1 - m2) / sew, tcw = tInv2(.05, dfw);
+    return { diff: m1 - m2, se, df, t, p: tP2(t, df), lo: m1 - m2 - tc * se, hi: m1 - m2 + tc * se, sew, dfw, tw, pw: tP2(tw, dfw), low: m1 - m2 - tcw * sew, hiw: m1 - m2 + tcw * sew }; };
+  const twoSDs = (s1, n1, s2, n2) => { const F = (s1 * s1) / (s2 * s2), d1 = n1 - 1, d2 = n2 - 1, up = fUpper(F, d1, d2); return { F, d1, d2, p: Math.min(1, 2 * Math.min(up, 1 - up)) }; };
+  const oneProp = (x, n, p0) => { const p = x / n, z = (p - p0) / Math.sqrt(p0 * (1 - p0) / n), ci = cp(x, n); return { p, z, pz: zP2(z), pexact: binomTwoSided(x, n, p0), lo: ci[0], hi: ci[1] }; };
+  const twoProps = (x1, n1, x2, n2) => { const p1 = x1 / n1, p2 = x2 / n2, N = n1 + n2, a = x1, b = n1 - x1, c = x2, d = n2 - x2;
+    const chi = (a * d - b * c) ** 2 * (N - 1) / (n1 * n2 * (a + c) * (b + d));          /* "N−1" chi-squared (Campbell 2007) */
+    const se = Math.sqrt(p1 * (1 - p1) / n1 + p2 * (1 - p2) / n2); return { p1, p2, diff: p1 - p2, chi, p: chiP(chi, 1), lo: p1 - p2 - Z * se, hi: p1 - p2 + Z * se }; };
+  const mcnemar = (b, c) => { const n = b + c; const chi = n ? (Math.abs(b - c) - 1) ** 2 / n : 0; return { chi, pchi: n ? chiP(chi, 1) : 1, pexact: n ? binomTwoSided(Math.min(b, c), n, 0.5) : 1 }; };
+  const fisher = (a, b, c, d) => { const r1 = a + b, r2 = c + d, c1 = a + c, n = r1 + r2;
+    const pr = x => Math.exp(lnC(r1, x) + lnC(r2, c1 - x) - lnC(n, c1)); const po = pr(a); let p = 0, pl = 0, pu = 0;
+    for (let x = Math.max(0, c1 - r2); x <= Math.min(r1, c1); x++){ const q = pr(x); if (q <= po * (1 + 1e-7)) p += q; if (x <= a) pl += q; if (x >= a) pu += q; }
+    return { p: Math.min(1, p), pl: Math.min(1, pl), pu: Math.min(1, pu), or: (a * d) / (b * c) }; };
+  const gof = (obs, exp) => { const N = obs.reduce((s, v) => s + v, 0), E = exp.reduce((s, v) => s + v, 0); let x2 = 0, low = 0;
+    const e = exp.map(v => v / E * N); obs.forEach((o, i) => { if (e[i] < 5) low++; x2 += (o - e[i]) ** 2 / e[i]; }); const df = obs.length - 1; return { x2, df, p: chiP(x2, df), e, low }; };
+  const chisq = tab => { const R = tab.length, C = tab[0].length; const rs = tab.map(r => r.reduce((s, v) => s + v, 0)), cs = tab[0].map((_, j) => tab.reduce((s, r) => s + r[j], 0)), N = rs.reduce((s, v) => s + v, 0);
+    let x2 = 0, low = 0; for (let i = 0; i < R; i++) for (let j = 0; j < C; j++){ const e = rs[i] * cs[j] / N; if (e < 5) low++; x2 += (tab[i][j] - e) ** 2 / e; }
+    const df = (R - 1) * (C - 1); return { x2, df, p: chiP(x2, df), V: Math.sqrt(x2 / (N * (Math.min(R, C) - 1))), low }; };
+  const corrTest = (r, n) => { const df = n - 2, t = r * Math.sqrt(df / (1 - r * r)), z = Math.atanh(r), se = 1 / Math.sqrt(n - 3); return { t, df, p: tP2(t, df), lo: Math.tanh(z - Z * se), hi: Math.tanh(z + Z * se) }; };
+  const corrCompare = (r1, n1, r2, n2) => { const z = (Math.atanh(r1) - Math.atanh(r2)) / Math.sqrt(1 / (n1 - 3) + 1 / (n2 - 3)); return { z, p: zP2(z) }; };
+  const rateCI = (x, T) => { const lo = x === 0 ? 0 : chiInv(0.025, 2 * x) / 2, hi = chiInv(0.975, 2 * x + 2) / 2; return { rate: x / T, lo: lo / T, hi: hi / T, clo: lo, chi: hi }; };
+  const rateCompare = (x1, T1, x2, T2) => { const rr = (x1 / T1) / (x2 / T2), se = Math.sqrt(1 / x1 + 1 / x2), n = x1 + x2, p0 = T1 / (T1 + T2);
+    return { r1: x1 / T1, r2: x2 / T2, diff: x1 / T1 - x2 / T2, rr, lo: Math.exp(Math.log(rr) - Z * se), hi: Math.exp(Math.log(rr) + Z * se), p: binomTwoSided(x1, n, p0) }; };
+  const cvCompare = list => { /* Feltz & Miller (1996) asymptotic test; list = [[cv(fraction), n], ...] */
+    const df = list.reduce((s, g) => s + g[1] - 1, 0), cb = list.reduce((s, g) => s + (g[1] - 1) * g[0], 0) / df;
+    const D = list.reduce((s, g) => s + (g[1] - 1) * (g[0] - cb) ** 2, 0) / (cb * cb * (0.5 + cb * cb)); return { D, df: list.length - 1, p: chiP(D, list.length - 1), cb }; };
+  const kappa = (tab, wtype) => { const k = tab.length, n = tab.flat().reduce((s, v) => s + v, 0);
+    const W = []; for (let i = 0; i < k; i++){ W.push([]); for (let j = 0; j < k; j++){ const d = Math.abs(i - j) / (k - 1 || 1); W[i].push(wtype === 'linear' ? 1 - d : wtype === 'quadratic' ? 1 - d * d : (i === j ? 1 : 0)); } }
+    const p = tab.map(r => r.map(v => v / n)), pr = p.map(r => r.reduce((s, v) => s + v, 0)), pc = p[0].map((_, j) => p.reduce((s, r) => s + r[j], 0));
+    let po = 0, pe = 0; for (let i = 0; i < k; i++) for (let j = 0; j < k; j++){ po += W[i][j] * p[i][j]; pe += W[i][j] * pr[i] * pc[j]; }
+    const kap = (po - pe) / (1 - pe);
+    const wi = pr.map((_, i) => pc.reduce((s, v, j) => s + v * W[i][j], 0)), wj = pc.map((_, j) => pr.reduce((s, v, i) => s + v * W[i][j], 0));
+    let A = 0; for (let i = 0; i < k; i++) for (let j = 0; j < k; j++) A += p[i][j] * (W[i][j] - (wi[i] + wj[j]) * (1 - kap)) ** 2;
+    const se = Math.sqrt(Math.max(0, A - (kap - pe * (1 - kap)) ** 2) / (n * (1 - pe) ** 2));
+    return { kappa: kap, se, lo: kap - Z * se, hi: kap + Z * se, po, pe, n }; };
+  const rrNNT = (a, b, c, d) => { /* a=events exposed, b=no-events exposed, c=events control, d=no-events control */
+    const n1 = a + b, n2 = c + d, r1 = a / n1, r2 = c / n2, rr = r1 / r2, se = Math.sqrt(1 / a - 1 / n1 + 1 / c - 1 / n2), z = Math.log(rr) / se;
+    const rd = r1 - r2, sed = Math.sqrt(r1 * (1 - r1) / n1 + r2 * (1 - r2) / n2), dl = rd - Z * sed, dh = rd + Z * sed;
+    return { r1, r2, rr, lo: Math.exp(Math.log(rr) - Z * se), hi: Math.exp(Math.log(rr) + Z * se), z, p: zP2(z), rd, dl, dh, nnt: 1 / Math.abs(rd), nntA: 1 / dh, nntB: 1 / dl }; };
+  const oddsRatio = (a, b, c, d) => { let A = a, B = b, C = c, D = d, cc = false; if ([a, b, c, d].some(v => v === 0)){ A += .5; B += .5; C += .5; D += .5; cc = true; }
+    const or = (A * D) / (B * C), se = Math.sqrt(1 / A + 1 / B + 1 / C + 1 / D), z = Math.log(or) / se; return { or, lo: Math.exp(Math.log(or) - Z * se), hi: Math.exp(Math.log(or) + Z * se), z, p: zP2(z), cc }; };
+  const diag = (TP, FP, FN, TN, prev) => { const sens = TP / (TP + FN), spec = TN / (TN + FP), sc = cp(TP, TP + FN), pc = cp(TN, TN + FP);
+    const lrp = sens / (1 - spec), lrn = (1 - sens) / spec;
+    const sep = Math.sqrt(1 / TP - 1 / (TP + FN) + 1 / FP - 1 / (FP + TN)), sen = Math.sqrt(1 / FN - 1 / (TP + FN) + 1 / TN - 1 / (FP + TN));
+    const N = TP + FP + FN + TN, pr = prev != null && isFinite(prev) ? prev : (TP + FN) / N;
+    const ppv = sens * pr / (sens * pr + (1 - spec) * (1 - pr)), npv = spec * (1 - pr) / ((1 - sens) * pr + spec * (1 - pr));
+    const prc = cp(TP + FN, N), acc = sens * pr + spec * (1 - pr);
+    return { sens, sensLo: sc[0], sensHi: sc[1], spec, specLo: pc[0], specHi: pc[1], lrp, lrpLo: Math.exp(Math.log(lrp) - Z * sep), lrpHi: Math.exp(Math.log(lrp) + Z * sep),
+      lrn, lrnLo: Math.exp(Math.log(lrn) - Z * sen), lrnHi: Math.exp(Math.log(lrn) + Z * sen), prev: pr, prevLo: prc[0], prevHi: prc[1], ppv, npv, acc }; };
+  const lrLevels = rows => { /* rows: [[label, diseased, nonDiseased], ...] */ const D = rows.reduce((s, r) => s + r[1], 0), ND = rows.reduce((s, r) => s + r[2], 0);
+    return rows.map(r => { const a = r[1], b = r[2]; const lr = (a / D) / (b / ND); const se = Math.sqrt(1 / a - 1 / D + 1 / b - 1 / ND);
+      return { label: r[0], a, b, pd: a / D, pn: b / ND, lr, lo: Math.exp(Math.log(lr) - Z * se), hi: Math.exp(Math.log(lr) + Z * se) }; }); };
+  const fagan = (pre, lr) => { const o = pre / (1 - pre), po = o * lr; return po / (1 + po); };
+  const aucCompare = (a1, s1, a2, s2) => { const se = Math.sqrt(s1 * s1 + s2 * s2), z = (a1 - a2) / se; return { diff: a1 - a2, se, z, p: zP2(z), lo: a1 - a2 - Z * se, hi: a1 - a2 + Z * se }; };
+  return { tP2, fUpper, chiP, zP2, normCdf, tInv2, zInv2, betaInv, chiInv, fInv2, cp, oneMean, twoMeans, twoSDs, oneProp, twoProps, mcnemar, fisher, gof, chisq, corrTest, corrCompare, rateCI, rateCompare, cvCompare, kappa, rrNNT, oddsRatio, diag, lrLevels, fagan, aucCompare };
+})();
+(function(){
+"use strict";
+const $ = id => document.getElementById(id);
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const f = (v, d = 4) => !isFinite(v) ? '—' : Math.abs(v) >= 1e6 || (Math.abs(v) < 1e-4 && v !== 0) ? v.toExponential(3) : (+v.toFixed(d)).toString();
+const fp = p => !isFinite(p) ? '—' : p < 0.0001 ? '< 0.0001' : p.toFixed(4);
+const pc = v => isFinite(v) ? (v * 100).toFixed(2) + ' %' : '—';
+const ci = (a, b, k = f) => '[' + k(a) + ' to ' + k(b) + ']';
+const tiles = arr => `<div class="res">${arr.map(a => `<div><b>${a[0]}</b><span>${a[1]}</span></div>`).join('')}</div>`;
+const sig = (p, yes, no) => `<div class="verdict${p < 0.05 ? '' : ' ns'}">${p < 0.05 ? '✓ Significant at α = 0.05 — ' + yes : 'Not significant at α = 0.05 — ' + no}</div>`;
+const nums = s => (String(s).match(/-?\d*\.?\d+(e[-+]?\d+)?/gi) || []).map(Number);
+const rows = s => String(s).split('\n').map(nums).filter(r => r.length);
+const need = (c, m) => { if (!c) throw m; };
+const pos = (v, n) => need(v > 0 && isFinite(v), n + ' must be a positive number.');
+const int0 = (v, n) => need(Number.isInteger(v) && v >= 0, n + ' must be a whole number (0 or more).');
+
+const CALCS = [
+ { id: 'one-mean', g: 'Means & standard deviations', t: 'Test for one mean', d: 'Is a sample mean different from a reference value? (one-sample t-test from summary data)',
+   fields: [['m', 'Sample mean', 52.3], ['sd', 'Standard deviation', 8.1], ['n', 'Sample size', 25], ['mu', 'Test value', 50]],
+   run: v => { pos(v.sd, 'SD'); need(v.n >= 2, 'Sample size must be at least 2.'); const r = MC.oneMean(v.m, v.sd, v.n, v.mu);
+     return tiles([[f(r.diff), 'Difference'], [f(r.se), 'Standard error'], [f(r.t, 3), 't statistic'], [f(r.df, 0), 'df'], [fp(r.p), 'p-value (two-sided)'], [ci(r.lo, r.hi), '95% CI of mean']]) + sig(r.p, 'the mean differs from ' + f(v.mu) + '.', 'no evidence the mean differs from ' + f(v.mu) + '.'); } },
+ { id: 'two-means', g: 'Means & standard deviations', t: 'Comparison of means', d: 'Compare the means of two independent groups from mean, SD and n.',
+   fields: [['m1', 'Group 1 — mean', 52.3], ['s1', 'Group 1 — SD', 8.1], ['n1', 'Group 1 — n', 25], ['m2', 'Group 2 — mean', 47.6], ['s2', 'Group 2 — SD', 9.4], ['n2', 'Group 2 — n', 30]],
+   run: v => { pos(v.s1, 'SD 1'); pos(v.s2, 'SD 2'); need(v.n1 >= 2 && v.n2 >= 2, 'Each n must be at least 2.'); const r = MC.twoMeans(v.m1, v.s1, v.n1, v.m2, v.s2, v.n2);
+     return tiles([[f(r.diff), 'Difference (1 − 2)'], [f(r.t, 3), 't (equal variances)'], [f(r.df, 0), 'df'], [fp(r.p), 'p-value'], [ci(r.lo, r.hi), '95% CI of difference']]) +
+     `<table class="at"><tr><th>Method</th><th>t</th><th>df</th><th>p</th><th>95% CI</th></tr><tr><td>Student (equal variances)</td><td>${f(r.t, 3)}</td><td>${f(r.df, 0)}</td><td>${fp(r.p)}</td><td>${ci(r.lo, r.hi)}</td></tr><tr><td>Welch (unequal variances)</td><td>${f(r.tw, 3)}</td><td>${f(r.dfw, 2)}</td><td>${fp(r.pw)}</td><td>${ci(r.low, r.hiw)}</td></tr></table>` +
+     sig(r.p, 'the two means differ.', 'no evidence the means differ.'); } },
+ { id: 'two-sds', g: 'Means & standard deviations', t: 'Comparison of standard deviations', d: 'F-test for the equality of two variances.',
+   fields: [['s1', 'Group 1 — SD', 8.1], ['n1', 'Group 1 — n', 25], ['s2', 'Group 2 — SD', 9.4], ['n2', 'Group 2 — n', 30]],
+   run: v => { pos(v.s1, 'SD 1'); pos(v.s2, 'SD 2'); const r = MC.twoSDs(v.s1, v.n1, v.s2, v.n2);
+     return tiles([[f(r.F), 'F = SD₁² / SD₂²'], [r.d1 + ', ' + r.d2, 'df (numerator, denominator)'], [fp(r.p), 'p-value (two-sided)']]) + sig(r.p, 'the variances differ.', 'no evidence the variances differ.') + '<p class="note">The F-test is sensitive to non-normal data.</p>'; } },
+ { id: 'one-prop', g: 'Proportions', t: 'Test for one proportion', d: 'Is an observed proportion different from a hypothesised value?',
+   fields: [['x', 'Number of “successes”', 18], ['n', 'Sample size', 50], ['p0', 'Null proportion (0–1)', 0.25]],
+   run: v => { int0(v.x, 'Successes'); need(v.n >= v.x && v.n > 0, 'Sample size must be ≥ successes.'); need(v.p0 > 0 && v.p0 < 1, 'Null proportion must be between 0 and 1.'); const r = MC.oneProp(v.x, v.n, v.p0);
+     return tiles([[pc(r.p), 'Observed proportion'], [ci(r.lo, r.hi, pc), '95% CI (exact)'], [f(r.z, 3), 'z statistic'], [fp(r.pz), 'p-value (z test)'], [fp(r.pexact), 'p-value (exact binomial)']]) + sig(r.pexact, 'the proportion differs from ' + v.p0 + '.', 'no evidence it differs from ' + v.p0 + '.'); } },
+ { id: 'two-props', g: 'Proportions', t: 'Comparison of proportions', d: 'Compare two independent proportions (N−1 chi-squared test, recommended for 2×2 tables).',
+   fields: [['x1', 'Group 1 — successes', 30], ['n1', 'Group 1 — n', 100], ['x2', 'Group 2 — successes', 18], ['n2', 'Group 2 — n', 100]],
+   run: v => { [v.x1, v.x2].forEach(x => int0(x, 'Successes')); need(v.n1 >= v.x1 && v.n2 >= v.x2 && v.n1 > 0 && v.n2 > 0, 'Each n must be ≥ its successes.'); const r = MC.twoProps(v.x1, v.n1, v.x2, v.n2);
+     return tiles([[pc(r.p1), 'Proportion 1'], [pc(r.p2), 'Proportion 2'], [pc(r.diff), 'Difference'], [ci(r.lo, r.hi, pc), '95% CI of difference'], [f(r.chi, 3), 'χ² (N−1), df = 1'], [fp(r.p), 'p-value']]) + sig(r.p, 'the proportions differ.', 'no evidence the proportions differ.'); } },
+ { id: 'mcnemar', g: 'Proportions', t: 'McNemar test (paired proportions)', d: 'For paired yes/no outcomes (e.g. before vs. after on the same subjects). Enter the four cells of the paired table.',
+   fields: [['a', 'Both positive (+ / +)', 10], ['b', 'Positive then negative (+ / −)', 15], ['c', 'Negative then positive (− / +)', 6], ['d', 'Both negative (− / −)', 20]],
+   run: v => { [v.a, v.b, v.c, v.d].forEach(x => int0(x, 'Each cell')); const n = v.a + v.b + v.c + v.d; const r = MC.mcnemar(v.b, v.c);
+     return tiles([[pc((v.a + v.b) / n), 'Positive — first'], [pc((v.a + v.c) / n), 'Positive — second'], [v.b + v.c, 'Discordant pairs'], [f(r.chi, 3), 'χ² (with continuity)'], [fp(r.pchi), 'p (χ²)'], [fp(r.pexact), 'p (exact binomial)']]) + sig(r.pexact, 'the paired proportions differ.', 'no evidence of a change.'); } },
+ { id: 'fisher', g: 'Proportions', t: 'Fisher’s exact test (2×2)', d: 'Exact test for a 2×2 table — preferred when counts are small.',
+   fields: [['a', 'Row 1, column 1', 8], ['b', 'Row 1, column 2', 2], ['c', 'Row 2, column 1', 1], ['d', 'Row 2, column 2', 5]],
+   run: v => { [v.a, v.b, v.c, v.d].forEach(x => int0(x, 'Each cell')); const r = MC.fisher(v.a, v.b, v.c, v.d);
+     return tiles([[fp(r.p), 'p-value (two-sided)'], [fp(r.pl), 'p (one-sided, lower)'], [fp(r.pu), 'p (one-sided, upper)'], [f(r.or, 3), 'Odds ratio (sample)']]) + sig(r.p, 'rows and columns are associated.', 'no evidence of association.'); } },
+ { id: 'chi-one', g: 'Chi-squared tests', t: 'One-way chi-squared (goodness of fit)', d: 'Do observed counts match expected proportions? Leave “expected” empty to test for equal proportions.',
+   fields: [['o', 'Observed counts (one per category)', '18, 22, 35, 25', 'ta'], ['e', 'Expected proportions or counts (optional)', '', 'ta']],
+   run: v => { const O = nums(v.o); let E = nums(v.e); need(O.length >= 2, 'Enter at least two categories.'); O.forEach(x => int0(x, 'Observed counts')); if (!E.length) E = O.map(() => 1); need(E.length === O.length, 'Expected must have the same number of categories as observed.'); E.forEach(x => pos(x, 'Expected values'));
+     const r = MC.gof(O, E); return tiles([[f(r.x2, 3), 'χ²'], [r.df, 'df'], [fp(r.p), 'p-value']]) + `<table class="at"><tr><th>Category</th><th>Observed</th><th>Expected</th></tr>${O.map((o, i) => `<tr><td>${i + 1}</td><td>${o}</td><td>${f(r.e[i], 2)}</td></tr>`).join('')}</table>` + sig(r.p, 'the distribution differs from expected.', 'consistent with the expected distribution.') + (r.low ? `<p class="note">⚠ ${r.low} expected count(s) below 5 — interpret with care.</p>` : ''); } },
+ { id: 'chi-two', g: 'Chi-squared tests', t: 'Two-way chi-squared (contingency table)', d: 'Test of independence for an r × c table of counts. One row per line.',
+   fields: [['tab', 'Table of counts', '20 15 25\n30 35 15', 'ta']],
+   run: v => { const T = rows(v.tab); need(T.length >= 2 && T[0].length >= 2, 'Enter at least a 2 × 2 table.'); need(T.every(r => r.length === T[0].length), 'Every row needs the same number of columns.'); const r = MC.chisq(T);
+     return tiles([[f(r.x2, 3), 'χ²'], [r.df, 'df'], [fp(r.p), 'p-value'], [f(r.V, 3), 'Cramér’s V']]) + sig(r.p, 'the variables are associated.', 'no evidence of association.') + (r.low ? `<p class="note">⚠ ${r.low} cell(s) have expected count below 5 — consider Fisher’s exact test.</p>` : ''); } },
+ { id: 'corr', g: 'Correlation', t: 'Correlation coefficient significance', d: 'Is a correlation coefficient r different from zero? Also gives its 95% confidence interval.',
+   fields: [['r', 'Correlation coefficient r', 0.45], ['n', 'Sample size', 40]],
+   run: v => { need(Math.abs(v.r) < 1, 'r must be between −1 and 1.'); need(v.n >= 4, 'n must be at least 4.'); const r = MC.corrTest(v.r, v.n);
+     return tiles([[f(r.t, 3), 't statistic'], [r.df, 'df'], [fp(r.p), 'p-value'], [ci(r.lo, r.hi), '95% CI of r']]) + sig(r.p, 'the correlation is non-zero.', 'no evidence of correlation.'); } },
+ { id: 'corr-cmp', g: 'Correlation', t: 'Comparison of correlation coefficients', d: 'Compare two correlation coefficients from independent samples (Fisher z).',
+   fields: [['r1', 'r — sample 1', 0.45], ['n1', 'n — sample 1', 40], ['r2', 'r — sample 2', 0.20], ['n2', 'n — sample 2', 50]],
+   run: v => { need(Math.abs(v.r1) < 1 && Math.abs(v.r2) < 1, 'r must be between −1 and 1.'); need(v.n1 >= 4 && v.n2 >= 4, 'Each n must be at least 4.'); const r = MC.corrCompare(v.r1, v.n1, v.r2, v.n2);
+     return tiles([[f(v.r1 - v.r2, 3), 'Difference'], [f(r.z, 3), 'z statistic'], [fp(r.p), 'p-value']]) + sig(r.p, 'the correlations differ.', 'no evidence they differ.'); } },
+ { id: 'rate-ci', g: 'Rates', t: 'Confidence interval for a rate', d: 'Exact Poisson confidence interval for an event rate (events per unit of time or exposure).',
+   fields: [['x', 'Number of events', 12], ['T', 'Total time / exposure (e.g. person-years)', 1500], ['k', 'Express per', 1000]],
+   run: v => { int0(v.x, 'Events'); pos(v.T, 'Exposure'); const r = MC.rateCI(v.x, v.T), k = v.k > 0 ? v.k : 1;
+     return tiles([[f(r.rate * k, 4), 'Rate per ' + k], [ci(r.lo * k, r.hi * k), '95% CI (exact Poisson)'], [ci(r.clo, r.chi, x => f(x, 2)), '95% CI of event count']]); } },
+ { id: 'rate-cmp', g: 'Rates', t: 'Comparison of two rates', d: 'Compare two Poisson rates — rate ratio with 95% CI and exact test.',
+   fields: [['x1', 'Events — group 1', 25], ['T1', 'Exposure — group 1', 1200], ['x2', 'Events — group 2', 12], ['T2', 'Exposure — group 2', 1300]],
+   run: v => { int0(v.x1, 'Events'); int0(v.x2, 'Events'); pos(v.T1, 'Exposure'); pos(v.T2, 'Exposure'); need(v.x1 > 0 && v.x2 > 0, 'Both groups need at least one event for the rate ratio.'); const r = MC.rateCompare(v.x1, v.T1, v.x2, v.T2);
+     return tiles([[f(r.r1, 5), 'Rate 1'], [f(r.r2, 5), 'Rate 2'], [f(r.rr, 3), 'Rate ratio'], [ci(r.lo, r.hi, x => f(x, 3)), '95% CI of ratio'], [fp(r.p), 'p-value (exact)']]) + sig(r.p, 'the rates differ.', 'no evidence the rates differ.'); } },
+ { id: 'cv-cmp', g: 'Test evaluation', t: 'Comparison of coefficients of variation', d: 'Feltz & Miller asymptotic test. One group per line: CV (%) and n.',
+   fields: [['g', 'CV (%) and n per group', '12, 20\n18, 25', 'ta']],
+   run: v => { const G = rows(v.g); need(G.length >= 2 && G.every(r => r.length >= 2), 'Enter at least two groups as “CV, n”.'); const r = MC.cvCompare(G.map(x => [x[0] / 100, x[1]]));
+     return tiles([[f(r.D, 3), 'Test statistic (χ²)'], [r.df, 'df'], [fp(r.p), 'p-value'], [f(r.cb * 100, 2) + ' %', 'Pooled CV']]) + sig(r.p, 'the CVs differ.', 'no evidence the CVs differ.'); } },
+ { id: 'kappa', g: 'Test evaluation', t: 'Inter-rater agreement (Kappa)', d: 'Cohen’s kappa for two raters. Square table: rows = rater A categories, columns = rater B.',
+   fields: [['tab', 'Agreement table', '20 5 1\n4 15 3\n2 3 12', 'ta'], ['w', 'Weights', 'none', 'sel', [['none', 'Unweighted'], ['linear', 'Linear weights'], ['quadratic', 'Quadratic weights']]]],
+   run: v => { const T = rows(v.tab); need(T.length >= 2 && T.every(r => r.length === T.length), 'The table must be square (same number of rows and columns).'); const r = MC.kappa(T, v.w);
+     const lab = r.kappa < 0 ? 'Poor' : r.kappa <= .2 ? 'Slight' : r.kappa <= .4 ? 'Fair' : r.kappa <= .6 ? 'Moderate' : r.kappa <= .8 ? 'Substantial' : 'Almost perfect';
+     return tiles([[f(r.kappa, 3), (v.w === 'none' ? '' : 'Weighted ') + 'kappa'], [f(r.se, 4), 'Standard error'], [ci(r.lo, r.hi, x => f(x, 3)), '95% CI'], [lab, 'Agreement (Landis & Koch)'], [pc(r.po), 'Observed agreement'], [pc(r.pe), 'Chance agreement']]); } },
+ { id: 'rr', g: 'Relative risk & odds ratio', t: 'Relative risk & NNT', d: 'For a cohort or trial: events and non-events in exposed/treated vs. control groups.',
+   fields: [['a', 'Exposed — with outcome', 30], ['b', 'Exposed — without outcome', 70], ['c', 'Control — with outcome', 18], ['d', 'Control — without outcome', 82]],
+   run: v => { [v.a, v.b, v.c, v.d].forEach(x => int0(x, 'Each cell')); need(v.a > 0 && v.c > 0, 'Both groups need at least one outcome.'); const r = MC.rrNNT(v.a, v.b, v.c, v.d);
+     const nntTxt = (r.dl < 0 && r.dh > 0) ? 'CI includes ∞ (no effect)' : ci(Math.min(Math.abs(r.nntA), Math.abs(r.nntB)), Math.max(Math.abs(r.nntA), Math.abs(r.nntB)), x => f(x, 1));
+     return tiles([[pc(r.r1), 'Risk — exposed'], [pc(r.r2), 'Risk — control'], [f(r.rr, 3), 'Relative risk'], [ci(r.lo, r.hi, x => f(x, 3)), '95% CI of RR'], [fp(r.p), 'p-value'], [f(r.nnt, 1), r.rd > 0 ? 'NNH (harm)' : 'NNT (benefit)'], [nntTxt, '95% CI of NNT/NNH'], [pc(r.rd), 'Risk difference']]) + sig(r.p, 'the risk differs between groups.', 'no evidence the risk differs.'); } },
+ { id: 'or', g: 'Relative risk & odds ratio', t: 'Odds ratio', d: 'For case-control or cross-sectional data. 0.5 is added to all cells if any cell is zero.',
+   fields: [['a', 'Exposed — cases', 30], ['b', 'Exposed — controls', 70], ['c', 'Not exposed — cases', 18], ['d', 'Not exposed — controls', 82]],
+   run: v => { [v.a, v.b, v.c, v.d].forEach(x => int0(x, 'Each cell')); const r = MC.oddsRatio(v.a, v.b, v.c, v.d);
+     return tiles([[f(r.or, 3), 'Odds ratio'], [ci(r.lo, r.hi, x => f(x, 3)), '95% CI'], [f(r.z, 3), 'z statistic'], [fp(r.p), 'p-value']]) + sig(r.p, 'exposure and outcome are associated.', 'no evidence of association.') + (r.cc ? '<p class="note">A zero cell was found, so 0.5 was added to every cell.</p>' : ''); } },
+ { id: 'diag', g: 'Diagnostic tests', t: 'Diagnostic test evaluation', d: 'Sensitivity, specificity, likelihood ratios and predictive values from a 2×2 table.',
+   fields: [['tp', 'True positives (test +, disease +)', 90], ['fp', 'False positives (test +, disease −)', 15], ['fn', 'False negatives (test −, disease +)', 10], ['tn', 'True negatives (test −, disease −)', 185], ['prev', 'Disease prevalence % (optional)', '']],
+   run: v => { [v.tp, v.fp, v.fn, v.tn].forEach(x => int0(x, 'Each cell')); need(v.tp + v.fn > 0 && v.fp + v.tn > 0, 'Need at least one diseased and one non-diseased case.'); const pr = isFinite(v.prev) && v.prev !== '' && v.prev > 0 ? v.prev / 100 : null; const r = MC.diag(v.tp, v.fp, v.fn, v.tn, pr);
+     return `<table class="at"><tr><th>Statistic</th><th>Value</th><th>95% CI</th></tr>
+       <tr><td>Sensitivity</td><td>${pc(r.sens)}</td><td>${ci(r.sensLo, r.sensHi, pc)}</td></tr><tr><td>Specificity</td><td>${pc(r.spec)}</td><td>${ci(r.specLo, r.specHi, pc)}</td></tr>
+       <tr><td>Positive likelihood ratio</td><td>${f(r.lrp, 3)}</td><td>${ci(r.lrpLo, r.lrpHi, x => f(x, 3))}</td></tr><tr><td>Negative likelihood ratio</td><td>${f(r.lrn, 3)}</td><td>${ci(r.lrnLo, r.lrnHi, x => f(x, 3))}</td></tr>
+       <tr><td>Disease prevalence${pr ? ' (entered)' : ''}</td><td>${pc(r.prev)}</td><td>${pr ? '' : ci(r.prevLo, r.prevHi, pc)}</td></tr>
+       <tr><td>Positive predictive value</td><td>${pc(r.ppv)}</td><td></td></tr><tr><td>Negative predictive value</td><td>${pc(r.npv)}</td><td></td></tr><tr><td>Accuracy</td><td>${pc(r.acc)}</td><td></td></tr></table>`; } },
+ { id: 'lr-k', g: 'Diagnostic tests', t: 'Likelihood ratios (2 × k table)', d: 'Likelihood ratio for each test-result level. One level per line: label (optional), diseased count, non-diseased count.',
+   fields: [['tab', 'Levels', 'Low, 5, 60\nMedium, 20, 30\nHigh, 45, 10', 'ta']],
+   run: v => { const L = String(v.tab).split('\n').map(s => s.trim()).filter(Boolean).map((s, i) => { const n = nums(s); const lab = s.replace(/[-\d.,\s]+$/, '').replace(/[,;:\s]+$/, '').trim() || ('Level ' + (i + 1)); return [lab, n[n.length - 2], n[n.length - 1]]; });
+     need(L.length >= 2 && L.every(r => isFinite(r[1]) && isFinite(r[2])), 'Enter at least two levels, each with two counts.'); need(L.every(r => r[1] > 0 && r[2] > 0), 'Every count must be above 0 for a likelihood ratio.'); const R = MC.lrLevels(L);
+     return `<table class="at"><tr><th>Level</th><th>Diseased</th><th>Non-diseased</th><th>LR</th><th>95% CI</th></tr>${R.map(r => `<tr><td>${esc(r.label)}</td><td>${r.a} (${pc(r.pd)})</td><td>${r.b} (${pc(r.pn)})</td><td>${f(r.lr, 3)}</td><td>${ci(r.lo, r.hi, x => f(x, 3))}</td></tr>`).join('')}</table>`; } },
+ { id: 'fagan', g: 'Diagnostic tests', t: 'Fagan’s nomogram', d: 'Post-test probability from pre-test probability and likelihood ratios.',
+   fields: [['pre', 'Pre-test probability (%)', 25], ['lrp', 'Positive likelihood ratio', 12], ['lrn', 'Negative likelihood ratio', 0.11]],
+   run: v => { need(v.pre > 0 && v.pre < 100, 'Pre-test probability must be between 0 and 100 %.'); pos(v.lrp, 'LR+'); pos(v.lrn, 'LR−'); const p = v.pre / 100, a = MC.fagan(p, v.lrp), b = MC.fagan(p, v.lrn);
+     return tiles([[pc(p), 'Pre-test probability'], [pc(a), 'Post-test probability if test +'], [pc(b), 'Post-test probability if test −']]) + nomogram(p, v.lrp, v.lrn, a, b); } },
+ { id: 'auc', g: 'Diagnostic tests', t: 'Comparison of AUC (independent ROC curves)', d: 'Compare two areas under ROC curves from independent samples, given each AUC and its standard error.',
+   fields: [['a1', 'AUC — curve 1', 0.85], ['s1', 'SE — curve 1', 0.03], ['a2', 'AUC — curve 2', 0.78], ['s2', 'SE — curve 2', 0.035]],
+   run: v => { need(v.a1 > 0 && v.a1 <= 1 && v.a2 > 0 && v.a2 <= 1, 'AUC must be between 0 and 1.'); pos(v.s1, 'SE'); pos(v.s2, 'SE'); const r = MC.aucCompare(v.a1, v.s1, v.a2, v.s2);
+     return tiles([[f(r.diff, 4), 'Difference'], [f(r.se, 4), 'SE of difference'], [ci(r.lo, r.hi), '95% CI'], [f(r.z, 3), 'z statistic'], [fp(r.p), 'p-value']]) + sig(r.p, 'the AUCs differ.', 'no evidence the AUCs differ.'); } }
+];
+
+function nomogram(pre, lrp, lrn, post1, post2){
+  const W = 360, H = 420, top = 30, bot = H - 30, xL = 50, xM = 180, xR = 310;
+  const pvals = [.1, .2, .5, 1, 2, 5, 10, 20, 30, 40, 50, 60, 70, 80, 90, 95, 98, 99, 99.5, 99.8, 99.9];
+  const logit = p => Math.log(p / (1 - p)), lo = logit(.001), hi = logit(.999);
+  const yL = p => top + (logit(p) - lo) / (hi - lo) * (bot - top);                 /* pre-test: low at top */
+  const yR = p => bot - (logit(p) - lo) / (hi - lo) * (bot - top);                 /* post-test: low at bottom */
+  const yM = lr => (yL(.5) + yR(.5)) / 2 - Math.log(lr) / (hi - lo) * (bot - top) / 2;   /* LR axis centred, matches geometry */
+  const lrs = [.001, .002, .005, .01, .02, .05, .1, .2, .5, 1, 2, 5, 10, 20, 50, 100, 200, 500, 1000];
+  let s = `<svg class="nomo" viewBox="0 0 ${W} ${H}" role="img" aria-label="Fagan nomogram"><g font-size="9" fill="currentColor">`;
+  [[xL, 'Pre-test %'], [xM, 'Likelihood ratio'], [xR, 'Post-test %']].forEach(a => s += `<line x1="${a[0]}" y1="${top}" x2="${a[0]}" y2="${bot}" stroke="currentColor" stroke-opacity=".5"/><text x="${a[0]}" y="16" text-anchor="middle" font-weight="600">${a[1]}</text>`);
+  pvals.forEach(p => { const q = p / 100; s += `<line x1="${xL - 4}" y1="${yL(q)}" x2="${xL}" y2="${yL(q)}" stroke="currentColor"/><text x="${xL - 7}" y="${yL(q) + 3}" text-anchor="end">${p}</text><line x1="${xR}" y1="${yR(q)}" x2="${xR + 4}" y2="${yR(q)}" stroke="currentColor"/><text x="${xR + 7}" y="${yR(q) + 3}">${p}</text>`; });
+  lrs.forEach(l => { const y = yM(l); if (y > top && y < bot) s += `<line x1="${xM - 4}" y1="${y}" x2="${xM + 4}" y2="${y}" stroke="currentColor"/><text x="${xM + 8}" y="${y + 3}">${l}</text>`; });
+  const line = (lr, post, col) => { const y1 = yL(pre), y3 = yR(post); s += `<line x1="${xL}" y1="${y1}" x2="${xR}" y2="${y3}" stroke="${col}" stroke-width="2"/><circle cx="${xR}" cy="${y3}" r="3.5" fill="${col}"/>`; };
+  line(lrp, post1, '#B4402A'); line(lrn, post2, '#1F6B58');
+  s += `<circle cx="${xL}" cy="${yL(pre)}" r="3.5" fill="currentColor"/></g></svg><p class="note"><span style="color:#B4402A">■</span> positive test &nbsp; <span style="color:#1F6B58">■</span> negative test</p>`;
+  return s;
+}
+
+/* ---------- UI ---------- */
+const groups = [...new Set(CALCS.map(c => c.g))];
+$('nav').innerHTML = groups.map(g => `<div class="ng"><p>${esc(g)}</p>${CALCS.filter(c => c.g === g).map(c => `<a href="#${c.id}" data-id="${c.id}">${esc(c.t)}</a>`).join('')}</div>`).join('');
+$('pick').innerHTML = groups.map(g => `<optgroup label="${esc(g)}">${CALCS.filter(c => c.g === g).map(c => `<option value="${c.id}">${esc(c.t)}</option>`).join('')}</optgroup>`).join('');
+$('pick').addEventListener('change', e => { location.hash = e.target.value; });
+function show(id){
+  const c = CALCS.find(x => x.id === id) || CALCS[0];
+  document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.id === c.id)); $('pick').value = c.id;
+  $('panel').innerHTML = `<p class="grp">${esc(c.g)}</p><h1>${esc(c.t)}</h1><p class="desc">${esc(c.d)}</p>
+    <form id="cf" class="cgrid" autocomplete="off">${c.fields.map(fl => {
+      const [k, lab, val, type, opts] = fl;
+      if (type === 'ta') return `<label class="wide">${esc(lab)}<textarea name="${k}" rows="4">${esc(val)}</textarea></label>`;
+      if (type === 'sel') return `<label>${esc(lab)}<select name="${k}">${opts.map(o => `<option value="${o[0]}"${o[0] === val ? ' selected' : ''}>${esc(o[1])}</option>`).join('')}</select></label>`;
+      return `<label>${esc(lab)}<input name="${k}" type="number" step="any" value="${esc(val)}"></label>`; }).join('')}</form>
+    <div class="out" id="out" aria-live="polite"></div>
+    <div class="acts"><button class="btn" type="button" id="reset">Reset example values</button><button class="btn" type="button" id="copy">Copy results</button></div>`;
+  const form = $('cf');
+  const go = () => { const v = {}; c.fields.forEach(fl => { const el = form.elements[fl[0]]; v[fl[0]] = (fl[3] === 'ta' || fl[3] === 'sel') ? el.value : (el.value === '' ? '' : +el.value); });
+    try { $('out').innerHTML = c.run(v); } catch(e){ $('out').innerHTML = '<p class="err">' + esc(typeof e === 'string' ? e : 'Please check the values.') + '</p>'; } };
+  form.addEventListener('input', go); form.addEventListener('submit', e => e.preventDefault());
+  $('reset').addEventListener('click', () => show(c.id));
+  $('copy').addEventListener('click', () => { const t = c.t + '\n' + $('out').innerText; if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => { $('copy').textContent = 'Copied'; setTimeout(() => $('copy').textContent = 'Copy results', 1400); }).catch(() => {}); });
+  go(); document.title = c.t + ' — Statistical calculators';
+  if (window.innerWidth < 900) $('panel').scrollIntoView({ block: 'start' });
+}
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+show(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>

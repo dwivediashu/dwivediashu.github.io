@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-us7yTawGNjS8Xr6Ji/JTOY9McLnFR5PLOaN8gdk4yhg='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://api.rss2json.com https://api.openalex.org https://api.crossref.org; frame-src https://www.linkedin.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uwhluJXOgMv3ZNwxa+QcyiDEm9Q/9XqTiXU5OOkYhTg='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://api.rss2json.com https://api.openalex.org https://api.crossref.org; frame-src https://www.linkedin.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Ashutosh Dwivedi — Ph.D. Research Scholar, IISc Bangalore</title>
 <meta name="description" content="Ashutosh Dwivedi is a Ph.D. research scholar at the Centre for Sustainable Technologies, Indian Institute of Science (IISc) Bangalore, working on 3D concrete printing, carbon sequestration, and low-carbon earth-based construction materials.">
@@ -1052,6 +1052,24 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select{cursor:a
 .rg-sub .live-dot{margin-right:.4rem}
 .badge.new{background:var(--accent);color:#fff;border-color:var(--accent)}
 .tool-tabs{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.2rem}
+.tool-groups{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.2rem}
+.tg{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
+.tg-l{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);width:92px;flex:none}
+@media(max-width:620px){.tg-l{width:100%}}
+.cv-promo{display:flex;align-items:center;gap:1rem;padding:1.1rem 1.3rem;margin-bottom:1.4rem;border-radius:var(--r);text-decoration:none;color:var(--ink);background:linear-gradient(120deg,var(--accent-soft),transparent 70%),var(--panel);border:1px solid var(--line);transition:transform .25s ease,box-shadow .25s ease,border-color .25s}
+.cv-promo:hover{transform:translateY(-3px);box-shadow:var(--shadow-lift);border-color:var(--accent)}
+.cv-promo .cv-ic{flex:none;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:var(--accent);color:#fff}
+.cv-promo .cv-ic svg{width:24px;height:24px}
+.cv-promo b{display:block;font-family:var(--display);font-size:1.15rem;font-weight:600}
+.cv-promo small{display:block;font-size:.85rem;color:var(--ink-2);margin-top:.15rem;line-height:1.5}
+.cv-promo .go{margin-left:auto;flex:none;font-size:.85rem;font-weight:600;color:var(--accent)}
+@media(max-width:620px){.cv-promo{flex-wrap:wrap}.cv-promo .go{margin-left:62px}}
+.tout table.at{width:100%;border-collapse:collapse;font-size:.84rem;margin-top:.8rem}
+.tout table.at th,.tout table.at td{padding:.45rem .6rem;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+.tout table.at th:first-child,.tout table.at td:first-child{text-align:left}
+.tout table.at th{font-family:var(--mono);font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.tout .verdict{margin-top:.8rem;padding:.65rem .85rem;border-radius:10px;font-size:.88rem;border-left:3px solid var(--accent);background:var(--accent-soft)}
+.tout .verdict.ns{border-left-color:var(--ink-3);background:var(--paper)}
 .tool-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.6rem;box-shadow:var(--shadow)}
 .tool h3{font-family:var(--display);font-size:1.3rem;font-weight:600;margin-bottom:.35rem}
 .tool-hint{font-size:.86rem;color:var(--ink-2);margin-bottom:1rem;line-height:1.55}
@@ -1309,13 +1327,27 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select{cursor:a
       <h2>Free tools for researchers &amp; students.</h2>
       <p>Small calculators I find useful in the lab and while writing papers. Everything runs in your browser — nothing is stored.</p>
     </div>
-    <div class="tool-tabs" role="tablist" id="toolTabs">
-      <button class="chip active" data-tool="cite">DOI → Citation</button>
-      <button class="chip" data-tool="tga">CO₂ uptake (TGA)</button>
-      <button class="chip" data-tool="stats">Replicate statistics</button>
-      <button class="chip" data-tool="fc">Compressive strength</button>
-      <button class="chip" data-tool="molar">Molar mass</button>
-      <button class="chip" data-tool="units">Unit converter</button>
+    <a class="cv-promo rv" href="resume.html">
+      <span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+      <span><b>CV &amp; resume builder</b><small>Fill in a form, pick from 5 professional templates, and download as PDF, Word, HTML, text or Markdown — free, nothing uploaded.</small></span>
+      <span class="go">Open builder →</span>
+    </a>
+    <div class="tool-groups" id="toolTabs">
+      <div class="tg"><span class="tg-l">Writing</span>
+        <button class="chip active" data-tool="cite">DOI → Citation</button></div>
+      <div class="tg"><span class="tg-l">Statistics</span>
+        <button class="chip" data-tool="stats">Descriptive</button>
+        <button class="chip" data-tool="ttest">t-test</button>
+        <button class="chip" data-tool="anova">ANOVA</button>
+        <button class="chip" data-tool="corr">Correlation &amp; regression</button>
+        <button class="chip" data-tool="chi">Chi-square</button>
+        <button class="chip" data-tool="outlier">Outliers</button>
+        <button class="chip" data-tool="pval">p-value</button></div>
+      <div class="tg"><span class="tg-l">Lab</span>
+        <button class="chip" data-tool="tga">CO₂ uptake (TGA)</button>
+        <button class="chip" data-tool="fc">Compressive strength</button>
+        <button class="chip" data-tool="molar">Molar mass</button>
+        <button class="chip" data-tool="units">Unit converter</button></div>
     </div>
     <div class="tool-card">
       <div class="tool" data-tool="cite">
@@ -1341,6 +1373,60 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select{cursor:a
         <p class="tool-hint">Paste your replicate values (e.g. compressive strengths), separated by spaces, commas or new lines.</p>
         <textarea id="stIn" rows="3">32.4, 31.8, 33.1, 30.9, 32.6, 31.5</textarea>
         <div class="tout" id="stOut"></div>
+      </div>
+      <div class="tool" data-tool="ttest" hidden>
+        <h3>t-test — compare means</h3>
+        <p class="tool-hint">Paste values separated by spaces, commas or new lines. Welch’s test is the safe default when group variances may differ.</p>
+        <div class="tgrid">
+          <label>Test<select id="ttM"><option value="welch">Two groups — Welch (unequal variance)</option><option value="student">Two groups — Student (equal variance)</option><option value="paired">Paired (before / after)</option><option value="one">One sample vs. a value</option></select></label>
+          <label id="ttMuL" hidden>Compare against (μ₀)<input id="ttMu" type="number" step="any" value="30"></label>
+        </div>
+        <div class="tgrid" style="margin-top:.8rem">
+          <label>Group A<textarea id="ttA" rows="3">32.4, 31.8, 33.1, 30.9, 32.6, 31.5</textarea></label>
+          <label id="ttBL">Group B<textarea id="ttB" rows="3">29.8, 30.5, 31.2, 29.1, 30.0, 30.9</textarea></label>
+        </div>
+        <div class="tout" id="ttOut"></div>
+      </div>
+      <div class="tool" data-tool="anova" hidden>
+        <h3>One-way ANOVA</h3>
+        <p class="tool-hint">One group per line (e.g. strength of each mix). At least two groups, two values each.</p>
+        <textarea id="anIn" rows="4">32.4 31.8 33.1 30.9 32.6
+29.8 30.5 31.2 29.1 30.0
+33.5 34.1 32.8 33.9 34.4</textarea>
+        <div class="tout" id="anOut"></div>
+      </div>
+      <div class="tool" data-tool="corr" hidden>
+        <h3>Correlation &amp; linear regression</h3>
+        <p class="tool-hint">Paired X and Y values in the same order (e.g. CO₂ uptake vs. strength).</p>
+        <div class="tgrid">
+          <label>X values<textarea id="crX" rows="3">0, 2, 4, 6, 8, 10, 12</textarea></label>
+          <label>Y values<textarea id="crY" rows="3">28.1, 30.2, 31.9, 33.1, 35.0, 35.8, 37.4</textarea></label>
+        </div>
+        <div class="tout" id="crOut"></div>
+      </div>
+      <div class="tool" data-tool="chi" hidden>
+        <h3>Chi-square test of independence</h3>
+        <p class="tool-hint">A table of counts: one row per line, columns separated by spaces or commas.</p>
+        <textarea id="chIn" rows="3">20 15 25
+30 35 15</textarea>
+        <div class="tout" id="chOut"></div>
+      </div>
+      <div class="tool" data-tool="outlier" hidden>
+        <h3>Outlier check — Grubbs’ test &amp; IQR</h3>
+        <p class="tool-hint">Paste replicate values. Grubbs’ test (α = 0.05, two-sided) checks the most extreme value; IQR fences flag anything beyond 1.5 × IQR.</p>
+        <textarea id="olIn" rows="3">10.1, 10.3, 9.9, 10.0, 10.2, 13.5, 10.1</textarea>
+        <div class="tout" id="olOut"></div>
+      </div>
+      <div class="tool" data-tool="pval" hidden>
+        <h3>p-value from a test statistic</h3>
+        <div class="tgrid">
+          <label>Distribution<select id="pvD"><option value="z">z (normal)</option><option value="t">t</option><option value="f">F</option><option value="chi">χ² (chi-square)</option></select></label>
+          <label>Statistic value<input id="pvS" type="number" step="any" value="2.31"></label>
+          <label id="pvD1L" hidden>df (numerator / df)<input id="pvD1" type="number" step="1" value="10"></label>
+          <label id="pvD2L" hidden>df (denominator)<input id="pvD2" type="number" step="1" value="20"></label>
+          <label id="pvTL">Tails<select id="pvT"><option value="2">Two-tailed</option><option value="1">One-tailed</option></select></label>
+        </div>
+        <div class="tout" id="pvOut"></div>
       </div>
       <div class="tool" data-tool="fc" hidden>
         <h3>Compressive strength from failure load</h3>
@@ -1897,6 +1983,164 @@ safe('tools', () => {
     $('#uOut').innerHTML = tiles(Object.keys(T).filter(k => k !== f.value).map(k => { const r = base / T[k];
       return [Math.abs(r) >= 1e6 || (Math.abs(r) < 1e-3 && r !== 0) ? r.toExponential(4) : (+r.toPrecision(6)).toLocaleString('en-US', { maximumFractionDigits: 6 }), k]; })); };
   q.addEventListener('change', fill); f.addEventListener('change', conv); $('#uV').addEventListener('input', conv); fill();
+});
+
+const ST = (() => {
+  const gammaln = x => { const c = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+    let y = x, t = x + 5.5; t -= (x + 0.5) * Math.log(t); let s = 1.000000000190015; for (let j = 0; j < 6; j++) s += c[j] / ++y; return -t + Math.log(2.5066282746310005 * s / x); };
+  const betacf = (a, b, x) => { const MAXIT = 300, EPS = 3e-14, FPMIN = 1e-300; let qab = a + b, qap = a + 1, qam = a - 1, c = 1, d = 1 - qab * x / qap;
+    if (Math.abs(d) < FPMIN) d = FPMIN; d = 1 / d; let h = d;
+    for (let m = 1; m <= MAXIT; m++){ const m2 = 2 * m; let aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+      d = 1 + aa * d; if (Math.abs(d) < FPMIN) d = FPMIN; c = 1 + aa / c; if (Math.abs(c) < FPMIN) c = FPMIN; d = 1 / d; h *= d * c;
+      aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+      d = 1 + aa * d; if (Math.abs(d) < FPMIN) d = FPMIN; c = 1 + aa / c; if (Math.abs(c) < FPMIN) c = FPMIN; d = 1 / d; const del = d * c; h *= del;
+      if (Math.abs(del - 1) < EPS) break; } return h; };
+  const betai = (a, b, x) => { if (x <= 0) return 0; if (x >= 1) return 1;
+    const bt = Math.exp(gammaln(a + b) - gammaln(a) - gammaln(b) + a * Math.log(x) + b * Math.log(1 - x));
+    return x < (a + 1) / (a + b + 2) ? bt * betacf(a, b, x) / a : 1 - bt * betacf(b, a, 1 - x) / b; };
+  const gammp = (a, x) => { if (x <= 0) return 0; const gl = gammaln(a);
+    if (x < a + 1){ let ap = a, sum = 1 / a, del = sum; for (let n = 0; n < 1000; n++){ ap++; del *= x / ap; sum += del; if (Math.abs(del) < Math.abs(sum) * 3e-16) break; } return sum * Math.exp(-x + a * Math.log(x) - gl); }
+    let b = x + 1 - a, c = 1e300, d = 1 / b, h = d; for (let i = 1; i < 1000; i++){ const an = -i * (i - a); b += 2; d = an * d + b; if (Math.abs(d) < 1e-300) d = 1e-300; c = b + an / c; if (Math.abs(c) < 1e-300) c = 1e-300; d = 1 / d; const del = d * c; h *= del; if (Math.abs(del - 1) < 3e-16) break; }
+    return 1 - Math.exp(-x + a * Math.log(x) - gl) * h; };
+  const gammq = (a, x) => 1 - gammp(a, x);
+  const tP2 = (t, df) => betai(df / 2, 0.5, df / (df + t * t));          /* two-tailed */
+  const fP = (F, d1, d2) => F <= 0 ? 1 : betai(d2 / 2, d1 / 2, d2 / (d2 + d1 * F)); /* upper tail */
+  const chiP = (x, k) => x <= 0 ? 1 : gammq(k / 2, x / 2);
+  const zP2 = z => z === 0 ? 1 : gammq(0.5, z * z / 2);
+  const normCdf = z => z >= 0 ? 1 - zP2(z) / 2 : zP2(z) / 2;
+  const tInv2 = (p, df) => { let lo = 0, hi = 1e4; for (let i = 0; i < 200; i++){ const mid = (lo + hi) / 2; if (tP2(mid, df) > p) lo = mid; else hi = mid; } return (lo + hi) / 2; };
+  const mean = a => a.reduce((s, v) => s + v, 0) / a.length;
+  const vari = a => { const m = mean(a); return a.reduce((s, v) => s + (v - m) ** 2, 0) / (a.length - 1); };
+  const rank = a => { const idx = a.map((v, i) => [v, i]).sort((x, y) => x[0] - y[0]); const r = new Array(a.length);
+    for (let i = 0; i < idx.length;){ let j = i; while (j + 1 < idx.length && idx[j + 1][0] === idx[i][0]) j++; const rk = (i + j) / 2 + 1; for (let k = i; k <= j; k++) r[idx[k][1]] = rk; i = j + 1; } return r; };
+  function ttest(a, b, mode, mu0){
+    if (mode === 'one'){ const n = a.length, m = mean(a), sd = Math.sqrt(vari(a)), se = sd / Math.sqrt(n), df = n - 1, t = (m - mu0) / se;
+      const tc = tInv2(0.05, df); return { t, df, p: tP2(t, df), diff: m - mu0, lo: m - mu0 - tc * se, hi: m - mu0 + tc * se, d: (m - mu0) / sd }; }
+    if (mode === 'paired'){ if (a.length !== b.length) throw 'Paired test needs the same number of values in both groups.';
+      const dd = a.map((v, i) => v - b[i]); const r = ttest(dd, null, 'one', 0); return r; }
+    const n1 = a.length, n2 = b.length, m1 = mean(a), m2 = mean(b), v1 = vari(a), v2 = vari(b);
+    let se, df;
+    if (mode === 'welch'){ se = Math.sqrt(v1 / n1 + v2 / n2); df = (v1 / n1 + v2 / n2) ** 2 / ((v1 / n1) ** 2 / (n1 - 1) + (v2 / n2) ** 2 / (n2 - 1)); }
+    else { const sp = ((n1 - 1) * v1 + (n2 - 1) * v2) / (n1 + n2 - 2); se = Math.sqrt(sp * (1 / n1 + 1 / n2)); df = n1 + n2 - 2; }
+    const t = (m1 - m2) / se, tc = tInv2(0.05, df), spool = Math.sqrt(((n1 - 1) * v1 + (n2 - 1) * v2) / (n1 + n2 - 2));
+    return { t, df, p: tP2(t, df), diff: m1 - m2, lo: m1 - m2 - tc * se, hi: m1 - m2 + tc * se, d: (m1 - m2) / spool };
+  }
+  function anova(groups){
+    const all = groups.flat(), N = all.length, k = groups.length, gm = mean(all);
+    const ssb = groups.reduce((s, g) => s + g.length * (mean(g) - gm) ** 2, 0);
+    const ssw = groups.reduce((s, g) => { const m = mean(g); return s + g.reduce((q, v) => q + (v - m) ** 2, 0); }, 0);
+    const dfb = k - 1, dfw = N - k, F = (ssb / dfb) / (ssw / dfw);
+    return { ssb, ssw, dfb, dfw, msb: ssb / dfb, msw: ssw / dfw, F, p: fP(F, dfb, dfw), eta2: ssb / (ssb + ssw) };
+  }
+  function regress(x, y){
+    const n = x.length, mx = mean(x), my = mean(y); let sxx = 0, syy = 0, sxy = 0;
+    for (let i = 0; i < n; i++){ sxx += (x[i] - mx) ** 2; syy += (y[i] - my) ** 2; sxy += (x[i] - mx) * (y[i] - my); }
+    const r = sxy / Math.sqrt(sxx * syy), slope = sxy / sxx, icpt = my - slope * mx, df = n - 2;
+    const sse = syy - slope * sxy, s = Math.sqrt(Math.max(sse, 0) / df);
+    const t = r * Math.sqrt(df / Math.max(1e-300, 1 - r * r));
+    const rx = rank(x), ry = rank(y); const rs = (() => { const a = rx, b = ry, ma = mean(a), mb = mean(b); let sab = 0, saa = 0, sbb = 0; for (let i = 0; i < n; i++){ sab += (a[i] - ma) * (b[i] - mb); saa += (a[i] - ma) ** 2; sbb += (b[i] - mb) ** 2; } return sab / Math.sqrt(saa * sbb); })();
+    const ts = rs * Math.sqrt(df / Math.max(1e-300, 1 - rs * rs));
+    return { n, r, r2: r * r, p: Math.abs(r) >= 1 ? 0 : tP2(t, df), slope, icpt, seSlope: s / Math.sqrt(sxx), seIcpt: s * Math.sqrt(1 / n + mx * mx / sxx), rs, ps: Math.abs(rs) >= 1 ? 0 : tP2(ts, df) };
+  }
+  function chisq(tab){
+    const R = tab.length, C = tab[0].length; if (tab.some(r => r.length !== C)) throw 'Every row needs the same number of columns.';
+    const rs = tab.map(r => r.reduce((s, v) => s + v, 0)), cs = tab[0].map((_, j) => tab.reduce((s, r) => s + r[j], 0)), N = rs.reduce((s, v) => s + v, 0);
+    let x2 = 0, low = 0; for (let i = 0; i < R; i++) for (let j = 0; j < C; j++){ const e = rs[i] * cs[j] / N; if (e < 5) low++; x2 += (tab[i][j] - e) ** 2 / e; }
+    const df = (R - 1) * (C - 1); return { x2, df, p: chiP(x2, df), V: Math.sqrt(x2 / (N * (Math.min(R, C) - 1))), low, cells: R * C };
+  }
+  function grubbs(a, alpha = 0.05){
+    const n = a.length, m = mean(a), sd = Math.sqrt(vari(a)); let idx = 0, G = 0;
+    a.forEach((v, i) => { const g = Math.abs(v - m) / sd; if (g > G){ G = g; idx = i; } });
+    const t = tInv2(alpha / n, n - 2);   /* two-sided: alpha/(2n) one-tailed = alpha/n two-tailed */
+    const Gc = (n - 1) / Math.sqrt(n) * Math.sqrt(t * t / (n - 2 + t * t));
+    return { G, Gc, value: a[idx], outlier: G > Gc };
+  }
+  return { tP2, fP, chiP, zP2, normCdf, tInv2, mean, vari, ttest, anova, regress, chisq, grubbs };
+})();
+
+safe('stats-tools', () => {
+  if (!$('#ttOut')) return;
+  const nums = s => (String(s).match(/-?\d*\.?\d+(e[-+]?\d+)?/gi) || []).map(Number).filter(isFinite);
+  const f = (v, d = 3) => !isFinite(v) ? '—' : Math.abs(v) >= 1e5 || (Math.abs(v) < 1e-3 && v !== 0) ? v.toExponential(2) : (+v.toFixed(d)).toString();
+  const fp = p => !isFinite(p) ? '—' : p < 0.0001 ? '< 0.0001' : p.toFixed(4);
+  const tl = arr => `<div class="res">${arr.map(a => `<div><b>${a[0]}</b><span>${a[1]}</span></div>`).join('')}</div>`;
+  const verdict = (p, yes, no) => `<div class="verdict${p < 0.05 ? '' : ' ns'}">${p < 0.05 ? '✓ Statistically significant at α = 0.05 — ' + yes : 'Not significant at α = 0.05 — ' + no}</div>`;
+  const err = (id, m) => { $(id).innerHTML = '<p class="err">' + m + '</p>'; };
+  const bind = (ids, fn) => { ids.forEach(i => $(i).addEventListener('input', fn)); fn(); };
+
+  const tt = () => {
+    const m = $('#ttM').value, A = nums($('#ttA').value), B = nums($('#ttB').value);
+    $('#ttBL').hidden = m === 'one'; $('#ttMuL').hidden = m !== 'one';
+    if (A.length < 2 || (m !== 'one' && B.length < 2)) return err('#ttOut', 'Each group needs at least two values.');
+    try { const r = ST.ttest(A, B, m, +$('#ttMu').value);
+      $('#ttOut').innerHTML = tl([[f(r.t), 't statistic'], [f(r.df, 2), 'degrees of freedom'], [fp(r.p), 'p-value (two-tailed)'],
+        [f(r.diff), m === 'one' ? 'Mean − μ₀' : m === 'paired' ? 'Mean difference' : 'Mean A − Mean B'], ['[' + f(r.lo) + ', ' + f(r.hi) + ']', '95% CI of difference'], [f(r.d, 2), 'Cohen’s d']]) +
+        verdict(r.p, 'the means differ.', 'no evidence the means differ.') +
+        '<p class="note">Cohen’s d: ~0.2 small, ~0.5 medium, ≥0.8 large effect.</p>';
+    } catch(e){ err('#ttOut', String(e)); }
+  };
+  bind(['#ttM', '#ttA', '#ttB', '#ttMu'], tt);
+
+  const an = () => {
+    const G = $('#anIn').value.split(/\n/).map(nums).filter(g => g.length);
+    if (G.length < 2 || G.some(g => g.length < 2)) return err('#anOut', 'Enter at least two groups (one per line), each with two or more values.');
+    const r = ST.anova(G);
+    $('#anOut').innerHTML = tl([[f(r.F), 'F statistic'], [fp(r.p), 'p-value'], [f(r.eta2, 3), 'η² (effect size)'], [G.length, 'groups']]) +
+      `<table class="at"><tr><th>Source</th><th>SS</th><th>df</th><th>MS</th><th>F</th><th>p</th></tr>
+       <tr><td>Between groups</td><td>${f(r.ssb)}</td><td>${r.dfb}</td><td>${f(r.msb)}</td><td>${f(r.F)}</td><td>${fp(r.p)}</td></tr>
+       <tr><td>Within groups</td><td>${f(r.ssw)}</td><td>${r.dfw}</td><td>${f(r.msw)}</td><td></td><td></td></tr>
+       <tr><td>Total</td><td>${f(r.ssb + r.ssw)}</td><td>${r.dfb + r.dfw}</td><td></td><td></td><td></td></tr></table>
+       <table class="at"><tr><th>Group</th><th>n</th><th>Mean</th><th>SD</th></tr>${G.map((g, i) => `<tr><td>${i + 1}</td><td>${g.length}</td><td>${f(ST.mean(g))}</td><td>${f(Math.sqrt(ST.vari(g)))}</td></tr>`).join('')}</table>` +
+      verdict(r.p, 'at least one group mean differs (follow up with pairwise tests).', 'no evidence the group means differ.');
+  };
+  bind(['#anIn'], an);
+
+  const cr = () => {
+    const X = nums($('#crX').value), Y = nums($('#crY').value);
+    if (X.length !== Y.length) return err('#crOut', `X has ${X.length} values but Y has ${Y.length}. They must match.`);
+    if (X.length < 3) return err('#crOut', 'Enter at least three X–Y pairs.');
+    const r = ST.regress(X, Y);
+    $('#crOut').innerHTML = tl([[f(r.r), 'Pearson r'], [fp(r.p), 'p-value (r)'], [f(r.r2), 'R²'], [f(r.rs), 'Spearman ρ'], [fp(r.ps), 'p-value (ρ)'], [r.n, 'pairs']]) +
+      `<div class="verdict ns" style="border-left-color:var(--clay)">y = ${f(r.slope, 4)} · x ${r.icpt < 0 ? '−' : '+'} ${f(Math.abs(r.icpt), 4)} &nbsp;·&nbsp; slope SE ${f(r.seSlope, 4)}, intercept SE ${f(r.seIcpt, 4)}</div>` +
+      verdict(r.p, 'there is a linear relationship.', 'no evidence of a linear relationship.');
+  };
+  bind(['#crX', '#crY'], cr);
+
+  const ch = () => {
+    const T = $('#chIn').value.split(/\n/).map(nums).filter(r => r.length);
+    if (T.length < 2 || T[0].length < 2) return err('#chOut', 'Enter at least a 2 × 2 table.');
+    try { const r = ST.chisq(T);
+      $('#chOut').innerHTML = tl([[f(r.x2), 'χ² statistic'], [r.df, 'degrees of freedom'], [fp(r.p), 'p-value'], [f(r.V), 'Cramér’s V']]) +
+        verdict(r.p, 'the variables are associated.', 'no evidence of association.') +
+        (r.low ? `<p class="note">⚠ ${r.low} of ${r.cells} cells have an expected count below 5 — consider Fisher’s exact test.</p>` : '');
+    } catch(e){ err('#chOut', String(e)); }
+  };
+  bind(['#chIn'], ch);
+
+  const ol = () => {
+    const A = nums($('#olIn').value); if (A.length < 3) return err('#olOut', 'Enter at least three values.');
+    const s = [...A].sort((a, b) => a - b), q = p => { const i = (s.length - 1) * p, lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
+    const q1 = q(.25), q3 = q(.75), iqr = q3 - q1, lf = q1 - 1.5 * iqr, uf = q3 + 1.5 * iqr, out = A.filter(v => v < lf || v > uf);
+    const g = ST.grubbs(A);
+    $('#olOut').innerHTML = tl([[f(g.value), 'Most extreme value'], [f(g.G), 'Grubbs G'], [f(g.Gc), 'Critical G (α = 0.05)'], ['[' + f(lf) + ', ' + f(uf) + ']', 'IQR fences']]) +
+      `<div class="verdict${g.outlier ? '' : ' ns'}">${g.outlier ? '⚠ Grubbs’ test flags ' + f(g.value) + ' as an outlier.' : 'Grubbs’ test finds no outlier.'} ${out.length ? 'IQR rule flags: ' + out.map(v => f(v)).join(', ') + '.' : 'IQR rule flags nothing.'}</div>` +
+      '<p class="note">Grubbs’ test assumes roughly normal data and tests one value at a time. Only remove a point if there is also a physical reason (e.g. a defective specimen).</p>';
+  };
+  bind(['#olIn'], ol);
+
+  const pv = () => {
+    const d = $('#pvD').value, x = +$('#pvS').value, d1 = +$('#pvD1').value, d2 = +$('#pvD2').value, tails = +$('#pvT').value;
+    $('#pvD1L').hidden = d === 'z'; $('#pvD2L').hidden = d !== 'f'; $('#pvTL').hidden = d === 'f' || d === 'chi';
+    $('#pvD1L').firstChild.textContent = d === 'f' ? 'df (numerator)' : 'Degrees of freedom';
+    if (!isFinite(x) || (d !== 'z' && !(d1 > 0)) || (d === 'f' && !(d2 > 0))) return err('#pvOut', 'Enter a statistic and valid degrees of freedom.');
+    let p, lab;
+    if (d === 'z'){ p = ST.zP2(Math.abs(x)); if (tails === 1) p /= 2; lab = tails === 1 ? 'one-tailed' : 'two-tailed'; }
+    else if (d === 't'){ p = ST.tP2(Math.abs(x), d1); if (tails === 1) p /= 2; lab = tails === 1 ? 'one-tailed' : 'two-tailed'; }
+    else if (d === 'f'){ p = ST.fP(x, d1, d2); lab = 'upper tail'; }
+    else { p = ST.chiP(x, d1); lab = 'upper tail'; }
+    $('#pvOut').innerHTML = tl([[fp(p), 'p-value (' + lab + ')'], [p < 0.001 ? '***' : p < 0.01 ? '**' : p < 0.05 ? '*' : 'n.s.', 'significance']]) + verdict(p, 'reject the null hypothesis.', 'cannot reject the null hypothesis.');
+  };
+  bind(['#pvD', '#pvS', '#pvD1', '#pvD2', '#pvT'], pv);
 });
 
 safe('education', () => {

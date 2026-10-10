@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-cLfEyEGatyL9Fx493n5VJZqz39fcklfrXDY4WXUyLzo='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex, nofollow">
+<title>Owner login — Ashutosh Dwivedi</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F6B58'/%3E%3Crect x='20' y='30' width='24' height='18' rx='3' fill='%23F2F0EA'/%3E%3Cpath d='M25 30v-6a7 7 0 0 1 14 0v6' stroke='%23F2F0EA' stroke-width='4' fill='none'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@500;600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#F2F0EA;--panel:#FBFAF7;--ink:#1D1B16;--ink-2:#545046;--ink-3:#84806F;--line:#D8D4C8;--line-2:#C7C2B2;--clay:#9C5B36;--accent:#1F6B58;--accent-2:#2F8A72;--accent-soft:rgba(31,107,88,.10);--bad:#B4402A;--r:14px;
+--display:'STIX Two Text',Georgia,serif;--body:'Public Sans',-apple-system,Segoe UI,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--shadow:0 1px 2px rgba(29,27,22,.05),0 12px 32px -12px rgba(29,27,22,.14)}
+@media (prefers-color-scheme:dark){:root{--paper:#171511;--panel:#201D17;--ink:#EDE9DD;--ink-2:#B5AF9E;--ink-3:#847E6C;--line:#333027;--line-2:#403C30;--clay:#C97B4F;--accent:#56B797;--accent-2:#6FCBAC;--accent-soft:rgba(86,183,151,.12);--bad:#E0775F;--shadow:0 1px 2px rgba(0,0,0,.3),0 12px 32px -12px rgba(0,0,0,.5)}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55;min-height:100vh}
+a{color:var(--accent)}
+.wrap{max-width:1100px;margin:0 auto;padding:0 16px}
+header{border-bottom:1px solid var(--line);background:var(--panel)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;height:60px}
+.brand{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--ink);text-decoration:none}
+.brand small{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;color:var(--ink-3);margin-left:.5rem;text-transform:uppercase}
+main{padding:2.5rem 0 4rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:1.8rem}
+.narrow{max-width:440px;margin:0 auto}
+.mid{max-width:680px;margin:0 auto}
+h1{font-family:var(--display);font-size:1.7rem;font-weight:600;line-height:1.2;margin-bottom:.4rem}
+h2{font-family:var(--display);font-size:1.25rem;font-weight:600;margin-bottom:.5rem}
+.sub{color:var(--ink-2);font-size:.92rem;margin-bottom:1.4rem}
+label{display:block;font-size:.82rem;font-weight:600;color:var(--ink-2);margin:1rem 0 .35rem}
+input[type=email],input[type=password],input[type=text],select,textarea{width:100%;font:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);border:1px solid var(--line-2);border-radius:10px;padding:.7rem .8rem}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;font:inherit;font-size:.9rem;font-weight:600;border-radius:999px;padding:.65rem 1.2rem;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform .15s ease,background .2s}
+.btn:disabled{opacity:.55;cursor:wait}
+.btn-primary{background:var(--accent);color:#fff}
+.btn-primary:hover:not(:disabled){transform:translateY(-1px)}
+.btn-ghost{background:transparent;border-color:var(--line-2);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn-small{font-size:.8rem;padding:.42rem .85rem}
+.full{width:100%;margin-top:1.4rem}
+.msg{margin-top:1rem;font-size:.88rem;border-radius:10px;padding:.7rem .9rem;display:none}
+.msg.show{display:block}
+.msg.err{background:rgba(180,64,42,.1);color:var(--bad)}
+.msg.ok{background:var(--accent-soft);color:var(--accent)}
+.msg.info{background:var(--accent-soft);color:var(--ink-2)}
+.muted{color:var(--ink-3);font-size:.82rem}
+.steps{margin:1rem 0 0 1.2rem;font-size:.9rem;color:var(--ink-2)}
+.steps li{margin:.35rem 0}
+.steps code,.muted code{font-family:var(--mono);font-size:.8em;background:var(--accent-soft);padding:.05rem .3rem;border-radius:4px;color:var(--ink)}
+.meter{height:6px;border-radius:3px;background:var(--line);margin-top:.5rem;overflow:hidden}
+.meter i{display:block;height:100%;width:0;background:var(--bad);transition:width .3s,background .3s}
+.row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.between{justify-content:space-between}
+hr{border:0;border-top:1px solid var(--line);margin:1.5rem 0}
+/* editor */
+.ed-grid{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:1.2rem;align-items:start}
+@media(max-width:900px){.ed-grid{grid-template-columns:1fr}}
+.toolbar{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin-bottom:.8rem}
+.toolbar select{width:auto;min-width:200px;padding:.45rem .7rem;font-size:.85rem}
+#zone{font-family:var(--mono);font-size:.84rem;line-height:1.6;min-height:62vh;resize:vertical;tab-size:2;white-space:pre;overflow:auto}
+.side .card{padding:1.2rem;margin-bottom:1rem}
+.side h3{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.7rem}
+.photo{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--line);display:block;margin-bottom:.7rem;background:var(--paper)}
+.hist{list-style:none;font-size:.8rem}
+.hist li{padding:.45rem 0;border-bottom:1px dashed var(--line);display:flex;justify-content:space-between;gap:.5rem;align-items:center}
+.hist li:last-child{border-bottom:0}
+.hist span{color:var(--ink-2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hist small{color:var(--ink-3);display:block}
+.linkbtn{background:none;border:0;color:var(--accent);font:inherit;font-size:.78rem;cursor:pointer;text-decoration:underline;white-space:nowrap}
+.summary{font-size:.82rem;color:var(--ink-2);margin-top:.6rem}
+.summary b{color:var(--ink)}
+.dirty{font-family:var(--mono);font-size:.72rem;color:var(--clay);margin-left:.4rem}
+.hidden{display:none !important}
+input[type=file]{font-size:.8rem;max-width:100%}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <a class="brand" href="./">Ashutosh Dwivedi<small>Owner area</small></a>
+  <div class="row"><a class="btn btn-ghost btn-small" href="./">← Back to website</a><button class="btn btn-ghost btn-small hidden" id="logoutBtn" type="button">Log out</button></div>
+</div></header>
+
+<main><div class="wrap">
+
+  <!-- LOADING -->
+  <section id="vLoading" class="narrow card"><p class="muted">Loading…</p></section>
+
+  <!-- LOGIN -->
+  <section id="vLogin" class="narrow card hidden">
+    <h1>Owner login</h1>
+    <p class="sub">Sign in to edit and publish your website.</p>
+    <form id="loginForm" autocomplete="on">
+      <label for="lEmail">Email</label>
+      <input id="lEmail" type="email" autocomplete="username" required>
+      <label for="lPass">Password</label>
+      <input id="lPass" type="password" autocomplete="current-password" required>
+      <button class="btn btn-primary full" id="loginBtn" type="submit">Log in</button>
+    </form>
+    <div class="msg" id="loginMsg"></div>
+    <hr>
+    <p class="muted">GitHub key expired, or want to change your password? <button class="linkbtn" id="toSetup" type="button">Open setup</button></p>
+  </section>
+
+  <!-- SETUP -->
+  <section id="vSetup" class="mid card hidden">
+    <h1>One-time setup</h1>
+    <p class="sub">This connects the login to your GitHub repository so the website can publish your edits. You only do this once (and again when the GitHub key expires).</p>
+    <h2>Step 1 — Create a GitHub key (2 minutes)</h2>
+    <ol class="steps">
+      <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">GitHub → New fine-grained token</a> (you must be signed in to GitHub).</li>
+      <li><b>Token name:</b> <code>Website editor</code>. <b>Expiration:</b> choose the longest available (e.g. 1 year).</li>
+      <li><b>Repository access:</b> “Only select repositories” → choose <code>dwivediashu.github.io</code>.</li>
+      <li><b>Permissions → Repository permissions → Contents:</b> “Read and write”. Leave everything else as it is.</li>
+      <li>Click <b>Generate token</b>, then copy it (it starts with <code>github_pat_</code>).</li>
+    </ol>
+    <h2 style="margin-top:1.6rem">Step 2 — Choose your login</h2>
+    <form id="setupForm" autocomplete="off">
+      <label for="sToken">GitHub key (paste here — it is encrypted, never shown or stored in plain text)</label>
+      <input id="sToken" type="password" required spellcheck="false" autocomplete="off">
+      <label for="sEmail">Email you will log in with</label>
+      <input id="sEmail" type="email" required autocomplete="username">
+      <label for="sPass">Password</label>
+      <input id="sPass" type="password" required autocomplete="new-password" minlength="8">
+      <div class="meter"><i id="meter"></i></div>
+      <p class="muted" id="meterTxt" style="margin-top:.35rem">Use 12+ characters. A short phrase of random words is strongest.</p>
+      <label for="sPass2">Repeat password</label>
+      <input id="sPass2" type="password" required autocomplete="new-password">
+      <button class="btn btn-primary full" id="setupBtn" type="submit">Save login</button>
+    </form>
+    <div class="msg" id="setupMsg"></div>
+    <hr>
+    <p class="muted"><button class="linkbtn" id="toLogin" type="button">← Back to login</button></p>
+  </section>
+
+  <!-- EDITOR -->
+  <section id="vEditor" class="hidden">
+    <div class="row between" style="margin-bottom:1rem">
+      <div><h1>Edit your website <span class="dirty hidden" id="dirty">● unsaved changes</span></h1>
+      <p class="sub" style="margin:0">Change the text below, then press <b>Save &amp; publish</b>. The live site updates in about a minute.</p></div>
+    </div>
+    <div class="ed-grid">
+      <div>
+        <div class="toolbar">
+          <select id="jump" aria-label="Jump to section"><option value="">Jump to section…</option></select>
+          <button class="btn btn-ghost btn-small" id="addUpdate" type="button">+ Update</button>
+          <button class="btn btn-ghost btn-small" id="addPost" type="button">+ LinkedIn post</button>
+          <button class="btn btn-ghost btn-small" id="addPub" type="button">+ Publication</button>
+        </div>
+        <textarea id="zone" spellcheck="true" aria-label="Website content"></textarea>
+        <div class="summary" id="summary"></div>
+        <div class="row" style="margin-top:1rem">
+          <button class="btn btn-primary" id="saveBtn" type="button">Save &amp; publish</button>
+          <button class="btn btn-ghost" id="revertBtn" type="button">Discard changes</button>
+          <a class="btn btn-ghost" href="./" target="_blank" rel="noopener">View live site ↗</a>
+        </div>
+        <div class="msg" id="saveMsg"></div>
+      </div>
+      <aside class="side">
+        <div class="card">
+          <h3>Profile photo</h3>
+          <img class="photo" id="photoPrev" alt="Current photo">
+          <input type="file" id="photoFile" accept="image/jpeg,image/png,image/webp">
+          <p class="muted" style="margin-top:.4rem">Cropped to a square and published automatically.</p>
+          <div class="msg" id="photoMsg"></div>
+        </div>
+        <div class="card">
+          <h3>CV (PDF)</h3>
+          <input type="file" id="cvFile" accept="application/pdf">
+          <p class="muted" style="margin-top:.4rem">Adds a “Download CV” button to your site.</p>
+          <div class="msg" id="cvMsg"></div>
+        </div>
+        <div class="card">
+          <h3>Recent changes</h3>
+          <ul class="hist" id="hist"><li><span class="muted">Loading…</span></li></ul>
+          <p class="muted" style="margin-top:.5rem">“Load” puts an older version in the editor. Press Save to restore it.</p>
+        </div>
+        <div class="card">
+          <h3>Help</h3>
+          <p class="muted">Sections start with <code>[NAME]</code>. Items are <code>KEY: text</code> lines, separated by <code>---</code>. Lines starting with <code>#</code> are notes. You’re logged out automatically after 30 minutes of inactivity.</p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+</div></main>
+
+<script>
+(function(){
+"use strict";
+/* refuse to run inside a frame (clickjacking protection) */
+if (window.top !== window.self){ document.body.innerHTML = ''; return; }
+
+const OWNER = 'dwivediashu', REPO = 'dwivediashu.github.io', BRANCH = 'main';
+const API = 'https://api.github.com/repos/' + OWNER + '/' + REPO;
+const KEYFILE = 'admin-key.json', ITER = 600000;
+const START = '<script type="text/plain" id="site-content">';
+const END = '</' + 'script>';
+const $ = s => document.getElementById(s);
+const enc = new TextEncoder(), dec = new TextDecoder();
+
+let TOKEN = null, FILE_SHA = null, FULL = '', ORIGINAL = '', idleTimer = null;
+
+/* ---------- helpers ---------- */
+const views = ['vLoading','vLogin','vSetup','vEditor'];
+function show(v){ views.forEach(x => $(x).classList.toggle('hidden', x !== v)); $('logoutBtn').classList.toggle('hidden', v !== 'vEditor'); }
+function msg(id, text, kind){ const m = $(id); m.textContent = text; m.className = 'msg show ' + (kind || 'info'); }
+function clearMsg(id){ $(id).className = 'msg'; $(id).textContent = ''; }
+const b64 = bytes => { let s = ''; const c = 0x8000; for (let i = 0; i < bytes.length; i += c) s += String.fromCharCode.apply(null, bytes.subarray(i, i + c)); return btoa(s); };
+const unb64 = str => Uint8Array.from(atob(str.replace(/\s/g, '')), ch => ch.charCodeAt(0));
+const utf8b64 = str => b64(enc.encode(str));
+const fromB64utf8 = str => dec.decode(unb64(str));
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+async function gh(path, opts = {}){
+  const headers = { 'Accept': 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' };
+  if (opts.token || TOKEN) headers['Authorization'] = 'Bearer ' + (opts.token || TOKEN);
+  if (opts.body) headers['Content-Type'] = 'application/json';
+  const r = await fetch(API + path, { method: opts.method || 'GET', headers, body: opts.body ? JSON.stringify(opts.body) : undefined, cache: 'no-store' });
+  let data = null; try { data = await r.json(); } catch(e){}
+  return { ok: r.ok, status: r.status, data };
+}
+
+/* ---------- crypto: key derived from email + password ---------- */
+async function deriveKey(email, pass, salt, iter){
+  const base = await crypto.subtle.importKey('raw', enc.encode(email.trim().toLowerCase() + '\u0000' + pass), 'PBKDF2', false, ['deriveKey']);
+  return crypto.subtle.deriveKey({ name: 'PBKDF2', hash: 'SHA-256', salt, iterations: iter }, base, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+}
+async function sealToken(token, email, pass){
+  const salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+  const key = await deriveKey(email, pass, salt, ITER);
+  const ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv }, key, enc.encode(JSON.stringify({ t: token, at: Date.now() }))));
+  return { v: 1, kdf: 'PBKDF2-SHA256', iter: ITER, salt: b64(salt), iv: b64(iv), ct: b64(ct) };
+}
+async function openToken(blob, email, pass){
+  const key = await deriveKey(email, pass, unb64(blob.salt), blob.iter || ITER);
+  const pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(blob.iv) }, key, unb64(blob.ct));
+  return JSON.parse(dec.decode(pt)).t;
+}
+
+/* ---------- key file ---------- */
+async function loadKeyFile(){
+  try { const r = await fetch(KEYFILE + '?t=' + Date.now(), { cache: 'no-store' }); if (r.ok){ const j = await r.json(); if (j && j.ct) return j; } } catch(e){}
+  try { const r = await gh('/contents/' + KEYFILE + '?ref=' + BRANCH, { token: '' }); if (r.ok && r.data && r.data.content) return JSON.parse(fromB64utf8(r.data.content)); } catch(e){}
+  return null;
+}
+
+/* ---------- login with throttling ---------- */
+let fails = 0; try { fails = +sessionStorage.getItem('adminFails') || 0; } catch(e){}
+let lockUntil = 0;
+$('loginForm').addEventListener('submit', async e => {
+  e.preventDefault(); clearMsg('loginMsg');
+  const now = Date.now();
+  if (now < lockUntil){ msg('loginMsg', 'Too many attempts. Try again in ' + Math.ceil((lockUntil - now) / 1000) + ' s.', 'err'); return; }
+  const btn = $('loginBtn'); btn.disabled = true; btn.textContent = 'Checking…';
+  try {
+    const blob = await loadKeyFile();
+    if (!blob){ show('vSetup'); msg('setupMsg', 'No login has been set up yet. Complete the setup below.', 'info'); return; }
+    let token;
+    try { token = await openToken(blob, $('lEmail').value, $('lPass').value); }
+    catch(err){
+      fails++; try { sessionStorage.setItem('adminFails', fails); } catch(e){}
+      if (fails >= 3) lockUntil = Date.now() + Math.min(300, 5 * Math.pow(2, fails - 3)) * 1000;
+      await sleep(600 + Math.random() * 600);
+      msg('loginMsg', 'Email or password is incorrect.', 'err'); return;
+    }
+    const chk = await gh('', { token });
+    if (chk.status === 401 || chk.status === 403){ msg('loginMsg', 'Your password is right, but the GitHub key has expired or was revoked. Open setup to add a new key.', 'err'); return; }
+    if (!chk.ok){ msg('loginMsg', 'Could not reach GitHub right now. Check your internet connection and try again.', 'err'); return; }
+    fails = 0; try { sessionStorage.removeItem('adminFails'); } catch(e){}
+    TOKEN = token; $('lPass').value = '';
+    await openEditor();
+  } catch(err){ msg('loginMsg', 'Something went wrong: ' + (err && err.message || err), 'err'); }
+  finally { btn.disabled = false; btn.textContent = 'Log in'; }
+});
+
+/* ---------- setup ---------- */
+function strength(p){
+  let s = 0; if (p.length >= 8) s++; if (p.length >= 12) s++; if (p.length >= 16) s++;
+  if (/[a-z]/.test(p) && /[A-Z]/.test(p)) s++; if (/\d/.test(p)) s++; if (/[^A-Za-z0-9]/.test(p)) s++;
+  if (/^(.)\1+$/.test(p) || /password|qwerty|12345|ashu|dwivedi|8959/i.test(p)) s = Math.min(s, 2);
+  return Math.min(s, 6);
+}
+$('sPass').addEventListener('input', () => {
+  const s = strength($('sPass').value), m = $('meter');
+  m.style.width = (s / 6 * 100) + '%'; m.style.background = s <= 2 ? 'var(--bad)' : s <= 4 ? 'var(--clay)' : 'var(--accent)';
+  $('meterTxt').textContent = s <= 2 ? 'Weak — easy to guess (avoid your name, email or birth numbers).' : s <= 4 ? 'OK — longer is stronger.' : 'Strong.';
+});
+$('setupForm').addEventListener('submit', async e => {
+  e.preventDefault(); clearMsg('setupMsg');
+  const token = $('sToken').value.trim(), email = $('sEmail').value.trim(), p1 = $('sPass').value, p2 = $('sPass2').value;
+  if (!/^(github_pat_|ghp_)[A-Za-z0-9_]{20,}$/.test(token)){ msg('setupMsg', 'That does not look like a GitHub key. It should start with github_pat_.', 'err'); return; }
+  if (p1.length < 8){ msg('setupMsg', 'Password must be at least 8 characters.', 'err'); return; }
+  if (p1 !== p2){ msg('setupMsg', 'The two passwords do not match.', 'err'); return; }
+  const btn = $('setupBtn'); btn.disabled = true; btn.textContent = 'Checking the GitHub key…';
+  try {
+    const chk = await gh('', { token });
+    if (!chk.ok){ msg('setupMsg', 'GitHub rejected this key (' + chk.status + '). Make sure you selected the dwivediashu.github.io repository.', 'err'); return; }
+    if (chk.data && chk.data.permissions && chk.data.permissions.push === false){ msg('setupMsg', 'This key can read but not write. Set “Contents” to “Read and write” and create the key again.', 'err'); return; }
+    btn.textContent = 'Encrypting…';
+    const blob = await sealToken(token, email, p1);
+    const ex = await gh('/contents/' + KEYFILE + '?ref=' + BRANCH, { token });
+    btn.textContent = 'Saving…';
+    const put = await gh('/contents/' + KEYFILE, { token, method: 'PUT', body: { message: 'Update encrypted website login', content: utf8b64(JSON.stringify(blob, null, 1)), branch: BRANCH, sha: ex.ok && ex.data ? ex.data.sha : undefined } });
+    if (!put.ok){ msg('setupMsg', 'Could not save (' + put.status + '). Check that the key has “Contents: Read and write”.', 'err'); return; }
+    $('sToken').value = ''; $('sPass').value = ''; $('sPass2').value = '';
+    TOKEN = token;
+    msg('setupMsg', 'Login saved. Opening the editor…', 'ok');
+    await sleep(700); await openEditor();
+  } catch(err){ msg('setupMsg', 'Something went wrong: ' + (err && err.message || err), 'err'); }
+  finally { btn.disabled = false; btn.textContent = 'Save login'; }
+});
+$('toSetup').addEventListener('click', () => { show('vSetup'); clearMsg('setupMsg'); });
+$('toLogin').addEventListener('click', () => show('vLogin'));
+
+/* ---------- editor ---------- */
+function splitZone(full){
+  const a = full.indexOf(START); if (a < 0) throw new Error('Could not find the EDIT ZONE in index.html');
+  const b = full.indexOf(END, a + START.length); if (b < 0) throw new Error('EDIT ZONE is not closed');
+  return { before: full.slice(0, a + START.length), zone: full.slice(a + START.length, b), after: full.slice(b) };
+}
+async function fetchIndex(ref){
+  const r = await gh('/contents/index.html?ref=' + encodeURIComponent(ref || BRANCH));
+  if (!r.ok) throw new Error('Could not load index.html from GitHub (' + r.status + ')');
+  return { text: fromB64utf8(r.data.content), sha: r.data.sha };
+}
+async function openEditor(){
+  show('vEditor'); clearMsg('saveMsg');
+  $('zone').value = 'Loading your website content…'; $('zone').disabled = true;
+  try {
+    const f = await fetchIndex(); FILE_SHA = f.sha; FULL = f.text;
+    const z = splitZone(FULL).zone.replace(/^\n/, '').replace(/\n$/, '');
+    $('zone').value = z; ORIGINAL = z; $('zone').disabled = false;
+    refreshJump(); summarize(); setDirty(); loadHistory();
+    $('photoPrev').src = 'my-photo.jpg?t=' + Date.now();
+  } catch(err){ msg('saveMsg', err.message, 'err'); }
+  resetIdle();
+}
+function setDirty(){ $('dirty').classList.toggle('hidden', $('zone').value === ORIGINAL); }
+function refreshJump(){
+  const sel = $('jump'), lines = $('zone').value.split('\n');
+  sel.innerHTML = '<option value="">Jump to section…</option>' + lines.map((l, i) => { const m = l.match(/^\s*\[([^\]]+)\]\s*$/); return m ? `<option value="${i}">${esc(m[1])}</option>` : ''; }).join('');
+}
+$('jump').addEventListener('change', e => {
+  const i = +e.target.value; if (!e.target.value) return;
+  const ta = $('zone'), lines = ta.value.split('\n'); const pos = lines.slice(0, i).join('\n').length + (i ? 1 : 0);
+  ta.focus(); ta.setSelectionRange(pos, pos);
+  const lh = parseFloat(getComputedStyle(ta).lineHeight) || 20; ta.scrollTop = Math.max(0, i * lh - 20);
+  e.target.value = '';
+});
+const KNOWN = new Set(['NAME','SHORT LABEL','POSITION','DEPARTMENT','INSTITUTE','GROUP','ADVISOR','HEADLINE','INTRO','KEYWORDS','MY NAME IN PAPERS','EMAIL','LINKEDIN','SCHOLAR','RESEARCHGATE','ORCID','CV','PHOTO','ADDRESS','TEXT','DATE','TYPE','TITLE','LINK','IMAGE','ICON','YEAR','AUTHORS','VENUE','NOTE','DOI','WHEN','STATUS','ITEMS','PUBLICATIONS','CITATIONS','H INDEX','I10 INDEX','PATENTS','CITATIONS BY YEAR','URL','SOURCE','POST','SCORE','RESEARCH ITEMS','OPENALEX AUTHOR','TOPIC WORDS','DEGREE','FIELD','GRADE']);
+function summarize(){
+  const lines = $('zone').value.split('\n'); const secs = []; let cur = null; const warn = [];
+  lines.forEach((l, i) => {
+    if (!l.trim() || /^\s*#/.test(l)) return;
+    const h = l.match(/^\s*\[([^\]]+)\]\s*$/); if (h){ cur = { n: h[1], c: 0, open: false }; secs.push(cur); return; }
+    if (/^\s*-{3,}\s*$/.test(l)){ if (cur) cur.open = false; return; }
+    const kv = l.match(/^\s*([A-Z][A-Z0-9 ]*?)\s*:\s?/);
+    if (kv){ if (!KNOWN.has(kv[1])) warn.push('Line ' + (i + 1) + ': “' + kv[1] + ':” is not a recognised field — it will be treated as text.');
+      else if (cur && !cur.open){ cur.c++; cur.open = true; } }
+  });
+  const hasName = /^\s*NAME\s*:\s*\S/m.test($('zone').value);
+  let h = secs.map(s => `<b>${esc(s.n)}</b> ${s.c}`).join(' · ');
+  if (!hasName) warn.unshift('Your [PROFILE] section needs a NAME: line.');
+  if (warn.length) h += '<br><span style="color:var(--clay)">' + warn.slice(0, 4).map(esc).join('<br>') + '</span>';
+  $('summary').innerHTML = h;
+  return hasName;
+}
+let sumT = null;
+$('zone').addEventListener('input', () => { setDirty(); clearTimeout(sumT); sumT = setTimeout(() => { summarize(); refreshJump(); }, 400); resetIdle(); });
+$('zone').addEventListener('keydown', e => { if (e.key === 'Tab'){ e.preventDefault(); const t = e.target, s = t.selectionStart; t.setRangeText('  ', s, t.selectionEnd, 'end'); } if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's'){ e.preventDefault(); save(); } });
+
+function insertIntoSection(section, snippet){
+  const ta = $('zone'); const v = ta.value; const re = new RegExp('^\\s*\\[' + section.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\]\\s*$', 'm');
+  const m = v.match(re); if (!m){ alert('Section [' + section + '] was not found.'); return; }
+  let pos = m.index + m[0].length + 1; const rest = v.slice(pos).split('\n'); let k = 0;
+  while (k < rest.length && /^\s*#/.test(rest[k])){ pos += rest[k].length + 1; k++; }
+  ta.focus(); ta.setRangeText(snippet, pos, pos, 'select');
+  const lh = parseFloat(getComputedStyle(ta).lineHeight) || 20; ta.scrollTop = Math.max(0, v.slice(0, pos).split('\n').length * lh - 40);
+  setDirty(); summarize(); refreshJump();
+}
+const today = () => new Date().toISOString().slice(0, 7);
+$('addUpdate').addEventListener('click', () => insertIntoSection('UPDATES', 'DATE: ' + today() + '\nTYPE: Research\nTITLE: Your update title\nTEXT: A sentence or two about it.\nLINK: \n---\n'));
+$('addPub').addEventListener('click', () => insertIntoSection('PUBLICATIONS', 'TYPE: Journal\nYEAR: ' + new Date().getFullYear() + '\nTITLE: Paper title\nAUTHORS: A. Dwivedi, ...\nVENUE: Journal name, volume, article number\nNOTE: Q1\nDOI: \n---\n'));
+$('addPost').addEventListener('click', () => {
+  const u = prompt('Paste the LinkedIn post link (on LinkedIn: “…” on your post → “Copy link to post”):'); if (!u) return;
+  if (!/linkedin\.com\//i.test(u) || !/(activity|share|ugcPost)[:-]\d{15,22}/.test(u)){ alert('That does not look like a LinkedIn post link.'); return; }
+  insertIntoSection('LINKEDIN POSTS', 'POST: ' + u.trim() + '\n');
+});
+$('revertBtn').addEventListener('click', () => { if ($('zone').value === ORIGINAL || confirm('Discard all unsaved changes?')){ $('zone').value = ORIGINAL; setDirty(); summarize(); refreshJump(); } });
+
+async function save(){
+  if (!TOKEN) return;
+  clearMsg('saveMsg');
+  let z = $('zone').value;
+  if (z === ORIGINAL){ msg('saveMsg', 'No changes to publish.', 'info'); return; }
+  if (!summarize()){ msg('saveMsg', 'Please add a NAME: line in [PROFILE] before publishing.', 'err'); return; }
+  z = z.replace(/<\/(script)/gi, '<\\/$1');            /* keeps the page structure safe */
+  const btn = $('saveBtn'); btn.disabled = true; btn.textContent = 'Publishing…';
+  try {
+    const latest = await fetchIndex();
+    const parts = splitZone(latest.text);
+    const next = parts.before + '\n' + z + '\n' + parts.after;
+    const put = await gh('/contents/index.html', { method: 'PUT', body: { message: 'Update website content (owner editor)', content: utf8b64(next), sha: latest.sha, branch: BRANCH } });
+    if (put.status === 409){ msg('saveMsg', 'The website changed somewhere else meanwhile. Your text is kept — press Save again.', 'err'); return; }
+    if (!put.ok){ msg('saveMsg', 'Publishing failed (' + put.status + '). ' + (put.status === 401 ? 'Your GitHub key may have expired — open setup.' : ''), 'err'); return; }
+    FILE_SHA = put.data.content.sha; ORIGINAL = $('zone').value; FULL = next; setDirty();
+    msg('saveMsg', 'Published! Your live website will show the changes in about a minute.', 'ok');
+    loadHistory();
+  } catch(err){ msg('saveMsg', 'Publishing failed: ' + (err && err.message || err), 'err'); }
+  finally { btn.disabled = false; btn.innerHTML = 'Save &amp; publish'; }
+}
+$('saveBtn').addEventListener('click', save);
+
+async function putFile(path, base64, message){
+  const ex = await gh('/contents/' + path + '?ref=' + BRANCH);
+  return gh('/contents/' + path, { method: 'PUT', body: { message, content: base64, branch: BRANCH, sha: ex.ok && ex.data ? ex.data.sha : undefined } });
+}
+$('photoFile').addEventListener('change', async e => {
+  const f = e.target.files[0]; if (!f) return; clearMsg('photoMsg');
+  if (f.size > 25 * 1024 * 1024){ msg('photoMsg', 'That image is too large (max 25 MB).', 'err'); return; }
+  msg('photoMsg', 'Preparing photo…', 'info');
+  try {
+    const url = URL.createObjectURL(f); const img = new Image();
+    await new Promise((res, rej) => { img.onload = res; img.onerror = () => rej(new Error('Could not read that image')); img.src = url; });
+    const side = Math.min(img.naturalWidth, img.naturalHeight), out = Math.min(1200, side);
+    const c = document.createElement('canvas'); c.width = c.height = out;
+    const g = c.getContext('2d'); g.imageSmoothingQuality = 'high';
+    g.drawImage(img, (img.naturalWidth - side) / 2, (img.naturalHeight - side) / 2, side, side, 0, 0, out, out);
+    URL.revokeObjectURL(url);
+    const blob = await new Promise(r => c.toBlob(r, 'image/jpeg', 0.9));
+    const bytes = new Uint8Array(await blob.arrayBuffer());
+    msg('photoMsg', 'Publishing photo…', 'info');
+    const r = await putFile('my-photo.jpg', b64(bytes), 'Update profile photo (owner editor)');
+    if (!r.ok) throw new Error('GitHub error ' + r.status);
+    $('photoPrev').src = URL.createObjectURL(blob);
+    msg('photoMsg', 'Photo published — live in about a minute.', 'ok'); loadHistory();
+  } catch(err){ msg('photoMsg', err.message || String(err), 'err'); }
+  e.target.value = '';
+});
+$('cvFile').addEventListener('change', async e => {
+  const f = e.target.files[0]; if (!f) return; clearMsg('cvMsg');
+  if (f.type !== 'application/pdf'){ msg('cvMsg', 'Please choose a PDF file.', 'err'); return; }
+  if (f.size > 20 * 1024 * 1024){ msg('cvMsg', 'PDF is too large (max 20 MB).', 'err'); return; }
+  msg('cvMsg', 'Uploading CV…', 'info');
+  try {
+    const r = await putFile('cv.pdf', b64(new Uint8Array(await f.arrayBuffer())), 'Update CV (owner editor)');
+    if (!r.ok) throw new Error('GitHub error ' + r.status);
+    const ta = $('zone');
+    if (/^\s*CV\s*:.*$/m.test(ta.value) && !/^\s*CV\s*:\s*cv\.pdf\s*$/m.test(ta.value)){ ta.value = ta.value.replace(/^(\s*CV\s*:).*$/m, '$1 cv.pdf'); setDirty(); msg('cvMsg', 'CV uploaded. Now press “Save & publish” to show the Download CV button.', 'ok'); }
+    else msg('cvMsg', 'CV uploaded — live in about a minute.', 'ok');
+    loadHistory();
+  } catch(err){ msg('cvMsg', err.message || String(err), 'err'); }
+  e.target.value = '';
+});
+
+async function loadHistory(){
+  const ul = $('hist');
+  try {
+    const r = await gh('/commits?path=index.html&per_page=6&sha=' + BRANCH);
+    if (!r.ok || !Array.isArray(r.data)) throw 0;
+    ul.innerHTML = r.data.map((c, i) => { const d = new Date(c.commit.author.date);
+      return `<li><span title="${esc(c.commit.message)}">${esc(c.commit.message.split('\n')[0])}<small>${d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' })} ${d.toLocaleTimeString(undefined, { hour: '2-digit', minute: '2-digit' })}${i === 0 ? ' · current' : ''}</small></span>${i === 0 ? '' : `<button class="linkbtn" data-sha="${esc(c.sha)}" type="button">Load</button>`}</li>`; }).join('');
+  } catch(e){ ul.innerHTML = '<li><span class="muted">Could not load history.</span></li>'; }
+}
+$('hist').addEventListener('click', async e => {
+  const b = e.target.closest('button[data-sha]'); if (!b) return;
+  if ($('zone').value !== ORIGINAL && !confirm('Replace your unsaved changes with this older version?')) return;
+  try { const f = await fetchIndex(b.dataset.sha); $('zone').value = splitZone(f.text).zone.replace(/^\n/, '').replace(/\n$/, ''); setDirty(); summarize(); refreshJump();
+    msg('saveMsg', 'Older version loaded into the editor. Press “Save & publish” to restore it.', 'info'); }
+  catch(err){ msg('saveMsg', 'Could not load that version.', 'err'); }
+});
+
+/* ---------- session ---------- */
+function logout(){ TOKEN = null; FULL = ''; ORIGINAL = ''; $('zone').value = ''; show('vLogin'); msg('loginMsg', 'You have been logged out.', 'info'); }
+$('logoutBtn').addEventListener('click', () => { if ($('zone').value !== ORIGINAL && !confirm('You have unsaved changes. Log out anyway?')) return; logout(); });
+function resetIdle(){ clearTimeout(idleTimer); idleTimer = setTimeout(() => { if (TOKEN) logout(); }, 30 * 60 * 1000); }
+['mousemove','keydown','click'].forEach(ev => document.addEventListener(ev, () => { if (TOKEN) resetIdle(); }, { passive: true }));
+window.addEventListener('beforeunload', e => { if (TOKEN && $('zone').value !== ORIGINAL){ e.preventDefault(); e.returnValue = ''; } });
+
+/* ---------- start ---------- */
+(async () => {
+  if (!window.crypto || !crypto.subtle){ show('vLogin'); msg('loginMsg', 'This browser is too old for secure login. Please use an up-to-date Chrome, Edge, Firefox or Safari.', 'err'); return; }
+  const blob = await loadKeyFile();
+  if (blob) show('vLogin'); else { show('vSetup'); msg('setupMsg', 'Welcome! Complete this one-time setup to enable your login.', 'info'); }
+})();
+})();
+</script>
+</body>
+</html>

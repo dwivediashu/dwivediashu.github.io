@@ -14,6 +14,7 @@
 <meta property="og:title" content="Ashutosh Dwivedi — Ph.D. Research Scholar, IISc Bangalore">
 <meta property="og:description" content="3D-printable, carbon-sequestering construction materials from excavated soil and low-carbon binders.">
 <meta name="theme-color" content="#1F6B58">
+<meta property="og:image" content="https://dwivediashu.github.io/my-photo.jpg">
 
 <script type="text/plain" id="site-content">
 ################################################################################
@@ -68,11 +69,9 @@ ORCID:
 # To add a "Download CV" button: put your CV file named cv.pdf next to index.html
 # and write  cv.pdf  here. Leave empty to hide the button.
 CV:
-# Your photo. Either a web link (currently your Google Scholar picture) or a
-# photo file in the same folder as index.html, e.g.  my-photo.jpg
-# Tip: if you change your Scholar picture, right-click it on Scholar →
-# "Copy image address" and paste the new link here.
-PHOTO: https://scholar.googleusercontent.com/citations?view_op=view_photo&user=fG0DAJgAAAAJ&citpid=20
+# Your photo file (in the same folder as index.html on GitHub).
+# To change it: upload a new photo to GitHub named my-photo.jpg (square works best).
+PHOTO: my-photo.jpg
 ADDRESS: Centre for Sustainable Technologies (CST), IISc Campus, C.V. Raman Road, Bengaluru 560012, Karnataka, India
 
 
@@ -110,7 +109,7 @@ DATE: 2026-01
 TYPE: Paper
 TITLE: Flue gas carbonation of earth-based materials — Construction and Building Materials
 TEXT: New paper on carbonating stabilized earth-based building materials with flue gas, using blended binders.
-LINK: https://scholar.google.com/scholar?q=Flue+gas+carbonation+of+earth-based+building+materials+stabilized+by+blended+binders
+LINK: https://doi.org/10.1016/j.conbuildmat.2025.144809
 ---
 DATE: 2025-12
 TYPE: Travel
@@ -192,7 +191,7 @@ TITLE: Flue gas carbonation of earth-based building materials stabilized by blen
 AUTHORS: S. Gupta, P.R.K. Soda, A. Dwivedi, Sahana C M
 VENUE: Construction and Building Materials, 506, 144809
 NOTE: Q1
-LINK: https://scholar.google.com/scholar?q=Flue+gas+carbonation+of+earth-based+building+materials+stabilized+by+blended+binders
+DOI: 10.1016/j.conbuildmat.2025.144809
 ---
 TYPE: Journal
 YEAR: 2025
@@ -200,7 +199,7 @@ TITLE: Low-clay soil as fine aggregate in 3D printed concrete: insights into fre
 AUTHORS: S. Kumar, A. Kumar, A. Pundir, A. Dwivedi, P.R.K. Soda, Sahana C M, S. Gupta et al.
 VENUE: Journal of Sustainable Cement-Based Materials, 14 (7), 1387–1403
 NOTE: Q1
-LINK: https://scholar.google.com/scholar?q=Low-clay+soil+as+fine+aggregate+in+3D+printed+concrete+insights+into+fresh+and+hardened+properties
+DOI: 10.1080/21650373.2025.2505750
 ---
 TYPE: Conference
 YEAR: 2025
@@ -399,6 +398,16 @@ VENUE: Journal of Sustainable Cement-Based Materials
 DATE: 2025-06
 TYPE: Chapter
 TITLE: Development of Carbon Sequestering 3D-Printable Stabilized Earth Materials: Investigation into Engineering Performance and Resistance Against Acid Attack
+
+
+[AUTO UPDATES]
+# Your newest papers are pulled automatically from OpenAlex (a free, open
+# research database that indexes journals within days of publication).
+# New papers appear on the site by themselves with a "New" badge.
+OPENALEX AUTHOR: A5081285829
+# Only papers whose titles contain one of these words are shown (keeps out
+# papers by other people with the same name).
+TOPIC WORDS: concrete, cement, mortar, earth, soil, clay, carbon, CO2, 3D print, construction, binder, brick, carbonation, sequestration, geopolymer, alkali, aggregate, masonry, GGBS, slag
 
 
 [SCIENCE NEWS SOURCES]
@@ -993,6 +1002,33 @@ noscript p{padding:120px 24px;text-align:center;font-size:1rem}
 .rg-item .d small{display:block;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-size:.66rem;margin-top:.2rem}
 .rg-item h4{font-size:.95rem;font-weight:600;line-height:1.45;color:var(--ink)}
 .rg-item p{font-size:.82rem;color:var(--ink-2);font-style:italic;margin-top:.15rem}
+.rg-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:.2rem 0 .2rem}
+.rg-sub .live-dot{margin-right:.4rem}
+.badge.new{background:var(--accent);color:#fff;border-color:var(--accent)}
+.tool-tabs{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.2rem}
+.tool-card{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.6rem;box-shadow:var(--shadow)}
+.tool h3{font-family:var(--display);font-size:1.3rem;font-weight:600;margin-bottom:.35rem}
+.tool-hint{font-size:.86rem;color:var(--ink-2);margin-bottom:1rem;line-height:1.55}
+.tool code{font-family:var(--mono);font-size:.82em;background:var(--accent-soft);padding:.05rem .3rem;border-radius:4px}
+.trow{display:flex;gap:.6rem;flex-wrap:wrap}
+.tool input,.tool select,.tool textarea{font:inherit;font-size:.92rem;color:var(--ink);background:var(--paper);border:1px solid var(--line-2);border-radius:9px;padding:.6rem .75rem;width:100%;min-width:0}
+.trow input{flex:1 1 260px;width:auto}
+.tool input:focus,.tool select:focus,.tool textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.9rem}
+.tgrid label{display:flex;flex-direction:column;justify-content:flex-end;gap:.35rem;font-size:.8rem;color:var(--ink-2);font-weight:500}
+.tgrid label small{color:var(--ink-3);font-weight:400}
+.tout{margin-top:1.1rem;font-size:.92rem;line-height:1.6}
+.tout:empty{display:none}
+.tout .res{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.8rem}
+.tout .res div{background:var(--accent-soft);border-radius:10px;padding:.75rem .9rem}
+.tout .res b{display:block;font-family:var(--display);font-size:1.35rem;font-weight:600;color:var(--ink)}
+.tout .res span{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.tout .cite{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:.9rem 1rem;margin-bottom:.7rem;position:relative}
+.tout .cite small{display:block;font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.35rem}
+.tout .cite pre{font-family:var(--mono);font-size:.78rem;white-space:pre-wrap;word-break:break-word;margin:0}
+.tout .copy{position:absolute;top:.6rem;right:.6rem;font-size:.72rem;padding:.25rem .6rem;border:1px solid var(--line-2);border-radius:6px;background:var(--panel);color:var(--ink);cursor:pointer}
+.tout .err{color:var(--clay)}
+.tout .note{font-size:.78rem;color:var(--ink-3);margin-top:.6rem}
 @media(max-width:820px){.li-grid{grid-template-columns:1fr}.rg-stats{grid-template-columns:repeat(2,1fr)}.rg-item{grid-template-columns:1fr;gap:.2rem}}
 </style>
 </head>
@@ -1010,6 +1046,7 @@ noscript p{padding:120px 24px;text-align:center;font-size:1rem}
       <a href="#projects">Projects</a>
       <a href="#metrics">Metrics</a>
       <a href="#social">Posts</a>
+      <a href="#tools">Tools</a>
       <a href="#field">Science news</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -1191,6 +1228,7 @@ noscript p{padding:120px 24px;text-align:center;font-size:1rem}
     <div id="rgWrap" class="rg-card rv">
       <div class="soc-head"><h3><span class="soc-ic rg" id="rgIc"></span>On ResearchGate</h3><a class="btn btn-ghost btn-small" id="rgFollow" target="_blank" rel="noopener">View profile →</a></div>
       <div class="rg-stats" id="rgStats"></div>
+      <p class="rg-sub" id="rgSub">Newest research</p>
       <div class="rg-list" id="rgList"></div>
     </div>
   </div>
@@ -1203,6 +1241,75 @@ noscript p{padding:120px 24px;text-align:center;font-size:1rem}
       <h2>Milestones along the way.</h2>
     </div>
     <div class="awards" id="awardList"></div>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow">Research toolkit</p>
+      <h2>Free tools for researchers &amp; students.</h2>
+      <p>Small calculators I find useful in the lab and while writing papers. Everything runs in your browser — nothing is stored.</p>
+    </div>
+    <div class="tool-tabs" role="tablist" id="toolTabs">
+      <button class="chip active" data-tool="cite">DOI → Citation</button>
+      <button class="chip" data-tool="tga">CO₂ uptake (TGA)</button>
+      <button class="chip" data-tool="stats">Replicate statistics</button>
+      <button class="chip" data-tool="fc">Compressive strength</button>
+      <button class="chip" data-tool="molar">Molar mass</button>
+      <button class="chip" data-tool="units">Unit converter</button>
+    </div>
+    <div class="tool-card">
+      <div class="tool" data-tool="cite">
+        <h3>DOI → formatted citation</h3>
+        <p class="tool-hint">Paste a DOI (or a doi.org link). Gets the record from Crossref and formats it.</p>
+        <div class="trow"><input id="tDoi" type="text" placeholder="10.1016/j.scitotenv.2024.170285"><button class="btn btn-primary btn-small" id="tDoiGo">Get citation</button></div>
+        <div class="tout" id="tDoiOut"></div>
+      </div>
+      <div class="tool" data-tool="tga" hidden>
+        <h3>CO₂ content &amp; uptake from TGA</h3>
+        <p class="tool-hint">Mass loss in the CaCO₃ decomposition range (typically ~550–950 °C), on a dry-mass basis (e.g. mass at 105 °C).</p>
+        <div class="tgrid">
+          <label>Dry reference mass (mg)<input id="tgM0" type="number" step="any" value="20.00"></label>
+          <label>Mass at start of decarbonation (mg)<input id="tgM1" type="number" step="any" value="18.10"></label>
+          <label>Mass at end of decarbonation (mg)<input id="tgM2" type="number" step="any" value="16.70"></label>
+          <label>Uncarbonated control CO₂ (wt%) <small>optional</small><input id="tgRef" type="number" step="any" placeholder="e.g. 2.1"></label>
+          <label>Binder fraction of solids (%) <small>optional</small><input id="tgB" type="number" step="any" placeholder="e.g. 25"></label>
+        </div>
+        <div class="tout" id="tgOut"></div>
+      </div>
+      <div class="tool" data-tool="stats" hidden>
+        <h3>Replicate statistics</h3>
+        <p class="tool-hint">Paste your replicate values (e.g. compressive strengths), separated by spaces, commas or new lines.</p>
+        <textarea id="stIn" rows="3">32.4, 31.8, 33.1, 30.9, 32.6, 31.5</textarea>
+        <div class="tout" id="stOut"></div>
+      </div>
+      <div class="tool" data-tool="fc" hidden>
+        <h3>Compressive strength from failure load</h3>
+        <div class="tgrid">
+          <label>Failure load (kN)<input id="fcP" type="number" step="any" value="225"></label>
+          <label>Specimen<select id="fcS"><option value="cube">Cube</option><option value="cyl">Cylinder</option><option value="prism">Prism half / rectangle</option></select></label>
+          <label id="fcAL">Cube side (mm)<input id="fcA" type="number" step="any" value="70.6"></label>
+          <label id="fcBL" hidden>Width (mm)<input id="fcB" type="number" step="any" value="40"></label>
+        </div>
+        <div class="tout" id="fcOut"></div>
+      </div>
+      <div class="tool" data-tool="molar" hidden>
+        <h3>Molar mass calculator</h3>
+        <p class="tool-hint">Chemical formula — parentheses and hydrates work, e.g. <code>Ca(OH)2</code>, <code>CaSO4·2H2O</code>, <code>Ca3SiO5</code>, <code>CaCO3</code>.</p>
+        <div class="trow"><input id="mmIn" type="text" value="CaCO3"></div>
+        <div class="tout" id="mmOut"></div>
+      </div>
+      <div class="tool" data-tool="units" hidden>
+        <h3>Unit converter</h3>
+        <div class="tgrid">
+          <label>Quantity<select id="uQ"></select></label>
+          <label>Value<input id="uV" type="number" step="any" value="1"></label>
+          <label>From<select id="uF"></select></label>
+        </div>
+        <div class="tout" id="uOut"></div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1286,7 +1393,7 @@ const KEYS = new Set(['NAME','SHORT LABEL','POSITION','DEPARTMENT','INSTITUTE','
   'INTRO','KEYWORDS','MY NAME IN PAPERS','EMAIL','LINKEDIN','SCHOLAR','RESEARCHGATE','ORCID','CV','PHOTO',
   'ADDRESS','TEXT','DATE','TYPE','TITLE','LINK','IMAGE','ICON','YEAR','AUTHORS','VENUE','NOTE','DOI','WHEN',
   'STATUS','ITEMS','PUBLICATIONS','CITATIONS','H INDEX','I10 INDEX','PATENTS','CITATIONS BY YEAR','URL','SOURCE',
-  'POST','SCORE','RESEARCH ITEMS']);
+  'POST','SCORE','RESEARCH ITEMS','OPENALEX AUTHOR','TOPIC WORDS']);
 
 function parse(txt){
   const data = {}; let sec = null, item = null, lastKey = null;
@@ -1559,6 +1666,181 @@ safe('social', () => {
   if (!posts.length && !stats.length && !items.length) hideSec('social');
 });
 
+/* ---------- auto-updating publications (OpenAlex) ---------- */
+safe('openalex', () => {
+  const A = list('AUTO UPDATES')[0] || {};
+  const id = (A['OPENALEX AUTHOR'] || '').trim().replace(/^https?:\/\/openalex\.org\//i, '');
+  if (!/^A\d+$/.test(id)) return;
+  const words = splitList(A['TOPIC WORDS']).map(w => w.toLowerCase()).filter(Boolean);
+  const norm = t => String(t || '').toLowerCase().replace(/<[^>]+>/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const known = new Set(list('PUBLICATIONS').map(p => norm(p['TITLE'])));
+  const knownDoi = new Set(list('PUBLICATIONS').map(p => (p['DOI'] || '').toLowerCase().trim()).filter(Boolean));
+  const url = 'https://api.openalex.org/works?filter=author.id:' + id + ',from_publication_date:2021-01-01&sort=publication_date:desc&per_page=60&select=title,publication_date,doi,type,primary_location,authorships&mailto=ashutoshdwi1@iisc.ac.in';
+  fetch(url).then(r => r.json()).then(j => {
+    const works = (j.results || []).filter(w => w.title && (!words.length || words.some(k => norm(w.title).includes(norm(k)))))
+      .filter(w => w.type !== 'peer-review' && w.type !== 'paratext');
+    const seen = new Set();
+    const uniq = works.filter(w => { const k = norm(w.title); if (seen.has(k)) return false; seen.add(k); return true; });
+    /* 1) newest-research list (ResearchGate panel) */
+    if (uniq.length && $('#rgList')){
+      $('#rgSub').innerHTML = '<span class="live-dot"></span>Newest research · updates automatically';
+      const typ = t => ({ article:'Article', 'book-chapter':'Chapter', preprint:'Preprint', 'conference-paper':'Conference', dataset:'Data' })[t] || (t ? t[0].toUpperCase() + t.slice(1) : '');
+      $('#rgList').innerHTML = uniq.slice(0, 5).map(w => { const d = parseDate((w.publication_date || '').slice(0, 7));
+        const src = w.primary_location && w.primary_location.source && w.primary_location.source.display_name;
+        const link = w.doi || '';
+        return `<div class="rg-item"><div class="d">${showDate(d, w.publication_date)}<small>${esc(typ(w.type))}</small></div>
+          <div><h4>${link ? `<a href="${esc(link)}" target="_blank" rel="noopener">${esc(w.title)}</a>` : esc(w.title)}</h4>${src ? `<p>${esc(src)}</p>` : ''}</div></div>`; }).join('');
+    }
+    /* 2) add brand-new papers to the publications list */
+    const fresh = uniq.filter(w => !known.has(norm(w.title)) && !knownDoi.has((w.doi || '').replace(/^https?:\/\/doi\.org\//i, '').toLowerCase()) && w.type !== 'preprint');
+    if (!fresh.length || !$('#pubs')) return;
+    const names = splitList(P['MY NAME IN PAPERS']);
+    const html = fresh.map(w => {
+      const y = (w.publication_date || '').slice(0, 4);
+      const auth = (w.authorships || []).map(a => a.author && a.author.display_name).filter(Boolean);
+      let au = esc(auth.slice(0, 8).join(', ') + (auth.length > 8 ? ' et al.' : ''));
+      names.concat(['Ashutosh Dwivedi']).forEach(n => { au = au.split(esc(n)).join('<b>' + esc(n) + '</b>'); });
+      const src = w.primary_location && w.primary_location.source && w.primary_location.source.display_name;
+      const conf = /conference|proceed/i.test(w.type) || /proceed|conference|bookseries/i.test(src || '');
+      const doi = (w.doi || '').replace(/^https?:\/\/doi\.org\//i, '');
+      return `<article class="pub rv on" data-t="${conf ? 'c' : 'j'}">
+        <div class="yr">${esc(y)}<small>${conf ? 'Conference' : 'Journal'}</small></div>
+        <div><h3>${doi ? `<a href="https://doi.org/${esc(doi)}" target="_blank" rel="noopener">${esc(w.title)}</a>` : esc(w.title)}</h3>
+          ${au ? `<p class="auth">${au}</p>` : ''}${src ? `<p class="venue">${esc(src)}</p>` : ''}</div>
+        <div class="badges"><span class="badge new">New</span>${doi ? `<a class="badge doi" href="https://doi.org/${esc(doi)}" target="_blank" rel="noopener">doi:${esc(doi)}</a>` : ''}</div>
+      </article>`; }).join('');
+    $('#pubs').insertAdjacentHTML('afterbegin', html);
+    const allChip = document.querySelector('#pubTools .chip[data-f="all"]');
+    if (allChip) allChip.textContent = 'All · ' + document.querySelectorAll('#pubs .pub').length;
+  }).catch(() => {});
+});
+
+/* ---------- research toolkit ---------- */
+safe('tools', () => {
+  const tabs = $('#toolTabs'); if (!tabs) return;
+  tabs.addEventListener('click', e => { const b = e.target.closest('.chip'); if (!b) return;
+    tabs.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c === b));
+    document.querySelectorAll('.tool').forEach(t => t.hidden = t.dataset.tool !== b.dataset.tool); });
+  const num = (v, d = 2) => isFinite(v) ? (+v).toLocaleString('en-US', { maximumFractionDigits: d, minimumFractionDigits: d }) : '—';
+  const tiles = arr => `<div class="res">${arr.map(a => `<div><b>${a[0]}</b><span>${a[1]}</span></div>`).join('')}</div>`;
+  const copyBtn = () => '<button class="copy" type="button">Copy</button>';
+  document.addEventListener('click', e => { const b = e.target.closest('.tout .copy'); if (!b) return;
+    const t = b.parentElement.querySelector('pre').innerText;
+    (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => { b.textContent = 'Copied'; setTimeout(() => b.textContent = 'Copy', 1400); }).catch(() => {}); });
+
+  /* DOI → citation */
+  const doiGo = async () => {
+    const out = $('#tDoiOut'); const raw = $('#tDoi').value.trim();
+    const doi = raw.replace(/^https?:\/\/(dx\.)?doi\.org\//i, '').replace(/^doi:\s*/i, '');
+    if (!/^10\.\d{4,9}\/\S+$/.test(doi)){ out.innerHTML = '<p class="err">That doesn’t look like a DOI. It should start with 10. — e.g. 10.1016/j.dibe.2023.100270</p>'; return; }
+    out.innerHTML = '<p class="note">Looking it up…</p>';
+    try {
+      const r = await fetch('https://api.crossref.org/works/' + encodeURIComponent(doi));
+      if (!r.ok) throw 0;
+      const m = (await r.json()).message;
+      const au = (m.author || []).filter(a => a.family);
+      const year = ((m.issued || m.published || {})['date-parts'] || [[]])[0][0] || 'n.d.';
+      const title = (m.title || [''])[0].replace(/<[^>]+>/g, ''), jr = (m['container-title'] || [''])[0];
+      const ini = g => (g || '').split(/[\s-]+/).filter(Boolean).map(x => x[0] + '.').join(' ');
+      let apaA = au.map(a => a.family + (a.given ? ', ' + ini(a.given) : ''));
+      apaA = apaA.length > 20 ? apaA.slice(0, 19).concat(['… ' + apaA[apaA.length - 1]]) : apaA;
+      const apaAuth = apaA.length > 1 ? apaA.slice(0, -1).join(', ') + ', & ' + apaA[apaA.length - 1] : (apaA[0] || '');
+      const vol = m.volume || '', iss = m.issue || '', pg = m.page || m['article-number'] || '';
+      const apa = `${apaAuth} (${year}). ${title}. ${jr}${vol ? ', ' + vol : ''}${iss ? '(' + iss + ')' : ''}${pg ? ', ' + pg : ''}. https://doi.org/${doi}`;
+      const key = ((au[0] && au[0].family) || 'ref').replace(/[^A-Za-z]/g, '') + year;
+      const bib = `@article{${key},\n  title   = {${title}},\n  author  = {${au.map(a => a.family + ', ' + (a.given || '')).join(' and ')}},\n  journal = {${jr}},\n  year    = {${year}},${vol ? '\n  volume  = {' + vol + '},' : ''}${iss ? '\n  number  = {' + iss + '},' : ''}${pg ? '\n  pages   = {' + pg + '},' : ''}\n  doi     = {${doi}}\n}`;
+      const ieeeA = au.map(a => ini(a.given) + ' ' + a.family);
+      const ieee = `${ieeeA.length > 6 ? ieeeA[0] + ' et al.' : ieeeA.join(', ')}, “${title},” ${jr}${vol ? ', vol. ' + vol : ''}${iss ? ', no. ' + iss : ''}${pg ? ', p. ' + pg : ''}, ${year}, doi: ${doi}.`;
+      const box = (n, t) => `<div class="cite"><small>${n}</small>${copyBtn()}<pre>${esc(t)}</pre></div>`;
+      out.innerHTML = box('APA 7', apa) + box('IEEE', ieee) + box('BibTeX', bib) + (m['is-referenced-by-count'] != null ? `<p class="note">Cited by ${m['is-referenced-by-count']} (Crossref).</p>` : '');
+    } catch(e){ out.innerHTML = '<p class="err">Couldn’t find that DOI on Crossref. Check it and try again.</p>'; }
+  };
+  $('#tDoiGo').addEventListener('click', doiGo);
+  $('#tDoi').addEventListener('keydown', e => { if (e.key === 'Enter') doiGo(); });
+
+  /* TGA CO2 */
+  const tga = () => {
+    const m0 = +$('#tgM0').value, m1 = +$('#tgM1').value, m2 = +$('#tgM2').value;
+    const ref = $('#tgRef').value === '' ? NaN : +$('#tgRef').value, b = $('#tgB').value === '' ? NaN : +$('#tgB').value;
+    if (!(m0 > 0) || !(m1 >= m2)){ $('#tgOut').innerHTML = '<p class="err">Enter masses so that the start mass is ≥ the end mass, and the reference mass is above 0.</p>'; return; }
+    const co2 = (m1 - m2) / m0 * 100, cc = co2 * 100.09 / 44.01;
+    const t = [[num(co2) + ' %', 'CO₂ content (dry mass)'], [num(cc) + ' %', 'CaCO₃ equivalent']];
+    if (isFinite(ref)) t.push([num(co2 - ref) + ' %', 'CO₂ uptake vs control']);
+    if (isFinite(ref) && b > 0) t.push([num((co2 - ref) / b * 100) + ' %', 'Uptake per binder mass']);
+    else if (b > 0) t.push([num(co2 / b * 100) + ' %', 'CO₂ per binder mass']);
+    $('#tgOut').innerHTML = tiles(t) + '<p class="note">CO₂ = (m<sub>start</sub> − m<sub>end</sub>) / m<sub>dry</sub> × 100; CaCO₃ = CO₂ × 100.09/44.01. Assumes all mass loss in this range is CaCO₃ decarbonation.</p>';
+  };
+  ['#tgM0','#tgM1','#tgM2','#tgRef','#tgB'].forEach(s => $(s).addEventListener('input', tga)); tga();
+
+  /* replicate statistics */
+  const T95 = [0, 12.706, 4.303, 3.182, 2.776, 2.571, 2.447, 2.365, 2.306, 2.262, 2.228, 2.201, 2.179, 2.160, 2.145, 2.131, 2.120, 2.110, 2.101, 2.093, 2.086, 2.080, 2.074, 2.069, 2.064, 2.060, 2.056, 2.052, 2.048, 2.045, 2.042];
+  const stats = () => {
+    const v = ($('#stIn').value.match(/-?\d+(\.\d+)?(e-?\d+)?/gi) || []).map(Number);
+    if (v.length < 2){ $('#stOut').innerHTML = '<p class="err">Enter at least two numbers.</p>'; return; }
+    const n = v.length, mean = v.reduce((a, b) => a + b, 0) / n;
+    const sd = Math.sqrt(v.reduce((a, b) => a + (b - mean) ** 2, 0) / (n - 1)), se = sd / Math.sqrt(n);
+    const t = T95[Math.min(n - 1, 30)] || 1.96;
+    const srt = [...v].sort((a, b) => a - b), med = n % 2 ? srt[(n - 1) / 2] : (srt[n / 2 - 1] + srt[n / 2]) / 2;
+    $('#stOut').innerHTML = tiles([[n, 'n'], [num(mean, 3), 'Mean'], [num(sd, 3), 'Std. deviation'], [num(sd / mean * 100) + ' %', 'CoV'],
+      [num(se, 3), 'Std. error'], ['± ' + num(t * se, 3), '95% CI (t)'], [num(med, 3), 'Median'], [num(srt[0], 2) + ' – ' + num(srt[n - 1], 2), 'Range']]) +
+      '<p class="note">Sample standard deviation (n − 1). 95% confidence interval uses Student’s t.</p>';
+  };
+  $('#stIn').addEventListener('input', stats); stats();
+
+  /* compressive strength */
+  const fc = () => {
+    const P = +$('#fcP').value, s = $('#fcS').value, a = +$('#fcA').value, b = +$('#fcB').value;
+    $('#fcAL').firstChild.textContent = s === 'cube' ? 'Cube side (mm)' : s === 'cyl' ? 'Cylinder diameter (mm)' : 'Length (mm)';
+    $('#fcBL').hidden = s !== 'prism';
+    const A = s === 'cube' ? a * a : s === 'cyl' ? Math.PI * a * a / 4 : a * b;
+    if (!(P > 0) || !(A > 0)){ $('#fcOut').innerHTML = ''; return; }
+    const mpa = P * 1000 / A;
+    $('#fcOut').innerHTML = tiles([[num(mpa) + ' MPa', 'Compressive strength'], [num(mpa * 145.038, 0) + ' psi', 'in psi'], [num(mpa * 10.197) + '', 'kgf/cm²'], [num(A, 0) + ' mm²', 'Loaded area']]);
+  };
+  ['#fcP','#fcS','#fcA','#fcB'].forEach(s => $(s).addEventListener('input', fc)); fc();
+
+  /* molar mass */
+  const AW = {H:1.008,He:4.0026,Li:6.94,Be:9.0122,B:10.81,C:12.011,N:14.007,O:15.999,F:18.998,Ne:20.180,Na:22.990,Mg:24.305,Al:26.982,Si:28.085,P:30.974,S:32.06,Cl:35.45,Ar:39.948,K:39.098,Ca:40.078,Sc:44.956,Ti:47.867,V:50.942,Cr:51.996,Mn:54.938,Fe:55.845,Co:58.933,Ni:58.693,Cu:63.546,Zn:65.38,Ga:69.723,Ge:72.630,As:74.922,Se:78.971,Br:79.904,Kr:83.798,Rb:85.468,Sr:87.62,Y:88.906,Zr:91.224,Nb:92.906,Mo:95.95,Ag:107.87,Cd:112.41,In:114.82,Sn:118.71,Sb:121.76,I:126.90,Xe:131.29,Cs:132.91,Ba:137.33,La:138.91,Ce:140.12,W:183.84,Pt:195.08,Au:196.97,Hg:200.59,Pb:207.2,Bi:208.98,U:238.03};
+  const parseF = f => {
+    const parts = f.replace(/\s+/g, '').split(/[·•.*]/); const tot = {};
+    parts.forEach(part => { const mm = part.match(/^(\d+)(.*)$/); const mult = mm ? +mm[1] : 1; const body = mm ? mm[2] : part;
+      const stack = [{}]; const re = /([A-Z][a-z]?)(\d*)|(\()|(\))(\d*)/g; let m, pos = 0;
+      while ((m = re.exec(body))){ if (m.index !== pos) throw 'Unexpected “' + body.slice(pos, m.index) + '”'; pos = re.lastIndex;
+        if (m[1]){ if (!AW[m[1]]) throw 'Unknown element ' + m[1]; const c = stack[stack.length - 1]; c[m[1]] = (c[m[1]] || 0) + (m[2] ? +m[2] : 1); }
+        else if (m[3]) stack.push({});
+        else { const g = stack.pop(); if (!stack.length) throw 'Unbalanced brackets'; const k = m[5] ? +m[5] : 1; const c = stack[stack.length - 1];
+          Object.keys(g).forEach(e => c[e] = (c[e] || 0) + g[e] * k); } }
+      if (pos !== body.length) throw 'Unexpected “' + body.slice(pos) + '”'; if (stack.length !== 1) throw 'Unbalanced brackets';
+      Object.keys(stack[0]).forEach(e => tot[e] = (tot[e] || 0) + stack[0][e] * mult); });
+    return tot;
+  };
+  const molar = () => { const f = $('#mmIn').value.trim(); if (!f){ $('#mmOut').innerHTML = ''; return; }
+    try { const t = parseF(f); const els = Object.keys(t); if (!els.length) throw 'Enter a formula';
+      const M = els.reduce((a, e) => a + AW[e] * t[e], 0);
+      $('#mmOut').innerHTML = tiles([[num(M, 3), 'g/mol']].concat(els.map(e => [num(AW[e] * t[e] / M * 100) + ' %', e + ' × ' + t[e] + ' (mass %)'])));
+    } catch(e){ $('#mmOut').innerHTML = '<p class="err">' + esc(String(e)) + '</p>'; } };
+  $('#mmIn').addEventListener('input', molar); molar();
+
+  /* unit converter */
+  const U = {
+    'Stress / pressure': { MPa:1, 'N/mm²':1, kPa:0.001, Pa:1e-6, GPa:1000, psi:0.00689476, ksi:6.89476, 'kgf/cm²':0.0980665, bar:0.1, atm:0.101325 },
+    'Force': { kN:1, N:0.001, MN:1000, 'kgf':0.00980665, 'tonne-force':9.80665, lbf:0.00444822, kip:4.44822 },
+    'Length': { mm:1, cm:10, m:1000, 'µm':0.001, nm:1e-6, in:25.4, ft:304.8 },
+    'Density': { 'kg/m³':1, 'g/cm³':1000, 'kg/L':1000, 'lb/ft³':16.0185 },
+    'Mass': { kg:1, g:0.001, mg:1e-6, tonne:1000, lb:0.453592 },
+    'Specific surface': { 'm²/g':1, 'm²/kg':0.001, 'cm²/g':0.0001 },
+    'Energy': { kJ:1, J:0.001, MJ:1000, kWh:3600, kcal:4.184, BTU:1.05506 }
+  };
+  const q = $('#uQ'), f = $('#uF');
+  q.innerHTML = Object.keys(U).map(k => `<option>${k}</option>`).join('');
+  const fill = () => { f.innerHTML = Object.keys(U[q.value]).map(k => `<option>${k}</option>`).join(''); conv(); };
+  const conv = () => { const T = U[q.value], v = +$('#uV').value; if (!isFinite(v)){ $('#uOut').innerHTML = ''; return; }
+    const base = v * T[f.value];
+    $('#uOut').innerHTML = tiles(Object.keys(T).filter(k => k !== f.value).map(k => { const r = base / T[k];
+      return [Math.abs(r) >= 1e6 || (Math.abs(r) < 1e-3 && r !== 0) ? r.toExponential(4) : (+r.toPrecision(6)).toLocaleString('en-US', { maximumFractionDigits: 6 }), k]; })); };
+  q.addEventListener('change', fill); f.addEventListener('change', conv); $('#uV').addEventListener('input', conv); fill();
+});
+
 safe('achievements', () => {
   const aw = list('ACHIEVEMENTS').filter(x => x['TITLE'])
     .map((x, i) => ({ ...x, _y: parseInt(x['YEAR'], 10) || 0, _i: i })).sort((a, b) => b._y - a._y || a._i - b._i);
@@ -1643,8 +1925,10 @@ safe('news', () => {
     try { if (items.length) sessionStorage.setItem('sciNews', JSON.stringify({ at: Date.now(), items })); } catch(e){}
     draw(items);
   });
-  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)){ io.disconnect(); go(); } }, { rootMargin: '600px 0px' });
+  let started = false; const start = () => { if (started) return; started = true; go(); };
+  const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)){ io.disconnect(); start(); } }, { rootMargin: '600px 0px' });
   io.observe($('#field'));
+  setTimeout(start, 2500); /* load anyway shortly after the page opens */
 });
 
 /* ---------------- 5. interactions ---------------- */

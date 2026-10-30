@@ -5,7 +5,7 @@ Runs daily on GitHub Actions. Uses only the Python standard library.
 If a site blocks the request or its layout changes, the previous values are kept,
 so the website never shows broken or empty data.
 """
-import json, re, html, datetime, urllib.request, urllib.error, pathlib, sys, time
+import json, re, html, datetime, urllib.request, urllib.error, urllib.parse, pathlib, sys, time, os
 
 SCHOLAR_ID = "fG0DAJgAAAAJ"
 RG_URL = "https://www.researchgate.net/profile/Ashutosh-Dwivedi-9"
@@ -54,6 +54,41 @@ def scholar():
             "photo": html.unescape(photo.group(1)) if photo else None,
             "url": f"https://scholar.google.com/citations?user={SCHOLAR_ID}"}
 
+def scholar_serpapi():
+    """Google Scholar via SerpApi (works from cloud servers). Needs the SERPAPI_KEY secret."""
+    key = os.environ.get("SERPAPI_KEY", "").strip()
+    if not key:
+        raise RuntimeError("no SERPAPI_KEY secret set")
+    q = urllib.parse.urlencode({"engine": "google_scholar_author", "author_id": SCHOLAR_ID, "hl": "en", "num": 100, "sort": "pubdate", "api_key": key})
+    with urllib.request.urlopen("https://serpapi.com/search.json?" + q, timeout=60) as r:
+        j = json.loads(r.read().decode("utf-8"))
+    if "error" in j:
+        raise RuntimeError("SerpApi: " + str(j["error"])[:120])
+    tab = {}
+    for row in j.get("cited_by", {}).get("table", []):
+        for k, v in row.items():
+            tab[k] = v
+    cit, h, i10 = tab.get("citations", {}), tab.get("h_index", {}), tab.get("i10_index", {})
+    if "all" not in cit:
+        raise RuntimeError("SerpApi returned no citation table")
+    since = next((k for k in cit if k.startswith("since")), None)
+    pubs = [{"title": a.get("title", ""), "authors": a.get("authors", ""), "venue": a.get("publication", ""),
+             "year": int(a["year"]) if str(a.get("year", "")).isdigit() else None,
+             "cited_by": int((a.get("cited_by") or {}).get("value") or 0)} for a in j.get("articles", [])]
+    return {"citations": int(cit["all"]), "citations_since": int(cit.get(since, cit["all"])) if since else int(cit["all"]),
+            "h_index": int(h.get("all", 0)), "h_index_since": int(h.get(since, h.get("all", 0))) if since else int(h.get("all", 0)),
+            "i10_index": int(i10.get("all", 0)), "i10_index_since": int(i10.get(since, i10.get("all", 0))) if since else int(i10.get("all", 0)),
+            "citations_by_year": {str(g["year"]): int(g.get("citations", 0)) for g in j.get("cited_by", {}).get("graph", [])},
+            "publications": pubs, "photo": (j.get("author") or {}).get("thumbnail"),
+            "url": f"https://scholar.google.com/citations?user={SCHOLAR_ID}"}
+
+def scholar_any():
+    try:
+        return scholar()
+    except Exception as e:
+        print(f"scholar (direct): {e} — trying SerpApi", file=sys.stderr)
+        return scholar_serpapi()
+
 def researchgate():
     page = fetch(RG_URL)
     def num(label):
@@ -70,8 +105,8 @@ def main():
     data = json.loads(OUT.read_text()) if OUT.exists() else {}
     before = json.dumps(data, sort_keys=True)
     today = datetime.date.today().isoformat()
-    for key, fn in (("scholar", scholar), ("researchgate", researchgate)):
-        for attempt in range(2):
+    for key, fn in (("scholar", scholar_any), ("researchgate", researchgate)):
+        for attempt in range(1 if key == "researchgate" else 2):
             try:
                 new = fn()
                 new["updated"] = today

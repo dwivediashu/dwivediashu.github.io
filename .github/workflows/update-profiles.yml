@@ -19,6 +19,8 @@ jobs:
           python-version: "3.12"
       - name: Fetch latest profile numbers
         run: python scripts/update_profiles.py
+        env:
+          SERPAPI_KEY: ${{ secrets.SERPAPI_KEY }}   # optional — add it in Settings → Secrets and variables → Actions
       - name: Save changes
         run: |
           if git diff --quiet -- profiles.json; then

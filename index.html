@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-oy3Tp8fk6RyPdoFsS+zU4NPNJWq//XxCJOCUjpSoeVw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.rss2json.com https://api.openalex.org https://api.crossref.org; frame-src https://www.linkedin.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-VKmi6bN9P3KERaiDhub9O6jGKFpcnov/u0sSM4pIr8c='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.rss2json.com https://api.openalex.org https://api.crossref.org; frame-src https://www.linkedin.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Ashutosh Dwivedi — Ph.D. Research Scholar, IISc Bangalore</title>
 <meta name="description" content="Ashutosh Dwivedi is a Ph.D. research scholar at the Centre for Sustainable Technologies, Indian Institute of Science (IISc) Bangalore, working on 3D concrete printing, carbon sequestration, and low-carbon earth-based construction materials.">
@@ -340,8 +340,10 @@ ITEMS: Journal writing (Q1), Patent drafting, Conference presentation, Illustrat
 # Copy these from your Google Scholar page every few months.
 # PUBLICATIONS: write  auto  to count the list above automatically.
 PUBLICATIONS: auto
-# These numbers now update automatically every day from Google Scholar
-# (via profiles.json). The values below are only used as a backup.
+# These numbers update automatically from Google Scholar (via profiles.json).
+# If you type newer numbers here by hand, also change UPDATED to today's date —
+# the website shows whichever is newer.
+UPDATED: 2026-10-30
 CITATIONS: 192
 H INDEX: 7
 I10 INDEX: 6
@@ -391,8 +393,9 @@ POST: https://www.linkedin.com/feed/update/urn:li:activity:7279914462390767616/
 
 
 [RESEARCHGATE]
-# Backup values — the site tries to refresh these automatically (profiles.json).
-# Last checked: 2026-10-30
+# Update these by hand from your ResearchGate profile (ResearchGate blocks automatic
+# updates). Change UPDATED to today's date when you do.
+UPDATED: 2026-10-30
 SCORE: 95.1
 CITATIONS: 173
 H INDEX: 6
@@ -1562,7 +1565,7 @@ const KEYS = new Set(['NAME','SHORT LABEL','POSITION','DEPARTMENT','INSTITUTE','
   'INTRO','KEYWORDS','MY NAME IN PAPERS','EMAIL','LINKEDIN','SCHOLAR','RESEARCHGATE','ORCID','CV','PHOTO',
   'ADDRESS','TEXT','DATE','TYPE','TITLE','LINK','IMAGE','ICON','YEAR','AUTHORS','VENUE','NOTE','DOI','WHEN',
   'STATUS','ITEMS','PUBLICATIONS','CITATIONS','H INDEX','I10 INDEX','PATENTS','CITATIONS BY YEAR','URL','SOURCE',
-  'POST','SCORE','RESEARCH ITEMS','OPENALEX AUTHOR','TOPIC WORDS','DEGREE','FIELD','GRADE']);
+  'POST','SCORE','RESEARCH ITEMS','UPDATED','OPENALEX AUTHOR','TOPIC WORDS','DEGREE','FIELD','GRADE']);
 
 function parse(txt){
   const data = {}; let sec = null, item = null, lastKey = null;
@@ -2233,8 +2236,9 @@ safe('live-profiles', () => {
     return null; };
   load().then(D => {
     if (!D) return;
+    const mUpd = ((list('METRICS')[0] || {})['UPDATED'] || '').trim(), rUpd = ((list('RESEARCHGATE').find(x => x['UPDATED']) || {})['UPDATED'] || '').trim();
     const g = D.scholar;
-    if (g && g.citations){
+    if (g && g.citations && (!mUpd || !g.updated || g.updated >= mUpd)){
       const top = $('#dashTop'); setTile(top, 'citations', g.citations); setTile(top, 'h-index', g.h_index); setTile(top, 'i10-index', g.i10_index);
       const yrs = Object.entries(g.citations_by_year || {}).sort((a, b) => a[0] - b[0]);
       if (yrs.length && $('#bars')){ const max = Math.max(1, ...yrs.map(y => +y[1]));
@@ -2255,7 +2259,7 @@ safe('live-profiles', () => {
         const allChip = document.querySelector('#pubTools .chip[data-f="all"]'); if (allChip) allChip.textContent = 'All · ' + document.querySelectorAll('#pubs .pub').length; }
     }
     const rg = D.researchgate;
-    if (rg && $('#rgStats')){ setTile($('#rgStats'), 'research interest', rg.score, 1); setTile($('#rgStats'), 'citations', rg.citations); setTile($('#rgStats'), 'h-index', rg.h_index); setTile($('#rgStats'), 'research items', rg.research_items);
+    if (rg && $('#rgStats') && (!rUpd || !rg.updated || rg.updated >= rUpd)){ setTile($('#rgStats'), 'research interest', rg.score, 1); setTile($('#rgStats'), 'citations', rg.citations); setTile($('#rgStats'), 'h-index', rg.h_index); setTile($('#rgStats'), 'research items', rg.research_items);
       if (rg.updated && !$('#rgUpd')) $('#rgStats').insertAdjacentHTML('afterend', `<p class="rg-sub" id="rgUpd" style="margin:-.4rem 0 .8rem">Profile numbers checked ${esc(show(rg.updated))}</p>`); }
   });
 });

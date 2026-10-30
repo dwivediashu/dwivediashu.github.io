@@ -1,0 +1,27 @@
+{
+ "scholar": {
+  "citations": 192, "citations_since": 192, "h_index": 7, "h_index_since": 7, "i10_index": 6, "i10_index_since": 6,
+  "citations_by_year": {"2022": 1, "2023": 0, "2024": 39, "2025": 61, "2026": 90},
+  "publications": [
+   {"title": "Three-dimensional printable construction material and methods of preparation and printing", "year": 2026, "cited_by": 0},
+   {"title": "Flue gas carbonation of earth-based building materials stabilized by blended binders", "year": 2026, "cited_by": 4},
+   {"title": "Low-clay soil as fine aggregate in 3D printed concrete: insights into fresh and hardened properties", "year": 2025, "cited_by": 7},
+   {"title": "Development of Carbon Sequestering 3D-Printable Stabilized Earth Materials: Investigation into Engineering Performance and Resistance Against Acid Attack", "year": 2025, "cited_by": 1},
+   {"title": "3D printing with stabilized earth: Material development and effect of carbon sequestration on engineering performance", "year": 2024, "cited_by": 37},
+   {"title": "Enhancement of engineering properties of cement mortars with masonry construction and demolition fines via carbon dioxide utilization, storage and chemical treatment", "year": 2024, "cited_by": 15},
+   {"title": "Carbon dioxide sequestration in mortars with excavated soil: Engineering performances and environmental benefits", "year": 2024, "cited_by": 20},
+   {"title": "Development of 3D printable stabilized earth-based construction materials using excavated soil: Evaluation of fresh and hardened properties", "year": 2024, "cited_by": 49},
+   {"title": "Influence of carbon sequestration in natural clay on engineering properties of cement-lime stabilized soil mortars", "year": 2023, "cited_by": 16},
+   {"title": "Sequestration and utilization of carbon dioxide to improve engineering properties of cement-based construction materials with recycled brick powder: a pathway for cleaner construction", "year": 2023, "cited_by": 40},
+   {"title": "Flow Characteristics of Cement Mortar with Varied Silica Fume for Additive Construction", "year": 2022, "cited_by": 1},
+   {"title": "Evaluation of Model 3D Printer and Design Mix for 3D Concrete Printing", "year": 2021, "cited_by": 2}
+  ],
+  "url": "https://scholar.google.com/citations?user=fG0DAJgAAAAJ",
+  "updated": "2026-10-30"
+ },
+ "researchgate": {
+  "score": 95.1, "citations": 173, "h_index": 6, "research_items": 14,
+  "url": "https://www.researchgate.net/profile/Ashutosh-Dwivedi-9",
+  "updated": "2026-10-30"
+ }
+}

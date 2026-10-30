@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-uwhluJXOgMv3ZNwxa+QcyiDEm9Q/9XqTiXU5OOkYhTg='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://api.rss2json.com https://api.openalex.org https://api.crossref.org; frame-src https://www.linkedin.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-oy3Tp8fk6RyPdoFsS+zU4NPNJWq//XxCJOCUjpSoeVw='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://raw.githubusercontent.com https://api.rss2json.com https://api.openalex.org https://api.crossref.org; frame-src https://www.linkedin.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Ashutosh Dwivedi — Ph.D. Research Scholar, IISc Bangalore</title>
 <meta name="description" content="Ashutosh Dwivedi is a Ph.D. research scholar at the Centre for Sustainable Technologies, Indian Institute of Science (IISc) Bangalore, working on 3D concrete printing, carbon sequestration, and low-carbon earth-based construction materials.">
@@ -340,13 +340,14 @@ ITEMS: Journal writing (Q1), Patent drafting, Conference presentation, Illustrat
 # Copy these from your Google Scholar page every few months.
 # PUBLICATIONS: write  auto  to count the list above automatically.
 PUBLICATIONS: auto
-# Last copied from Google Scholar: 2026-10-10
-CITATIONS: 185
-H INDEX: 6
+# These numbers now update automatically every day from Google Scholar
+# (via profiles.json). The values below are only used as a backup.
+CITATIONS: 192
+H INDEX: 7
 I10 INDEX: 6
 PATENTS: 1
 # Citations per year, from the small bar chart on Google Scholar
-CITATIONS BY YEAR: 2022=1, 2023=0, 2024=39, 2025=61, 2026=84
+CITATIONS BY YEAR: 2022=1, 2023=0, 2024=39, 2025=61, 2026=90
 
 
 [ACHIEVEMENTS]
@@ -390,9 +391,10 @@ POST: https://www.linkedin.com/feed/update/urn:li:activity:7279914462390767616/
 
 
 [RESEARCHGATE]
-# Copy these from your ResearchGate profile every few months (last: 2026-10-10)
-SCORE: 93.0
-CITATIONS: 167
+# Backup values — the site tries to refresh these automatically (profiles.json).
+# Last checked: 2026-10-30
+SCORE: 95.1
+CITATIONS: 173
 H INDEX: 6
 RESEARCH ITEMS: 14
 # Your newest ResearchGate items (newest first). Add new ones at the top.
@@ -1062,6 +1064,7 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select{cursor:a
 .rg-sub{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin:.2rem 0 .2rem}
 .rg-sub .live-dot{margin-right:.4rem}
 .badge.new{background:var(--accent);color:#fff;border-color:var(--accent)}
+.badge.cite{background:var(--accent-soft);color:var(--accent);border-color:transparent;text-decoration:none}
 .tool-tabs{display:flex;flex-wrap:wrap;gap:.55rem;margin-bottom:1.2rem}
 .tool-groups{display:flex;flex-direction:column;gap:.7rem;margin-bottom:1.2rem}
 .tg{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center}
@@ -2217,6 +2220,45 @@ safe('cursor', () => {
 });
 
 document.addEventListener('error', e => { const t = e.target; if (t && t.tagName === 'IMG' && t.hasAttribute('data-hide-broken')) t.remove(); }, true);
+
+safe('live-profiles', () => {
+  const norm = t => String(t || '').toLowerCase().replace(/<[^>]+>/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+  const show = d => { const dt = new Date(d + 'T00:00:00'); return isNaN(dt) ? '' : dt.getDate() + ' ' + MON[dt.getMonth()] + ' ' + dt.getFullYear(); };
+  const setTile = (root, label, val, decimals) => { if (val == null || !root) return; root.querySelectorAll('div').forEach(d => {
+      const lab = d.querySelector(':scope > .lab') || d.querySelector(':scope > span'); const num = d.querySelector('.count') || d.querySelector(':scope > b'); if (!lab || !num || lab.textContent.trim().toLowerCase() !== label) return;
+      if (num.classList.contains('count')){ num.dataset.to = val; if (num.textContent !== '0') num.textContent = val; } else num.textContent = decimals ? Number(val).toFixed(decimals) : val; }); };
+  const load = async () => {
+    for (const u of ['profiles.json?t=' + Date.now(), 'https://raw.githubusercontent.com/dwivediashu/dwivediashu.github.io/main/profiles.json']){
+      try { const r = await fetch(u, { cache: 'no-store' }); if (r.ok) return await r.json(); } catch(e){} }
+    return null; };
+  load().then(D => {
+    if (!D) return;
+    const g = D.scholar;
+    if (g && g.citations){
+      const top = $('#dashTop'); setTile(top, 'citations', g.citations); setTile(top, 'h-index', g.h_index); setTile(top, 'i10-index', g.i10_index);
+      const yrs = Object.entries(g.citations_by_year || {}).sort((a, b) => a[0] - b[0]);
+      if (yrs.length && $('#bars')){ const max = Math.max(1, ...yrs.map(y => +y[1]));
+        $('#bars').innerHTML = yrs.map(y => `<div class="bar on"><b>${esc(y[1])}</b><i style="height:${Math.max(3, Math.round((+y[1] / max) * 104))}px"></i><small>${esc(y[0])}</small></div>`).join(''); $('#chartWrap').hidden = false; }
+      const cap = document.querySelector('.chart-cap span'); if (cap && g.updated) cap.textContent = 'Citations per year — Google Scholar · updated ' + show(g.updated);
+      /* "cited by" badge on each publication */
+      const cites = new Map((g.publications || []).map(p => [norm(p.title), p]));
+      const known = new Set();
+      document.querySelectorAll('#pubs .pub').forEach(el => { const h = el.querySelector('h3'); if (!h) return; const k = norm(h.textContent); known.add(k);
+        let p = cites.get(k); if (!p){ for (const [kk, pp] of cites) if (kk.length > 25 && (k.startsWith(kk.slice(0, 40)) || kk.startsWith(k.slice(0, 40)))){ p = pp; break; } }
+        if (p && p.cited_by > 0 && !el.querySelector('.badge.cite')){ const b = el.querySelector('.badges'); if (b) b.insertAdjacentHTML('beforeend', `<a class="badge cite" href="${esc(g.url || SCHOLAR || '#')}" target="_blank" rel="noopener">Cited by ${p.cited_by}</a>`); } });
+      /* papers that are on Scholar but not yet listed on the site */
+      const fresh = (g.publications || []).filter(p => { const k = norm(p.title); if (known.has(k)) return false; for (const kk of known) if (kk.startsWith(k.slice(0, 40)) || k.startsWith(kk.slice(0, 40))) return false; return true; });
+      if (fresh.length && $('#pubs')){
+        $('#pubs').insertAdjacentHTML('afterbegin', fresh.map(p => `<article class="pub rv on" data-t="j"><div class="yr">${esc(p.year || '')}<small>Scholar</small></div>
+          <div><h3><a href="${esc(g.url || SCHOLAR || '#')}" target="_blank" rel="noopener">${esc(p.title)}</a></h3>${p.authors ? `<p class="auth">${esc(p.authors)}</p>` : ''}${p.venue ? `<p class="venue">${esc(p.venue)}</p>` : ''}</div>
+          <div class="badges"><span class="badge new">New</span>${p.cited_by ? `<span class="badge cite">Cited by ${p.cited_by}</span>` : ''}</div></article>`).join(''));
+        const allChip = document.querySelector('#pubTools .chip[data-f="all"]'); if (allChip) allChip.textContent = 'All · ' + document.querySelectorAll('#pubs .pub').length; }
+    }
+    const rg = D.researchgate;
+    if (rg && $('#rgStats')){ setTile($('#rgStats'), 'research interest', rg.score, 1); setTile($('#rgStats'), 'citations', rg.citations); setTile($('#rgStats'), 'h-index', rg.h_index); setTile($('#rgStats'), 'research items', rg.research_items);
+      if (rg.updated && !$('#rgUpd')) $('#rgStats').insertAdjacentHTML('afterend', `<p class="rg-sub" id="rgUpd" style="margin:-.4rem 0 .8rem">Profile numbers checked ${esc(show(rg.updated))}</p>`); }
+  });
+});
 
 safe('achievements', () => {
   const aw = list('ACHIEVEMENTS').filter(x => x['TITLE'])

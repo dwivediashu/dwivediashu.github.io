@@ -999,6 +999,17 @@ noscript p{padding:120px 24px;text-align:center;font-size:1rem}
   .rv{opacity:1 !important;transform:none !important}
   body{background:#fff;color:#000}
 }
+.calc-sec{margin-top:2.4rem;padding-top:2rem;border-top:1px solid var(--line)}
+.calc-head{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+.calc-head h3{font-family:var(--display);font-size:1.6rem;font-weight:600}
+.calc-sub{color:var(--ink-2);font-size:.92rem;margin:.3rem 0 1.1rem;max-width:70ch}
+.calc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.8rem}
+.calc-tile{display:block;text-decoration:none;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;transition:transform .2s ease,border-color .2s,box-shadow .2s}
+.calc-tile:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:var(--shadow)}
+.calc-tile.hot{border-color:var(--accent);background:linear-gradient(135deg,var(--accent-soft),transparent 70%),var(--panel)}
+.calc-tile b{display:block;font-family:var(--display);font-size:1.05rem;font-weight:600}
+.calc-tile span{display:block;font-size:.72rem;font-weight:600;color:var(--accent);margin:.15rem 0 .35rem}
+.calc-tile small{display:block;font-size:.76rem;color:var(--ink-3);line-height:1.45}
 /* education */
 .edu-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
 .edu{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:1.4rem 1.4rem 1.3rem;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease}
@@ -1329,13 +1340,13 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select{cursor:a
     </div>
     <a class="cv-promo rv" href="resume.html">
       <span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
-      <span><b>CV &amp; resume builder</b><small>Fill in a form, pick from 10 professional templates, add your own sections, and download as PDF, Word (.docx), HTML, text or Markdown — free, nothing uploaded.</small></span>
+      <span><b>CV &amp; resume builder</b><small>44 resume &amp; CV templates with filters — Professional, Modern, Simple, Minimalist, Corporate, Creative, Infographic, Photo, Academic and more. Add your own sections and download as PDF, Word (.docx), HTML, text or Markdown — free, nothing uploaded.</small></span>
       <span class="go">Open builder →</span>
     </a>
     <a class="cv-promo rv" href="calculators.html">
       <span class="cv-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16M7 17V11M12 17V6M17 17v-4"/></svg></span>
-      <span><b>Statistical calculators</b><small>21 calculators: means, proportions, McNemar, Fisher’s exact, chi-squared, correlation, rates, kappa, relative risk &amp; NNT, odds ratio, diagnostic tests, Fagan’s nomogram, ROC AUC comparison.</small></span>
-      <span class="go">Open calculators →</span>
+      <span><b>Statistical tests</b><small>21 tests: means, proportions, McNemar, Fisher’s exact, chi-squared, correlation, rates, kappa, relative risk &amp; NNT, odds ratio, diagnostic tests, Fagan’s nomogram, ROC AUC comparison.</small></span>
+      <span class="go">Open tests →</span>
     </a>
     <div class="tool-groups" id="toolTabs">
       <div class="tg"><span class="tg-l">Writing</span>
@@ -1458,6 +1469,12 @@ html.has-cursor input, html.has-cursor textarea, html.has-cursor select{cursor:a
         </div>
         <div class="tout" id="uOut"></div>
       </div>
+    </div>
+  
+    <div class="calc-sec" id="calculators">
+      <div class="calc-head"><h3>Calculators</h3><a class="btn btn-ghost btn-small" href="calc.html">Browse all 140 →</a></div>
+      <p class="calc-sub">Ratio solver, ratio simplifier, aspect &amp; golden ratio, financial ratios, fractions, percentages, finance, construction, physics, unit conversions and more.</p>
+      <div class="calc-grid"><a class="calc-tile hot" href="calc.html#ratio-solver"><b>Ratios &amp; proportions</b><span>16 calculators</span><small>Ratio solver (A : B = C : D) · Ratio simplifier · Ratio to fraction</small></a><a class="calc-tile" href="calc.html#fraction-ops"><b>Math &amp; fractions</b><span>16 calculators</span><small>Fractions (+ − × ÷) · Simplify a fraction · Decimal ↔ fraction</small></a><a class="calc-tile" href="calc.html#percent"><b>Percentages</b><span>7 calculators</span><small>Percentage calculator · Percentage change / increase / decrease · Percentage difference</small></a><a class="calc-tile" href="calc.html#mmm"><b>Statistics</b><span>7 calculators</span><small>Mean, median, mode, range · Standard deviation &amp; variance · Quartiles &amp; five-number summary</small></a><a class="calc-tile" href="calc.html#quadratic"><b>Algebra</b><span>4 calculators</span><small>Quadratic equation ax² + bx + c = 0 · System of 2 linear equations · Slope, distance &amp; midpoint</small></a><a class="calc-tile" href="calc.html#circle"><b>Geometry</b><span>11 calculators</span><small>Circle · Rectangle · Triangle from 3 sides (Heron)</small></a><a class="calc-tile" href="calc.html#simple-int"><b>Finance &amp; business</b><span>19 calculators</span><small>Simple interest · Compound interest · Loan EMI</small></a><a class="calc-tile" href="calc.html#liquidity"><b>Financial ratios</b><span>5 calculators</span><small>Liquidity ratios · Debt ratios · Profitability ratios</small></a><a class="calc-tile" href="calc.html#concrete-vol"><b>Construction</b><span>8 calculators</span><small>Concrete volume · Bricks for a wall · Steel bar weight</small></a><a class="calc-tile" href="calc.html#sdt"><b>Physics &amp; chemistry</b><span>10 calculators</span><small>Speed, distance, time · Force, mass, acceleration (F = ma) · Kinetic &amp; potential energy</small></a><a class="calc-tile" href="calc.html#conv-temp"><b>Unit conversions</b><span>16 calculators</span><small>Temperature conversion · Height: feet &amp; inches ↔ cm · Decimal degrees ↔ degrees-minutes-seconds</small></a><a class="calc-tile" href="calc.html#age"><b>Time &amp; date</b><span>7 calculators</span><small>Age calculator · Days between dates · Add / subtract days</small></a><a class="calc-tile" href="calc.html#bmi"><b>Health</b><span>5 calculators</span><small>BMI (body mass index) · BMR &amp; daily calories · Target heart rate</small></a><a class="calc-tile" href="calc.html#rng"><b>Random &amp; probability</b><span>6 calculators</span><small>Random number generator · Coin flipper · Dice roller</small></a><a class="calc-tile" href="calc.html#base"><b>Technology</b><span>3 calculators</span><small>Number base converter · Download time · Word &amp; character counter</small></a></div>
     </div>
   </div>
 </section>

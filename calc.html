@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-pEKFou7AT3k+3zexSddefQ0axSQx19ZbTphTsT9XizI='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<title>Calculators</title>
+<meta name="description" content="Free online calculators: ratio solver, ratio simplifier, aspect ratio, golden ratio, financial ratios, fractions, percentages, statistics, geometry, finance, construction, physics, unit conversions, dates and more.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F6B58'/%3E%3Crect x='16' y='12' width='32' height='40' rx='4' fill='%23F2F0EA'/%3E%3Crect x='21' y='17' width='22' height='8' rx='2' fill='%231F6B58'/%3E%3Cg fill='%239C5B36'%3E%3Ccircle cx='24' cy='33' r='2.5'/%3E%3Ccircle cx='32' cy='33' r='2.5'/%3E%3Ccircle cx='40' cy='33' r='2.5'/%3E%3Ccircle cx='24' cy='43' r='2.5'/%3E%3Ccircle cx='32' cy='43' r='2.5'/%3E%3Ccircle cx='40' cy='43' r='2.5'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@500;600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{--paper:#F2F0EA;--panel:#FBFAF7;--ink:#1D1B16;--ink-2:#545046;--ink-3:#84806F;--line:#D8D4C8;--line-2:#C7C2B2;--clay:#9C5B36;--accent:#1F6B58;--accent-soft:rgba(31,107,88,.10);--bad:#B4402A;--r:14px;
+--display:'STIX Two Text',Georgia,serif;--body:'Public Sans',-apple-system,Segoe UI,sans-serif;--mono:'IBM Plex Mono',ui-monospace,monospace;--shadow:0 1px 2px rgba(29,27,22,.05),0 12px 32px -12px rgba(29,27,22,.14)}
+@media (prefers-color-scheme:dark){:root{--paper:#171511;--panel:#201D17;--ink:#EDE9DD;--ink-2:#B5AF9E;--ink-3:#847E6C;--line:#333027;--line-2:#403C30;--clay:#C97B4F;--accent:#56B797;--accent-soft:rgba(86,183,151,.12);--bad:#E0775F}}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--body);background:var(--paper);color:var(--ink);line-height:1.55}
+header.top{background:var(--panel);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10}
+header.top .in{max-width:1240px;margin:0 auto;padding:0 16px;height:58px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brand{font-family:var(--display);font-weight:600;font-size:1.05rem;color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand small{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;color:var(--ink-3);margin-left:.5rem;text-transform:uppercase}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font:inherit;font-size:.82rem;font-weight:600;border-radius:999px;padding:.45rem .95rem;border:1px solid var(--line-2);background:transparent;color:var(--ink);cursor:pointer;text-decoration:none;white-space:nowrap}
+.btn:hover{border-color:var(--ink)}
+.layout{max-width:1240px;margin:0 auto;padding:1.4rem 16px 3rem;display:grid;grid-template-columns:270px minmax(0,1fr);gap:1.6rem;align-items:start}
+.side{position:sticky;top:74px;max-height:calc(100vh - 90px);overflow:auto;padding-right:.3rem}
+.ng{margin-bottom:1rem}
+.ng p{font-family:var(--mono);font-size:.64rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.3rem}
+.ng a{display:block;font-size:.86rem;color:var(--ink-2);text-decoration:none;padding:.32rem .6rem;border-radius:8px;border-left:2px solid transparent}
+.ng a:hover{background:var(--accent-soft);color:var(--ink)}
+.ng a.on{background:var(--accent-soft);color:var(--accent);font-weight:600;border-left-color:var(--accent)}
+#pick{display:none}
+@media(max-width:900px){.layout{grid-template-columns:1fr}.side{display:none}#pick{display:block;width:100%;font:inherit;font-size:.92rem;padding:.6rem .7rem;border-radius:10px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);margin-bottom:1rem}}
+#panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:1.6rem}
+.grp{font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+#panel h1{font-family:var(--display);font-size:1.7rem;font-weight:600;line-height:1.2;margin:.25rem 0 .35rem}
+.desc{color:var(--ink-2);font-size:.92rem;margin-bottom:1.2rem;max-width:62ch}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.9rem}
+.cgrid label{display:flex;flex-direction:column;justify-content:flex-end;gap:.35rem;font-size:.8rem;font-weight:600;color:var(--ink-2)}
+.cgrid label.wide{grid-column:1/-1}
+.cgrid input,.cgrid select,.cgrid textarea{font:inherit;font-size:.95rem;font-weight:400;color:var(--ink);background:var(--paper);border:1px solid var(--line-2);border-radius:9px;padding:.6rem .75rem;width:100%}
+.cgrid textarea{font-family:var(--mono);font-size:.86rem}
+.cgrid input:focus,.cgrid select:focus,.cgrid textarea:focus{outline:2px solid var(--accent);outline-offset:1px;border-color:var(--accent)}
+.out{margin-top:1.3rem}
+.res{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:.8rem}
+.res div{background:var(--accent-soft);border-radius:10px;padding:.75rem .9rem}
+.res b{display:block;font-family:var(--display);font-size:1.3rem;font-weight:600;color:var(--ink);font-variant-numeric:tabular-nums;word-break:break-word}
+.res span{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2)}
+table.at{width:100%;border-collapse:collapse;font-size:.86rem;margin-top:1rem}
+table.at th,table.at td{padding:.5rem .6rem;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+table.at th:first-child,table.at td:first-child{text-align:left}
+table.at th{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:500}
+.verdict{margin-top:.9rem;padding:.65rem .85rem;border-radius:10px;font-size:.9rem;border-left:3px solid var(--accent);background:var(--accent-soft)}
+.verdict.ns{border-left-color:var(--ink-3);background:var(--paper)}
+.err{color:var(--bad);font-size:.9rem}
+.note{font-size:.8rem;color:var(--ink-3);margin-top:.6rem}
+.acts{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:1.3rem;padding-top:1rem;border-top:1px solid var(--line)}
+.nomo{display:block;width:100%;max-width:420px;margin:1rem auto 0;color:var(--ink-2)}
+.foot{font-size:.78rem;color:var(--ink-3);margin-top:1rem;line-height:1.6}
+
+#search{width:100%;font:inherit;font-size:.88rem;padding:.55rem .75rem;border-radius:10px;border:1px solid var(--line-2);background:var(--panel);color:var(--ink);margin-bottom:1rem}
+#search:focus{outline:2px solid var(--accent);outline-offset:1px}
+.ng p span{float:right;color:var(--ink-3);font-size:.62rem}
+.grp a{color:var(--accent);text-decoration:none}
+.cats{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.8rem}
+.cat{display:block;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:.9rem 1rem;transition:transform .2s ease,border-color .2s}
+.cat:hover{transform:translateY(-3px);border-color:var(--accent)}
+.cat b{display:block;font-family:var(--display);font-size:1.08rem}
+.cat span{display:block;font-size:.72rem;color:var(--accent);font-weight:600;margin:.15rem 0 .35rem}
+.cat small{display:block;font-size:.76rem;color:var(--ink-3);line-height:1.45}
+.big{font-family:var(--display);font-size:1.5rem;font-weight:600;background:var(--accent-soft);border-radius:10px;padding:.9rem 1rem;word-break:break-word}
+.big.mono{font-family:var(--mono);font-size:1.15rem}
+details.steps{margin-top:1rem;font-size:.86rem;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:.6rem .9rem}
+details.steps summary{cursor:pointer;font-weight:600;color:var(--ink-2)}
+details.steps ol{margin:.5rem 0 0 1.2rem;color:var(--ink-2)}
+details.steps li{margin:.2rem 0}
+</style>
+</head>
+<body>
+<header class="top"><div class="in">
+  <a class="brand" href="./">Ashutosh Dwivedi<small>Calculators</small></a>
+  <a class="btn" href="./#tools">← Back to tools</a>
+</div></header>
+<div class="layout">
+  <div class="side"><input id="search" type="search" placeholder="Search calculators…" aria-label="Search calculators"><nav id="nav" aria-label="Calculators"></nav></div>
+  <div>
+    <select id="pick" aria-label="Choose a calculator"></select>
+    <section id="panel"></section>
+    <p class="foot"><span id="count"></span> calculators. Results update as you type and are calculated in your browser — nothing is sent anywhere. Always double-check results that matter (loans, structural quantities, health) with a professional.</p>
+  </div>
+</div>
+<script>
+/* ===== helpers ===== */
+const H = (() => {
+  const gcd = (a, b) => { a = Math.abs(a); b = Math.abs(b); while (b){ [a, b] = [b, a % b]; } return a; };
+  const lcm = (a, b) => a && b ? Math.abs(a * b) / gcd(a, b) : 0;
+  const f = (v, d = 6) => !isFinite(v) ? '—' : Math.abs(v) >= 1e15 || (Math.abs(v) < 1e-6 && v !== 0) ? v.toExponential(4) : (+v.toFixed(d)).toLocaleString('en-US', { maximumFractionDigits: d });
+  const money = v => isFinite(v) ? v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) : '—';
+  /* parse "3", "-2.5", "3/4", "1 1/2", "1¾" into {n,d} exact fraction */
+  const frac = s => { s = String(s).trim().replace(/−/g, '-'); if (s === '') throw 'Please fill in every value.';
+    let m;
+    if ((m = s.match(/^(-?)(\d+)\s+(\d+)\/(\d+)$/))){ const d = +m[4]; if (!d) throw 'Denominator cannot be 0.'; const n = (+m[2]) * d + (+m[3]); return norm({ n: m[1] ? -n : n, d }); }
+    if ((m = s.match(/^(-?\d+)\/(-?\d+)$/))){ if (!+m[2]) throw 'Denominator cannot be 0.'; return norm({ n: +m[1], d: +m[2] }); }
+    if ((m = s.match(/^(-?)(\d*)\.(\d+)$/))){ const d = 10 ** m[3].length; const n = (+(m[2] || 0)) * d + (+m[3]); return norm({ n: m[1] ? -n : n, d }); }
+    if (/^-?\d+$/.test(s)) return { n: +s, d: 1 };
+    if (/^-?\d*\.?\d+e[-+]?\d+$/i.test(s)){ const v = +s; return toFrac(v); }
+    throw '“' + s + '” is not a number or fraction.'; };
+  const norm = q => { if (q.d < 0){ q.n = -q.n; q.d = -q.d; } const g = gcd(q.n, q.d) || 1; return { n: q.n / g, d: q.d / g }; };
+  const toFrac = (x, maxD = 1e6) => { if (Number.isInteger(x)) return { n: x, d: 1 }; let h1 = 1, h2 = 0, k1 = 0, k2 = 1, b = x;
+    for (let i = 0; i < 64; i++){ const a = Math.floor(b); [h1, h2] = [a * h1 + h2, h1]; [k1, k2] = [a * k1 + k2, k1]; if (k1 > maxD || Math.abs(x - h1 / k1) < 1e-12) break; b = 1 / (b - a); }
+    return norm({ n: h1, d: k1 }); };
+  const fs = q => q.d === 1 ? String(q.n) : q.n + '/' + q.d;
+  const mixed = q => { if (q.d === 1 || Math.abs(q.n) < q.d) return fs(q); const w = Math.trunc(q.n / q.d), r = Math.abs(q.n % q.d); return w + ' ' + r + '/' + q.d; };
+  const num = (s, name) => { const v = typeof s === 'number' ? s : (s === '' || s == null ? NaN : (() => { try { const q = frac(s); return q.n / q.d; } catch(e){ return NaN; } })()); if (!isFinite(v)) throw (name || 'Each value') + ' must be a number.'; return v; };
+  const pos = (v, n) => { if (!(v > 0)) throw n + ' must be greater than 0.'; return v; };
+  const list = s => (String(s).match(/-?\d*\.?\d+(e[-+]?\d+)?/gi) || []).map(Number);
+  /* ratio of any numbers (decimals / fractions) -> smallest whole-number ratio */
+  const ratioInts = parts => { const qs = parts.map(frac); const L = qs.reduce((a, q) => lcm(a, q.d), 1); let ints = qs.map(q => q.n * (L / q.d)); const g = ints.reduce((a, v) => gcd(a, v), 0) || 1; return { ints: ints.map(v => v / g), L, g, qs }; };
+  const tiles = arr => `<div class="res">${arr.map(a => `<div><b>${a[0]}</b><span>${a[1]}</span></div>`).join('')}</div>`;
+  const steps = arr => `<details class="steps" open><summary>How it’s calculated</summary><ol>${arr.map(s => `<li>${s}</li>`).join('')}</ol></details>`;
+  const table = (head, rows) => `<table class="at"><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const isPrime = n => { if (n < 2 || !Number.isInteger(n)) return false; if (n % 2 === 0) return n === 2; for (let i = 3; i * i <= n; i += 2) if (n % i === 0) return false; return true; };
+  const factorize = n => { const out = []; let x = n; for (let p = 2; p * p <= x; p++) while (x % p === 0){ out.push(p); x /= p; } if (x > 1) out.push(x); return out; };
+  return { gcd, lcm, f, money, frac, fs, mixed, toFrac, num, pos, list, ratioInts, tiles, steps, table, esc, isPrime, factorize, norm };
+})();
+
+/* unit tables (factor to base unit) */
+const UNITS = {
+  Length: { base: 'm', u: { 'mm': 1e-3, 'cm': 1e-2, 'm': 1, 'km': 1e3, 'in': 0.0254, 'ft': 0.3048, 'yd': 0.9144, 'mi': 1609.344, 'nmi': 1852, 'µm': 1e-6 } },
+  Area: { base: 'm²', u: { 'mm²': 1e-6, 'cm²': 1e-4, 'm²': 1, 'ha': 1e4, 'km²': 1e6, 'in²': 6.4516e-4, 'ft²': 0.09290304, 'yd²': 0.83612736, 'acre': 4046.8564224, 'mi²': 2589988.110336 } },
+  Volume: { base: 'L', u: { 'mL': 1e-3, 'L': 1, 'm³': 1000, 'cm³': 1e-3, 'in³': 0.016387064, 'ft³': 28.316846592, 'yd³': 764.554857984, 'US gal': 3.785411784, 'UK gal': 4.54609, 'US cup': 0.2365882365, 'US fl oz': 0.0295735295625, 'tbsp': 0.01478676478125, 'tsp': 0.00492892159375 } },
+  Mass: { base: 'kg', u: { 'mg': 1e-6, 'g': 1e-3, 'kg': 1, 'tonne': 1000, 'oz': 0.028349523125, 'lb': 0.45359237, 'stone': 6.35029318, 'US ton': 907.18474, 'quintal': 100 } },
+  Pressure: { base: 'Pa', u: { 'Pa': 1, 'kPa': 1e3, 'MPa': 1e6, 'GPa': 1e9, 'bar': 1e5, 'atm': 101325, 'psi': 6894.757293168, 'ksi': 6894757.293168, 'mmHg': 133.322387415, 'kgf/cm²': 98066.5, 'N/mm²': 1e6 } },
+  Speed: { base: 'm/s', u: { 'm/s': 1, 'km/h': 1 / 3.6, 'mph': 0.44704, 'ft/s': 0.3048, 'knot': 0.514444444 } },
+  Energy: { base: 'J', u: { 'J': 1, 'kJ': 1e3, 'MJ': 1e6, 'Wh': 3600, 'kWh': 3.6e6, 'cal': 4.184, 'kcal': 4184, 'BTU': 1055.05585262, 'eV': 1.602176634e-19 } },
+  Power: { base: 'W', u: { 'W': 1, 'kW': 1e3, 'MW': 1e6, 'hp (mech.)': 745.69987158, 'hp (metric)': 735.49875, 'BTU/h': 0.29307107 } },
+  Force: { base: 'N', u: { 'N': 1, 'kN': 1e3, 'MN': 1e6, 'kgf': 9.80665, 'lbf': 4.4482216152605, 'dyne': 1e-5, 'kip': 4448.2216152605 } },
+  Density: { base: 'kg/m³', u: { 'kg/m³': 1, 'g/cm³': 1000, 'g/mL': 1000, 'kg/L': 1000, 'lb/ft³': 16.01846337, 'lb/in³': 27679.9047 } },
+  'Data storage': { base: 'B', u: { 'bit': 0.125, 'B': 1, 'KB': 1e3, 'MB': 1e6, 'GB': 1e9, 'TB': 1e12, 'KiB': 1024, 'MiB': 1048576, 'GiB': 1073741824, 'TiB': 1099511627776 } },
+  Time: { base: 's', u: { 'ms': 1e-3, 's': 1, 'min': 60, 'h': 3600, 'day': 86400, 'week': 604800, 'year (365 d)': 31536000 } },
+  Angle: { base: 'deg', u: { 'deg': 1, 'rad': 180 / Math.PI, 'grad': 0.9, 'arcmin': 1 / 60, 'arcsec': 1 / 3600, 'turn': 360 } }
+};
+
+const SEL = (arr) => arr.map(x => Array.isArray(x) ? x : [x, x]);
+const { f, money, tiles, steps, table, num, pos, frac, fs, mixed, gcd, lcm, list, esc } = H;
+const pct = v => isFinite(v) ? H.f(v, 4) + ' %' : '—';
+
+const CATS = [
+  ['ratio', 'Ratios & proportions'], ['math', 'Math & fractions'], ['percent', 'Percentages'], ['stats', 'Statistics'], ['algebra', 'Algebra'],
+  ['geometry', 'Geometry'], ['finance', 'Finance & business'], ['fratio', 'Financial ratios'], ['construction', 'Construction'], ['physics', 'Physics & chemistry'],
+  ['convert', 'Unit conversions'], ['time', 'Time & date'], ['health', 'Health'], ['random', 'Random & probability'], ['tech', 'Technology']
+];
+
+const HUB = [];
+const add = (cat, id, t, d, fields, run) => HUB.push({ cat, id, t, d, fields, run });
+
+/* ================= RATIOS ================= */
+add('ratio', 'ratio-solver', 'Ratio solver (A : B = C : D)', 'Leave exactly one box empty to solve for it. Works with whole numbers, decimals and fractions.',
+  [['a', 'A', '3', 'text'], ['b', 'B', '4', 'text'], ['c', 'C', '6', 'text'], ['d', 'D', '', 'text']],
+  v => { const keys = ['a', 'b', 'c', 'd'], empty = keys.filter(k => String(v[k]).trim() === '');
+    if (empty.length !== 1) throw 'Leave exactly one of A, B, C, D empty.';
+    const x = {}; keys.forEach(k => { if (k !== empty[0]) x[k] = num(v[k], k.toUpperCase()); });
+    let r, s; const k = empty[0];
+    if (k === 'a'){ r = x.b * x.c / x.d; s = `A = B × C ÷ D = ${f(x.b)} × ${f(x.c)} ÷ ${f(x.d)}`; }
+    if (k === 'b'){ r = x.a * x.d / x.c; s = `B = A × D ÷ C = ${f(x.a)} × ${f(x.d)} ÷ ${f(x.c)}`; }
+    if (k === 'c'){ r = x.a * x.d / x.b; s = `C = A × D ÷ B = ${f(x.a)} × ${f(x.d)} ÷ ${f(x.b)}`; }
+    if (k === 'd'){ r = x.b * x.c / x.a; s = `D = B × C ÷ A = ${f(x.b)} × ${f(x.c)} ÷ ${f(x.a)}`; }
+    if (!isFinite(r)) throw 'That ratio has a zero where it divides — check your values.';
+    x[k] = r; return tiles([[f(r), k.toUpperCase() + ' ='], [`${f(x.a)} : ${f(x.b)} = ${f(x.c)} : ${f(x.d)}`, 'Completed proportion']]) + steps(['Cross-multiply: A × D = B × C.', s + ' = ' + f(r)]); });
+add('ratio', 'ratio-simplify', 'Ratio simplifier', 'Reduce a ratio of 2 or more terms to lowest terms. Separate terms with a colon, e.g. 2.5 : 1 1/2 : 10.',
+  [['r', 'Ratio', '24 : 36 : 60', 'text']],
+  v => { const parts = String(v.r).split(/[:;,]|\bto\b/).map(s => s.trim()).filter(Boolean); if (parts.length < 2) throw 'Enter at least two terms separated by “:”.';
+    const R = H.ratioInts(parts); if (R.ints.every(x => x === 0)) throw 'All terms are zero.';
+    const st = []; if (R.L > 1) st.push(`Clear decimals/fractions: multiply every term by ${R.L} → ${R.qs.map(q => f(q.n * (R.L / q.d))).join(' : ')}`);
+    st.push(`Greatest common factor = ${R.g}; divide each term by ${R.g}.`);
+    const total = R.ints.reduce((a, b) => a + b, 0);
+    return tiles([[R.ints.join(' : '), 'Simplest form'], [R.ints.map(x => f(x / R.ints[0], 4)).join(' : '), 'As 1 : n'], [R.ints.map(x => f(x / total * 100, 2) + '%').join(' / '), 'Share of total']]) + steps(st); });
+add('ratio', 'ratio-fraction', 'Ratio to fraction', 'Convert a ratio A : B to fractions — part-to-part and part-to-whole.',
+  [['a', 'A', '6', 'text'], ['b', 'B', '9', 'text']],
+  v => { const R = H.ratioInts([v.a, v.b]), [a, b] = R.ints, t = a + b;
+    return tiles([[`${a}/${b}`, 'A ÷ B (part to part)'], [H.mixed(H.norm({ n: a, d: b })), 'Mixed number'], [`${a}/${t}`, 'A as part of whole'], [`${b}/${t}`, 'B as part of whole'], [f(a / b), 'Decimal A ÷ B']]) +
+      steps([`Simplify ${v.a} : ${v.b} → ${a} : ${b}`, `Whole = ${a} + ${b} = ${t}`]); });
+add('ratio', 'ratio-percent', 'Ratio to percentage', 'Express each part of a ratio as a percentage of the whole.',
+  [['r', 'Ratio', '3 : 5 : 2', 'text']],
+  v => { const p = String(v.r).split(/[:;,]/).map(s => num(s.trim())); if (p.length < 2) throw 'Enter at least two terms.'; const t = p.reduce((a, b) => a + b, 0); if (!t) throw 'Total is zero.';
+    return table(['Part', 'Value', 'Percentage'], p.map((x, i) => ['#' + (i + 1), f(x), pct(x / t * 100)])) + `<p class="note">Total = ${f(t)}</p>`; });
+add('ratio', 'ratio-divide', 'Divide a quantity in a ratio', 'Split a total amount (money, mass, volume…) according to a ratio — e.g. share ₹12,000 in 2 : 3 : 5.',
+  [['total', 'Total quantity', 12000], ['r', 'Ratio', '2 : 3 : 5', 'text']],
+  v => { const p = String(v.r).split(/[:;,]/).map(s => num(s.trim())); if (p.length < 2) throw 'Enter at least two terms.'; const s = p.reduce((a, b) => a + b, 0); if (!s) throw 'Ratio total is zero.';
+    return table(['Part', 'Ratio', 'Share'], p.map((x, i) => ['#' + (i + 1), f(x), f(v.total * x / s, 4)])) + steps([`Sum of ratio parts = ${f(s)}`, `One part = ${f(v.total)} ÷ ${f(s)} = ${f(v.total / s)}`, 'Multiply each ratio term by one part.']); });
+add('ratio', 'ratio-scale', 'Scale a ratio / equivalent ratios', 'Multiply or divide a ratio, or list equivalent ratios.',
+  [['r', 'Ratio', '3 : 4', 'text'], ['k', 'Scale factor', 5]],
+  v => { const p = String(v.r).split(/[:;,]/).map(s => num(s.trim())); if (p.length < 2) throw 'Enter at least two terms.';
+    return tiles([[p.map(x => f(x * v.k)).join(' : '), `× ${f(v.k)}`], [p.map(x => f(x / v.k)).join(' : '), `÷ ${f(v.k)}`]]) + table(['Multiplier', 'Equivalent ratio'], [1, 2, 3, 4, 5, 10].map(m => ['× ' + m, p.map(x => f(x * m)).join(' : ')])); });
+add('ratio', 'ratio-compare', 'Compare two ratios', 'Are two ratios equivalent? Which is bigger?',
+  [['r1', 'Ratio 1', '3 : 4', 'text'], ['r2', 'Ratio 2', '9 : 12', 'text']],
+  v => { const a = String(v.r1).split(':').map(s => num(s)), b = String(v.r2).split(':').map(s => num(s)); if (a.length !== 2 || b.length !== 2) throw 'Enter each ratio as A : B.';
+    const x = a[0] / a[1], y = b[0] / b[1], eq = Math.abs(x - y) < 1e-12 * Math.max(1, Math.abs(x));
+    return tiles([[f(x), 'Ratio 1 as decimal'], [f(y), 'Ratio 2 as decimal'], [eq ? 'Equivalent' : (x > y ? 'Ratio 1 is larger' : 'Ratio 2 is larger'), 'Result']]) + steps([`Cross products: ${f(a[0])} × ${f(b[1])} = ${f(a[0] * b[1])} and ${f(a[1])} × ${f(b[0])} = ${f(a[1] * b[0])}`, eq ? 'Equal cross products → ratios are equivalent.' : 'Cross products differ → not equivalent.']); });
+add('ratio', 'golden', 'Golden ratio', 'Find values where (A + B) : A = A : B = φ ≈ 1.6180339887.',
+  [['x', 'Known value', 10], ['which', 'The known value is', 'a', 'sel', SEL([['a', 'A (longer part)'], ['b', 'B (shorter part)'], ['s', 'A + B (whole)']])]],
+  v => { const P = (1 + Math.sqrt(5)) / 2; let A, B; if (v.which === 'a'){ A = v.x; B = A / P; } else if (v.which === 'b'){ B = v.x; A = B * P; } else { A = v.x / P; B = v.x - A; }
+    return tiles([[f(A), 'A (longer)'], [f(B), 'B (shorter)'], [f(A + B), 'A + B'], [f(P, 10), 'φ']]); });
+add('ratio', 'aspect', 'Aspect ratio', 'Find the aspect ratio of a screen or image, or the missing width / height for a given ratio.',
+  [['w', 'Width (W1)', 1920], ['h', 'Height (H1)', 1080], ['w2', 'New width W2 (optional)', ''], ['h2', 'New height H2 (optional)', '']],
+  v => { pos(v.w, 'Width'); pos(v.h, 'Height'); const R = H.ratioInts([String(v.w), String(v.h)]); const out = [[R.ints.join(' : '), 'Aspect ratio'], [f(v.w / v.h, 4) + ' : 1', 'Decimal']];
+    if (v.w2 !== '' && isFinite(v.w2)) out.push([f(v.w2 * v.h / v.w, 2), 'H2 for W2 = ' + f(v.w2)]); if (v.h2 !== '' && isFinite(v.h2)) out.push([f(v.h2 * v.w / v.h, 2), 'W2 for H2 = ' + f(v.h2)]); return tiles(out); });
+add('ratio', 'ppi', 'Pixels per inch (PPI)', 'Pixel density of a screen from its resolution and diagonal size.',
+  [['w', 'Horizontal pixels', 2560], ['h', 'Vertical pixels', 1440], ['d', 'Diagonal (inches)', 27]],
+  v => { pos(v.w, 'Width'); pos(v.h, 'Height'); pos(v.d, 'Diagonal'); const dp = Math.hypot(v.w, v.h), ppi = dp / v.d, R = H.ratioInts([String(v.w), String(v.h)]);
+    return tiles([[f(ppi, 2), 'PPI'], [f(25.4 / ppi, 4) + ' mm', 'Dot pitch'], [f(v.d * v.w / dp, 2) + ' in', 'Screen width'], [f(v.d * v.h / dp, 2) + ' in', 'Screen height'], [f(v.w * v.h / 1e6, 2) + ' MP', 'Total pixels'], [R.ints.join(':'), 'Aspect ratio']]); });
+add('ratio', 'resize', 'Image resize (keep proportions)', 'New dimensions with the same width-to-height proportion.',
+  [['w', 'Original width', 4000], ['h', 'Original height', 3000], ['mode', 'Resize by', 'w', 'sel', SEL([['w', 'New width'], ['h', 'New height'], ['p', 'Percentage'], ['m', 'Max side']])], ['x', 'Value', 1200]],
+  v => { pos(v.w, 'Width'); pos(v.h, 'Height'); pos(v.x, 'Value'); let W, Hh; if (v.mode === 'w'){ W = v.x; Hh = v.x * v.h / v.w; } else if (v.mode === 'h'){ Hh = v.x; W = v.x * v.w / v.h; } else if (v.mode === 'p'){ W = v.w * v.x / 100; Hh = v.h * v.x / 100; } else { const k = v.x / Math.max(v.w, v.h); W = v.w * k; Hh = v.h * k; }
+    return tiles([[f(W, 2) + ' × ' + f(Hh, 2), 'New size'], [f(W / v.w * 100, 2) + ' %', 'Scale']]); });
+add('ratio', 'unit-rate', 'Unit rate / unit price', 'Rate per one unit — e.g. ₹450 for 3 kg → ₹150 per kg.',
+  [['a', 'Amount (numerator)', 450], ['q', 'Quantity (denominator)', 3], ['u1', 'Numerator unit', '₹', 'text'], ['u2', 'Denominator unit', 'kg', 'text']],
+  v => { pos(v.q, 'Quantity'); return tiles([[f(v.a / v.q) + ' ' + esc(v.u1) + ' per ' + esc(v.u2), 'Unit rate'], [f(v.q / v.a) + ' ' + esc(v.u2) + ' per ' + esc(v.u1), 'Inverse rate']]); });
+add('ratio', 'odds', 'Odds ↔ probability', 'Convert “odds for” (A : B) into probability, and back.',
+  [['a', 'Odds for — successes (A)', 1], ['b', 'Odds for — failures (B)', 4]],
+  v => { if (v.a < 0 || v.b < 0 || v.a + v.b === 0) throw 'Enter non-negative odds.'; const p = v.a / (v.a + v.b);
+    return tiles([[pct(p * 100), 'Chance of winning'], [pct((1 - p) * 100), 'Chance of losing'], [`${f(v.b)} : ${f(v.a)}`, 'Odds against'], [f(p, 6), 'Probability (decimal)']]); });
+add('ratio', 'trig-ratio', 'Trigonometric ratios', 'All six trig ratios for an angle, plus the ratio of sides.',
+  [['a', 'Angle', 30], ['u', 'Unit', 'deg', 'sel', SEL([['deg', 'Degrees'], ['rad', 'Radians']])]],
+  v => { const r = v.u === 'deg' ? v.a * Math.PI / 180 : v.a, s = Math.sin(r), c = Math.cos(r), t = Math.tan(r), g = x => Math.abs(x) > 1e15 ? 'undefined' : f(x, 8);
+    return table(['Ratio', 'Definition', 'Value'], [['sin', 'opposite / hypotenuse', g(s)], ['cos', 'adjacent / hypotenuse', g(c)], ['tan', 'opposite / adjacent', g(Math.abs(c) < 1e-15 ? Infinity : t)], ['csc', 'hypotenuse / opposite', g(Math.abs(s) < 1e-15 ? Infinity : 1 / s)], ['sec', 'hypotenuse / adjacent', g(Math.abs(c) < 1e-15 ? Infinity : 1 / c)], ['cot', 'adjacent / opposite', g(Math.abs(s) < 1e-15 ? Infinity : c / s)]]); });
+add('ratio', 'mix-ratio', 'Concrete / mortar mix ratio quantities', 'Cement : sand : aggregate quantities for a wet volume (dry-volume method). Use 1 : 2 : 4 for M15, 1 : 1.5 : 3 for M20, 1 : 6 for mortar (aggregate 0).',
+  [['vol', 'Wet volume required (m³)', 1], ['c', 'Cement part', 1], ['s', 'Sand part', 1.5], ['g', 'Aggregate part', 3], ['dry', 'Dry-volume factor', 1.54], ['wc', 'Water–cement ratio', 0.5]],
+  v => { pos(v.vol, 'Volume'); pos(v.c, 'Cement part'); const sum = v.c + v.s + v.g, dv = v.vol * v.dry, cV = dv * v.c / sum, cKg = cV * 1440;
+    return tiles([[f(cKg, 1) + ' kg', 'Cement'], [f(cKg / 50, 2), 'Cement bags (50 kg)'], [f(dv * v.s / sum, 3) + ' m³', 'Sand'], [f(dv * v.g / sum, 3) + ' m³', 'Coarse aggregate'], [f(cKg * v.wc, 1) + ' L', 'Water']]) +
+      steps([`Dry volume = ${f(v.vol)} × ${f(v.dry)} = ${f(dv, 4)} m³`, `Sum of parts = ${f(sum)}`, `Cement volume = ${f(dv, 4)} × ${f(v.c)}/${f(sum)} = ${f(cV, 4)} m³ × 1440 kg/m³ (bulk density) = ${f(cKg, 1)} kg`, `Water = cement × w/c = ${f(cKg, 1)} × ${f(v.wc)}`]) + '<p class="note">Nominal mix guide only — follow the mix design / IS 456 for structural work.</p>'; });
+add('ratio', 'wc-ratio', 'Water–cement / water–binder ratio', 'w/c (or w/b) from water and binder masses, or water needed for a target ratio.',
+  [['w', 'Water (kg)', 180], ['c', 'Cement / binder (kg)', 360], ['t', 'Target ratio (optional)', '']],
+  v => { pos(v.c, 'Binder'); const out = [[f(v.w / v.c, 3), 'Water / binder ratio']]; if (v.t !== '' && isFinite(v.t)) out.push([f(v.t * v.c, 2) + ' kg', 'Water for target ' + f(v.t)]); return tiles(out); });
+
+/* ================= MATH & FRACTIONS ================= */
+add('math', 'fraction-ops', 'Fractions (+ − × ÷)', 'Add, subtract, multiply or divide fractions and mixed numbers (e.g. 1 1/2, 3/4, 0.25).',
+  [['a', 'First fraction', '1 1/2', 'text'], ['op', 'Operation', '+', 'sel', SEL(['+', '−', '×', '÷'])], ['b', 'Second fraction', '3/4', 'text']],
+  v => { const a = frac(v.a), b = frac(v.b); let n, d;
+    if (v.op === '+'){ n = a.n * b.d + b.n * a.d; d = a.d * b.d; } else if (v.op === '−'){ n = a.n * b.d - b.n * a.d; d = a.d * b.d; } else if (v.op === '×'){ n = a.n * b.n; d = a.d * b.d; } else { if (!b.n) throw 'Cannot divide by zero.'; n = a.n * b.d; d = a.d * b.n; }
+    const r = H.norm({ n, d }); return tiles([[fs(r), 'Simplified fraction'], [mixed(r), 'Mixed number'], [f(r.n / r.d), 'Decimal']]); });
+add('math', 'fraction-simplify', 'Simplify a fraction', 'Reduce to lowest terms and show as a mixed number.',
+  [['n', 'Numerator', 84], ['d', 'Denominator', 126]],
+  v => { if (!v.d) throw 'Denominator cannot be 0.'; const g = gcd(v.n, v.d), r = H.norm({ n: v.n, d: v.d }); return tiles([[fs(r), 'Simplest form'], [mixed(r), 'Mixed number'], [f(v.n / v.d), 'Decimal']]) + steps([`GCF(${v.n}, ${v.d}) = ${g}`, `${v.n} ÷ ${g} = ${r.n}; ${v.d} ÷ ${g} = ${r.d}`]); });
+add('math', 'dec-frac', 'Decimal ↔ fraction', 'Decimal to fraction, or fraction to decimal and percent.',
+  [['x', 'Decimal or fraction', '0.375', 'text']],
+  v => { const q = frac(v.x); return tiles([[fs(q), 'Fraction'], [mixed(q), 'Mixed number'], [f(q.n / q.d, 10), 'Decimal'], [pct(q.n / q.d * 100), 'Percent']]); });
+add('math', 'gcf-lcm', 'GCF & LCM', 'Greatest common factor and least common multiple of a list of whole numbers.',
+  [['x', 'Numbers', '12, 18, 30', 'ta']],
+  v => { const a = list(v.x).map(Math.round).filter(x => x !== 0); if (a.length < 2) throw 'Enter at least two non-zero whole numbers.'; const g = a.reduce(gcd), l = a.reduce(lcm); return tiles([[g, 'GCF (greatest common factor)'], [f(l), 'LCM (least common multiple)']]); });
+add('math', 'prime', 'Prime check & prime factorization', 'Is it prime? Its prime factors and all divisors.',
+  [['n', 'Whole number', 360]],
+  v => { const n = Math.round(v.n); if (n < 2 || n > 1e12) throw 'Enter a whole number from 2 to 10¹².'; const fac = H.factorize(n), cnt = {}; fac.forEach(p => cnt[p] = (cnt[p] || 0) + 1);
+    const pf = Object.keys(cnt).map(p => cnt[p] > 1 ? `${p}<sup>${cnt[p]}</sup>` : p).join(' × ');
+    let divs = []; if (n <= 1e9){ for (let i = 1; i * i <= n; i++) if (n % i === 0){ divs.push(i); if (i * i !== n) divs.push(n / i); } divs.sort((a, b) => a - b); }
+    return tiles([[H.isPrime(n) ? 'Prime' : 'Composite', 'Result'], [pf, 'Prime factorization'], [divs.length || '—', 'Number of divisors']]) + (divs.length && divs.length <= 200 ? `<p class="note">Divisors: ${divs.join(', ')}</p>` : ''); });
+add('math', 'modulo', 'Modulo (remainder)', 'a mod n, quotient and remainder.',
+  [['a', 'Dividend a', 47], ['n', 'Divisor n', 5]],
+  v => { if (!v.n) throw 'Divisor cannot be 0.'; const r = ((v.a % v.n) + v.n) % v.n; return tiles([[f(r), 'a mod n'], [f(Math.floor(v.a / v.n)), 'Quotient (floor)'], [f(v.a % v.n), 'Remainder (truncated)']]); });
+add('math', 'round', 'Rounding numbers', 'Round to decimal places, significant figures or the nearest multiple.',
+  [['x', 'Number', '3.14159265', 'text'], ['mode', 'Round to', 'dp', 'sel', SEL([['dp', 'Decimal places'], ['sf', 'Significant figures'], ['m', 'Nearest multiple']])], ['k', 'Places / figures / multiple', 3]],
+  v => { const x = num(v.x); let r; if (v.mode === 'dp') r = Math.round(x * 10 ** v.k) / 10 ** v.k; else if (v.mode === 'sf'){ if (v.k < 1) throw 'At least 1 significant figure.'; r = +x.toPrecision(Math.round(v.k)); } else { if (!v.k) throw 'Multiple cannot be 0.'; r = Math.round(x / v.k) * v.k; }
+    return tiles([[f(r, 12), 'Rounded'], [f(v.mode === 'm' ? Math.floor(x / v.k) * v.k : Math.floor(x * 10 ** v.k) / 10 ** v.k, 12), 'Rounded down'], [f(v.mode === 'm' ? Math.ceil(x / v.k) * v.k : Math.ceil(x * 10 ** v.k) / 10 ** v.k, 12), 'Rounded up']]); });
+add('math', 'sigfig', 'Significant figures counter', 'Count significant figures in a number as written.',
+  [['x', 'Number (as written)', '0.004070', 'text']],
+  v => { let s = String(v.x).trim().replace(/^[-+]/, '').toLowerCase(); if (!/^\d*\.?\d+(e[-+]?\d+)?$|^\d+\.$/.test(s)) throw 'Enter a plain number, e.g. 0.004070 or 1.20e3.'; s = s.split('e')[0];
+    let n; if (s.includes('.')){ n = s.replace('.', '').replace(/^0+/, '').length; } else { n = s.replace(/^0+/, '').replace(/0+$/, '').length || 1; }
+    return tiles([[n, 'Significant figures'], [s.includes('.') ? 'Trailing zeros after a decimal point count' : 'Trailing zeros in a whole number are treated as not significant', 'Rule']]); });
+add('math', 'sci', 'Scientific notation', 'Convert to scientific, E- and engineering notation.',
+  [['x', 'Number', '0.000123456', 'text']],
+  v => { const x = num(v.x); if (x === 0) return tiles([['0', 'Scientific']]); const e = Math.floor(Math.log10(Math.abs(x))), m = x / 10 ** e, ee = Math.floor(e / 3) * 3;
+    return tiles([[`${f(m, 8)} × 10<sup>${e}</sup>`, 'Scientific notation'], [x.toExponential(), 'E notation'], [`${f(x / 10 ** ee, 8)} × 10<sup>${ee}</sup>`, 'Engineering notation'], [f(x, 15), 'Standard form']]); });
+add('math', 'power-root', 'Exponents & roots', 'xⁿ and the n-th root of x.',
+  [['x', 'Base x', 2], ['n', 'Exponent / root n', 10]],
+  v => { const root = v.x < 0 && Math.round(v.n) % 2 === 1 ? -Math.pow(-v.x, 1 / v.n) : Math.pow(v.x, 1 / v.n); return tiles([[f(Math.pow(v.x, v.n), 10), 'xⁿ'], [f(root, 10), 'ⁿ√x'], [f(Math.sqrt(v.x), 10), '√x'], [f(Math.cbrt(v.x), 10), '∛x']]); });
+add('math', 'log', 'Logarithms', 'log base b of x, natural log and log₁₀.',
+  [['x', 'x', 1000], ['b', 'Base b', 10]],
+  v => { pos(v.x, 'x'); pos(v.b, 'Base'); if (v.b === 1) throw 'Base cannot be 1.'; return tiles([[f(Math.log(v.x) / Math.log(v.b), 10), 'log_b(x)'], [f(Math.log(v.x), 10), 'ln(x)'], [f(Math.log10(v.x), 10), 'log₁₀(x)'], [f(Math.log2(v.x), 10), 'log₂(x)']]); });
+add('math', 'factorial', 'Factorial, permutations & combinations', 'n!, nPr and nCr.',
+  [['n', 'n', 10], ['r', 'r', 3]],
+  v => { const n = Math.round(v.n), r = Math.round(v.r); if (n < 0 || r < 0 || r > n) throw 'Need 0 ≤ r ≤ n (whole numbers).'; if (n > 170) throw 'n must be ≤ 170.';
+    const fact = k => { let x = 1; for (let i = 2; i <= k; i++) x *= i; return x; }; let P = 1; for (let i = n - r + 1; i <= n; i++) P *= i; let C = 1; for (let i = 1; i <= r; i++) C = C * (n - r + i) / i;
+    return tiles([[f(fact(n), 0), 'n!'], [f(P, 0), 'nPr (order matters)'], [f(Math.round(C), 0), 'nCr (order doesn’t matter)'], [f(Math.pow(n, r), 0), 'n^r (with repetition)']]); });
+add('math', 'roman', 'Roman numerals', 'Convert between numbers (1–3999) and Roman numerals.',
+  [['x', 'Number or Roman numeral', '2026', 'text']],
+  v => { const s = String(v.x).trim().toUpperCase(), M = [[1000, 'M'], [900, 'CM'], [500, 'D'], [400, 'CD'], [100, 'C'], [90, 'XC'], [50, 'L'], [40, 'XL'], [10, 'X'], [9, 'IX'], [5, 'V'], [4, 'IV'], [1, 'I']];
+    if (/^\d+$/.test(s)){ let n = +s; if (n < 1 || n > 3999) throw 'Enter 1 to 3999.'; let r = ''; M.forEach(([k, l]) => { while (n >= k){ r += l; n -= k; } }); return tiles([[r, 'Roman numeral']]); }
+    if (!/^[MDCLXVI]+$/.test(s)) throw 'Enter a number or a Roman numeral.'; let i = 0, n = 0; M.forEach(([k, l]) => { while (s.startsWith(l, i)){ n += k; i += l.length; } }); if (i !== s.length) throw 'Not a valid Roman numeral.'; return tiles([[n, 'Number']]); });
+add('math', 'words', 'Numbers to words', 'Write a number in words (international and Indian systems).',
+  [['x', 'Number', '1234567.89', 'text']],
+  v => { const x = num(v.x); if (Math.abs(x) >= 1e15) throw 'Number too large.'; const ones = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen'], tens = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety'];
+    const h = n => { let s = ''; if (n >= 100){ s += ones[Math.floor(n / 100)] + ' hundred'; n %= 100; if (n) s += ' '; } if (n >= 20){ s += tens[Math.floor(n / 10)]; if (n % 10) s += '-' + ones[n % 10]; } else if (n) s += ones[n]; return s; };
+    const intl = n => { if (!n) return 'zero'; const sc = ['', ' thousand', ' million', ' billion', ' trillion']; let out = [], i = 0; while (n > 0){ const c = n % 1000; if (c) out.unshift(h(c) + sc[i]); n = Math.floor(n / 1000); i++; } return out.join(' '); };
+    const ind = n => { if (!n) return 'zero'; const parts = []; const cr = Math.floor(n / 1e7); n %= 1e7; const lk = Math.floor(n / 1e5); n %= 1e5; const th = Math.floor(n / 1000); n %= 1000;
+      if (cr) parts.push((cr >= 1000 ? intl(cr) : h(cr)) + ' crore'); if (lk) parts.push(h(lk) + ' lakh'); if (th) parts.push(h(th) + ' thousand'); if (n) parts.push(h(n)); return parts.join(' '); };
+    const neg = x < 0, a = Math.abs(x), w = Math.floor(a), dec = String(v.x).split('.')[1];
+    const tail = dec ? ' point ' + dec.replace(/\D/g, '').split('').map(d => ones[+d] || 'zero').join(' ') : '';
+    return tiles([[(neg ? 'minus ' : '') + intl(w) + tail, 'International'], [(neg ? 'minus ' : '') + ind(w) + tail, 'Indian (lakh / crore)'], [w.toLocaleString('en-IN'), 'Indian digit grouping']]); });
+add('math', 'average', 'Average (mean) & sum', 'Sum, count and average of a list.',
+  [['x', 'Numbers', '12, 15, 18, 22, 9', 'ta']],
+  v => { const a = list(v.x); if (!a.length) throw 'Enter some numbers.'; const s = a.reduce((p, q) => p + q, 0); return tiles([[f(s), 'Sum'], [a.length, 'Count'], [f(s / a.length), 'Average'], [f(Math.min(...a)) + ' – ' + f(Math.max(...a)), 'Range']]); });
+add('math', 'abs-diff', 'Absolute difference', '|a − b|.', [['a', 'a', 25], ['b', 'b', 42]], v => tiles([[f(Math.abs(v.a - v.b)), '|a − b|']]));
+
+/* ================= PERCENTAGES ================= */
+add('percent', 'percent', 'Percentage calculator', 'Three common percentage questions.',
+  [['p', 'What is P % of X — P', 15], ['x', 'X', 240], ['a', 'A is what % of B — A', 36], ['b', 'B', 120]],
+  v => tiles([[f(v.p * v.x / 100), `${f(v.p)} % of ${f(v.x)}`], [pct(v.a / v.b * 100), `${f(v.a)} is this % of ${f(v.b)}`], [f(v.a * 100 / v.p), `${f(v.a)} is ${f(v.p)} % of …`]]));
+add('percent', 'pct-change', 'Percentage change / increase / decrease', 'Change from an old value to a new value.',
+  [['o', 'Old value', 80], ['n', 'New value', 92]],
+  v => { if (!v.o) throw 'Old value cannot be 0.'; const c = (v.n - v.o) / Math.abs(v.o) * 100; return tiles([[pct(c), c >= 0 ? 'Increase' : 'Decrease'], [f(v.n - v.o), 'Absolute change'], [f(v.n / v.o, 4) + '×', 'Multiplier']]); });
+add('percent', 'pct-diff', 'Percentage difference', 'Difference between two values relative to their average.',
+  [['a', 'Value 1', 40], ['b', 'Value 2', 50]],
+  v => { const m = (v.a + v.b) / 2; if (!m) throw 'Average is zero.'; return tiles([[pct(Math.abs(v.a - v.b) / Math.abs(m) * 100), 'Percentage difference']]); });
+add('percent', 'pct-error', 'Percentage error', 'Error of a measured value against the true / accepted value.',
+  [['m', 'Measured / experimental value', 9.6], ['t', 'True / accepted value', 9.81]],
+  v => { if (!v.t) throw 'True value cannot be 0.'; return tiles([[pct(Math.abs(v.m - v.t) / Math.abs(v.t) * 100), 'Percentage error'], [f(v.m - v.t), 'Absolute error']]); });
+add('percent', 'pct-tol', 'Percent tolerance', 'Allowed range for a nominal value ± tolerance %.',
+  [['x', 'Nominal value', 100], ['t', 'Tolerance (%)', 5]],
+  v => tiles([[f(v.x * (1 - v.t / 100)) + ' – ' + f(v.x * (1 + v.t / 100)), 'Allowed range'], [f(v.x * v.t / 100), '± value']]));
+add('percent', 'pct-convert', 'Percent ↔ decimal ↔ fraction', 'Convert a percentage into decimal and fraction.',
+  [['p', 'Percent', '37.5', 'text']],
+  v => { const q = frac(v.p); const r = H.norm({ n: q.n, d: q.d * 100 }); return tiles([[f(r.n / r.d, 10), 'Decimal'], [fs(r), 'Fraction'], [mixed(r), 'Mixed number']]); });
+add('percent', 'marks', 'Marks percentage & grade', 'Percentage from marks obtained (exams, assignments).',
+  [['o', 'Marks obtained', 432], ['t', 'Total marks', 500]],
+  v => { pos(v.t, 'Total'); const p = v.o / v.t * 100; const g = p >= 90 ? 'A+' : p >= 80 ? 'A' : p >= 70 ? 'B+' : p >= 60 ? 'B' : p >= 50 ? 'C' : p >= 40 ? 'D' : 'F'; return tiles([[pct(p), 'Percentage'], [g, 'Indicative grade'], [f(p / 9.5, 2), 'Approx. CGPA (÷ 9.5)']]); });
+
+/* ================= STATISTICS ================= */
+const descr = a => { const n = a.length, s = [...a].sort((x, y) => x - y), m = a.reduce((p, q) => p + q, 0) / n, ss = a.reduce((p, q) => p + (q - m) ** 2, 0);
+  const q = p => { const i = (n - 1) * p, lo = Math.floor(i); return s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo); };
+  const cnt = {}; a.forEach(x => cnt[x] = (cnt[x] || 0) + 1); const mx = Math.max(...Object.values(cnt)); const modes = mx > 1 ? Object.keys(cnt).filter(k => cnt[k] === mx).map(Number) : [];
+  return { n, s, m, sd: n > 1 ? Math.sqrt(ss / (n - 1)) : NaN, sdp: Math.sqrt(ss / n), vs: n > 1 ? ss / (n - 1) : NaN, vp: ss / n, med: q(.5), q1: q(.25), q3: q(.75), modes, min: s[0], max: s[n - 1], sum: a.reduce((p, q2) => p + q2, 0) }; };
+add('stats', 'mmm', 'Mean, median, mode, range', 'Central tendency of a data set.',
+  [['x', 'Data', '3, 7, 7, 2, 9, 10, 7, 4', 'ta']],
+  v => { const a = list(v.x); if (!a.length) throw 'Enter some numbers.'; const d = descr(a); return tiles([[f(d.m), 'Mean'], [f(d.med), 'Median'], [d.modes.length ? d.modes.map(x => f(x)).join(', ') : 'none', 'Mode'], [f(d.max - d.min), 'Range'], [d.n, 'Count'], [f(d.sum), 'Sum']]); });
+add('stats', 'sd', 'Standard deviation & variance', 'Sample and population standard deviation, variance, CoV and standard error.',
+  [['x', 'Data', '32.4, 31.8, 33.1, 30.9, 32.6, 31.5', 'ta']],
+  v => { const a = list(v.x); if (a.length < 2) throw 'Enter at least two numbers.'; const d = descr(a); return tiles([[f(d.sd), 'Sample SD (s)'], [f(d.sdp), 'Population SD (σ)'], [f(d.vs), 'Sample variance'], [f(d.vp), 'Population variance'], [pct(d.sd / d.m * 100), 'Coefficient of variation'], [f(d.sd / Math.sqrt(d.n)), 'Standard error']]); });
+add('stats', 'quartile', 'Quartiles & five-number summary', 'Min, Q1, median, Q3, max, IQR and outlier fences.',
+  [['x', 'Data', '6, 7, 15, 36, 39, 40, 41, 42, 43, 47, 49', 'ta']],
+  v => { const a = list(v.x); if (a.length < 2) throw 'Enter at least two numbers.'; const d = descr(a), iqr = d.q3 - d.q1; return tiles([[f(d.min), 'Minimum'], [f(d.q1), 'Q1'], [f(d.med), 'Median'], [f(d.q3), 'Q3'], [f(d.max), 'Maximum'], [f(iqr), 'IQR'], ['[' + f(d.q1 - 1.5 * iqr) + ', ' + f(d.q3 + 1.5 * iqr) + ']', 'Outlier fences']]) + '<p class="note">Quartiles use linear interpolation (same as Excel QUARTILE.INC).</p>'; });
+add('stats', 'zscore', 'Z-score', 'Standard score of a value, and its percentile under a normal distribution.',
+  [['x', 'Value x', 85], ['m', 'Mean μ', 70], ['s', 'Standard deviation σ', 10]],
+  v => { pos(v.s, 'SD'); const z = (v.x - v.m) / v.s; const erf = t => { const s = Math.sign(t); t = Math.abs(t); const a = 1 / (1 + 0.3275911 * t); return s * (1 - (((((1.061405429 * a - 1.453152027) * a) + 1.421413741) * a - 0.284496736) * a + 0.254829592) * a * Math.exp(-t * t)); };
+    const p = 0.5 * (1 + erf(z / Math.SQRT2)); return tiles([[f(z, 4), 'z-score'], [pct(p * 100), 'Percentile (below x)'], [pct((1 - p) * 100), 'Above x']]); });
+add('stats', 'percentile', 'Percentile of a value / value at a percentile', 'Where a value sits in a data set.',
+  [['x', 'Data', '55, 62, 68, 70, 74, 78, 81, 85, 90, 96', 'ta'], ['p', 'Percentile wanted (0–100)', 90], ['v', 'Value to rank (optional)', 81]],
+  v => { const a = list(v.x); if (a.length < 2) throw 'Enter at least two numbers.'; const s = [...a].sort((p, q) => p - q), i = (s.length - 1) * v.p / 100, lo = Math.floor(i), val = s[lo] + (s[Math.ceil(i)] - s[lo]) * (i - lo);
+    const out = [[f(val), f(v.p) + 'th percentile']]; if (v.v !== '' && isFinite(v.v)) out.push([pct(s.filter(x => x < v.v).length / s.length * 100), 'Percent of data below ' + f(v.v)]); return tiles(out); });
+add('stats', 'weighted', 'Weighted average / GPA', 'Weighted mean of values (e.g. grade points weighted by credits).',
+  [['x', 'Values', '9, 8, 10, 7', 'ta'], ['w', 'Weights / credits', '4, 3, 2, 3', 'ta']],
+  v => { const a = list(v.x), w = list(v.w); if (a.length !== w.length || !a.length) throw 'Values and weights must have the same count.'; const sw = w.reduce((p, q) => p + q, 0); if (!sw) throw 'Weights add up to zero.';
+    return tiles([[f(a.reduce((p, q, i) => p + q * w[i], 0) / sw, 4), 'Weighted average'], [f(sw), 'Total weight']]); });
+add('stats', 'sample-size', 'Sample size (survey)', 'Sample size to estimate a proportion with a given margin of error.',
+  [['e', 'Margin of error (%)', 5], ['c', 'Confidence', '95', 'sel', SEL([['90', '90 %'], ['95', '95 %'], ['99', '99 %']])], ['p', 'Expected proportion (%)', 50], ['N', 'Population size (optional)', '']],
+  v => { const z = { 90: 1.6448536, 95: 1.9599640, 99: 2.5758293 }[v.c], p = v.p / 100, e = v.e / 100; pos(e, 'Margin of error'); let n0 = z * z * p * (1 - p) / (e * e); let n = n0;
+    if (v.N !== '' && v.N > 0) n = n0 / (1 + (n0 - 1) / v.N); return tiles([[Math.ceil(n), 'Required sample size'], [Math.ceil(n0), 'Infinite population']]); });
+
+/* ================= ALGEBRA ================= */
+add('algebra', 'quadratic', 'Quadratic equation ax² + bx + c = 0', 'Real or complex roots, discriminant and vertex.',
+  [['a', 'a', 1], ['b', 'b', -3], ['c', 'c', -10]],
+  v => { if (!v.a) throw 'a cannot be 0 (that is a linear equation).'; const D = v.b * v.b - 4 * v.a * v.c, xv = -v.b / (2 * v.a);
+    const roots = D >= 0 ? [f((-v.b + Math.sqrt(D)) / (2 * v.a)), f((-v.b - Math.sqrt(D)) / (2 * v.a))] : [`${f(xv)} + ${f(Math.sqrt(-D) / (2 * Math.abs(v.a)))}i`, `${f(xv)} − ${f(Math.sqrt(-D) / (2 * Math.abs(v.a)))}i`];
+    return tiles([[roots[0], 'x₁'], [roots[1], 'x₂'], [f(D), 'Discriminant'], [`(${f(xv)}, ${f(v.a * xv * xv + v.b * xv + v.c)})`, 'Vertex']]); });
+add('algebra', 'linear2', 'System of 2 linear equations', 'Solve a₁x + b₁y = c₁ and a₂x + b₂y = c₂.',
+  [['a1', 'a₁', 2], ['b1', 'b₁', 3], ['c1', 'c₁', 13], ['a2', 'a₂', 1], ['b2', 'b₂', -1], ['c2', 'c₂', -1]],
+  v => { const D = v.a1 * v.b2 - v.a2 * v.b1; if (Math.abs(D) < 1e-14) throw 'No unique solution (the lines are parallel or identical).'; return tiles([[f((v.c1 * v.b2 - v.c2 * v.b1) / D), 'x'], [f((v.a1 * v.c2 - v.a2 * v.c1) / D), 'y'], [f(D), 'Determinant']]); });
+add('algebra', 'slope', 'Slope, distance & midpoint', 'Line through two points: slope, equation, distance and midpoint.',
+  [['x1', 'x₁', 1], ['y1', 'y₁', 2], ['x2', 'x₂', 5], ['y2', 'y₂', 10]],
+  v => { const dx = v.x2 - v.x1, dy = v.y2 - v.y1, m = dy / dx, b = v.y1 - m * v.x1; return tiles([[dx ? f(m) : 'undefined', 'Slope m'], [dx ? `y = ${f(m)}x ${b < 0 ? '−' : '+'} ${f(Math.abs(b))}` : `x = ${f(v.x1)}`, 'Equation'], [f(Math.hypot(dx, dy)), 'Distance'], [`(${f((v.x1 + v.x2) / 2)}, ${f((v.y1 + v.y2) / 2)})`, 'Midpoint'], [f(Math.atan2(dy, dx) * 180 / Math.PI, 4) + '°', 'Angle']]); });
+add('algebra', 'interp', 'Linear interpolation', 'Find y at x between two known points (x₁, y₁) and (x₂, y₂).',
+  [['x1', 'x₁', 20], ['y1', 'y₁', 0.998], ['x2', 'x₂', 30], ['y2', 'y₂', 0.996], ['x', 'x', 25]],
+  v => { if (v.x2 === v.x1) throw 'x₁ and x₂ must differ.'; return tiles([[f(v.y1 + (v.y2 - v.y1) * (v.x - v.x1) / (v.x2 - v.x1), 8), 'y at x = ' + f(v.x)]]); });
+
+/* ================= GEOMETRY ================= */
+add('geometry', 'circle', 'Circle', 'From radius: diameter, circumference and area.',
+  [['r', 'Radius', 5]], v => { pos(v.r, 'Radius'); return tiles([[f(2 * v.r), 'Diameter'], [f(2 * Math.PI * v.r), 'Circumference'], [f(Math.PI * v.r * v.r), 'Area']]); });
+add('geometry', 'rectangle', 'Rectangle', 'Area, perimeter and diagonal.',
+  [['l', 'Length', 8], ['w', 'Width', 5]], v => tiles([[f(v.l * v.w), 'Area'], [f(2 * (v.l + v.w)), 'Perimeter'], [f(Math.hypot(v.l, v.w)), 'Diagonal']]));
+add('geometry', 'triangle', 'Triangle from 3 sides (Heron)', 'Area, perimeter and angles from three sides.',
+  [['a', 'Side a', 7], ['b', 'Side b', 8], ['c', 'Side c', 9]],
+  v => { const { a, b, c } = v; if (a + b <= c || a + c <= b || b + c <= a) throw 'These sides cannot form a triangle.'; const s = (a + b + c) / 2, A = Math.sqrt(s * (s - a) * (s - b) * (s - c)), ang = (x, y, z) => Math.acos((y * y + z * z - x * x) / (2 * y * z)) * 180 / Math.PI;
+    return tiles([[f(A), 'Area'], [f(a + b + c), 'Perimeter'], [f(ang(a, b, c), 4) + '°', 'Angle A'], [f(ang(b, a, c), 4) + '°', 'Angle B'], [f(ang(c, a, b), 4) + '°', 'Angle C']]); });
+add('geometry', 'pythag', 'Right triangle / Pythagoras', 'Leave one side empty to solve it.',
+  [['a', 'Leg a', '3', 'text'], ['b', 'Leg b', '4', 'text'], ['c', 'Hypotenuse c', '', 'text']],
+  v => { const e = ['a', 'b', 'c'].filter(k => String(v[k]).trim() === ''); if (e.length !== 1) throw 'Leave exactly one side empty.'; let a = e[0] === 'a' ? NaN : num(v.a), b = e[0] === 'b' ? NaN : num(v.b), c = e[0] === 'c' ? NaN : num(v.c);
+    if (e[0] === 'c') c = Math.hypot(a, b); else { const k = e[0] === 'a' ? b : a; if (c <= k) throw 'Hypotenuse must be the longest side.'; if (e[0] === 'a') a = Math.sqrt(c * c - b * b); else b = Math.sqrt(c * c - a * a); }
+    return tiles([[f(a), 'a'], [f(b), 'b'], [f(c), 'c'], [f(a * b / 2), 'Area'], [f(Math.atan(a / b) * 180 / Math.PI, 4) + '°', 'Angle opposite a']]); });
+add('geometry', 'polygon', 'Regular polygon', 'Area, perimeter and angles of a regular n-sided polygon.',
+  [['n', 'Number of sides', 6], ['s', 'Side length', 4]],
+  v => { const n = Math.round(v.n); if (n < 3) throw 'At least 3 sides.'; const A = n * v.s * v.s / (4 * Math.tan(Math.PI / n)); return tiles([[f(A), 'Area'], [f(n * v.s), 'Perimeter'], [f((n - 2) * 180 / n, 4) + '°', 'Interior angle'], [f(v.s / (2 * Math.sin(Math.PI / n))), 'Circumradius']]); });
+add('geometry', 'sphere', 'Sphere', 'Volume and surface area.', [['r', 'Radius', 3]], v => tiles([[f(4 / 3 * Math.PI * v.r ** 3), 'Volume'], [f(4 * Math.PI * v.r * v.r), 'Surface area']]));
+add('geometry', 'cylinder', 'Cylinder', 'Volume and surface areas.', [['r', 'Radius', 0.075], ['h', 'Height', 0.3]],
+  v => tiles([[f(Math.PI * v.r * v.r * v.h), 'Volume'], [f(2 * Math.PI * v.r * v.h), 'Lateral area'], [f(2 * Math.PI * v.r * (v.r + v.h)), 'Total surface area']]));
+add('geometry', 'cone', 'Cone', 'Volume, slant height and surface area.', [['r', 'Radius', 3], ['h', 'Height', 4]],
+  v => { const l = Math.hypot(v.r, v.h); return tiles([[f(Math.PI * v.r * v.r * v.h / 3), 'Volume'], [f(l), 'Slant height'], [f(Math.PI * v.r * (v.r + l)), 'Total surface area']]); });
+add('geometry', 'cuboid', 'Cuboid / rectangular prism', 'Volume, surface area and space diagonal.', [['l', 'Length', 0.15], ['w', 'Width', 0.15], ['h', 'Height', 0.15]],
+  v => tiles([[f(v.l * v.w * v.h), 'Volume'], [f(2 * (v.l * v.w + v.l * v.h + v.w * v.h)), 'Surface area'], [f(Math.sqrt(v.l ** 2 + v.w ** 2 + v.h ** 2)), 'Space diagonal']]));
+add('geometry', 'trapezoid', 'Trapezoid', 'Area from parallel sides and height.', [['a', 'Base a', 8], ['b', 'Base b', 5], ['h', 'Height', 4]], v => tiles([[f((v.a + v.b) / 2 * v.h), 'Area']]));
+add('geometry', 'frustum', 'Conical frustum', 'Volume of a truncated cone (e.g. slump cone: 200, 100, 300 mm).', [['R', 'Bottom radius', 100], ['r', 'Top radius', 50], ['h', 'Height', 300]],
+  v => { const l = Math.hypot(v.R - v.r, v.h); return tiles([[f(Math.PI * v.h * (v.R * v.R + v.R * v.r + v.r * v.r) / 3), 'Volume'], [f(l), 'Slant height'], [f(Math.PI * (v.R + v.r) * l), 'Lateral area']]); });
+
+/* ================= FINANCE ================= */
+add('finance', 'simple-int', 'Simple interest', 'I = P × r × t.', [['p', 'Principal', 100000], ['r', 'Annual rate (%)', 7], ['t', 'Time (years)', 3]],
+  v => { const I = v.p * v.r / 100 * v.t; return tiles([[money(I), 'Interest'], [money(v.p + I), 'Total amount']]); });
+add('finance', 'compound', 'Compound interest', 'A = P(1 + r/n)^(nt), with optional monthly contributions.',
+  [['p', 'Principal', 100000], ['r', 'Annual rate (%)', 8], ['t', 'Years', 10], ['n', 'Compounding', '12', 'sel', SEL([['1', 'Yearly'], ['2', 'Half-yearly'], ['4', 'Quarterly'], ['12', 'Monthly'], ['365', 'Daily']])], ['c', 'Monthly contribution', 0]],
+  v => { const n = +v.n, i = v.r / 100 / n, N = n * v.t; let A = v.p * Math.pow(1 + i, N); let contrib = 0;
+    if (v.c){ const im = Math.pow(1 + i, n / 12) - 1, m = 12 * v.t; contrib = im ? v.c * (Math.pow(1 + im, m) - 1) / im : v.c * m; A += contrib; }
+    const paid = v.p + v.c * 12 * v.t; return tiles([[money(A), 'Future value'], [money(A - paid), 'Interest earned'], [money(paid), 'Total invested'], [pct((Math.pow(1 + i, n) - 1) * 100), 'Effective annual rate']]); });
+add('finance', 'emi', 'Loan EMI', 'Monthly instalment, total interest and payment schedule.',
+  [['p', 'Loan amount', 2500000], ['r', 'Annual interest rate (%)', 8.5], ['y', 'Tenure (years)', 20]],
+  v => { pos(v.p, 'Loan'); pos(v.y, 'Tenure'); const i = v.r / 1200, n = Math.round(v.y * 12), E = i ? v.p * i * Math.pow(1 + i, n) / (Math.pow(1 + i, n) - 1) : v.p / n;
+    let bal = v.p; const rows = []; for (let yr = 1; yr <= Math.ceil(n / 12); yr++){ let ip = 0, pp = 0; for (let m = 0; m < 12 && bal > 1e-6; m++){ const it = bal * i, pr = Math.min(E - it, bal); ip += it; pp += pr; bal -= pr; } rows.push([yr, money(pp), money(ip), money(Math.max(bal, 0))]); }
+    return tiles([[money(E), 'Monthly EMI'], [money(E * n - v.p), 'Total interest'], [money(E * n), 'Total payment']]) + table(['Year', 'Principal paid', 'Interest paid', 'Balance'], rows); });
+add('finance', 'fv', 'Future value', 'Value of a present sum after n periods at rate r.', [['pv', 'Present value', 10000], ['r', 'Rate per period (%)', 6], ['n', 'Number of periods', 10]],
+  v => tiles([[money(v.pv * Math.pow(1 + v.r / 100, v.n)), 'Future value']]));
+add('finance', 'pv', 'Present value', 'What a future sum is worth today.', [['fv', 'Future value', 100000], ['r', 'Discount rate per period (%)', 7], ['n', 'Number of periods', 5]],
+  v => tiles([[money(v.fv / Math.pow(1 + v.r / 100, v.n)), 'Present value']]));
+add('finance', 'npv', 'Net present value (NPV) & IRR', 'Cash flows, first one at time 0 (usually negative).',
+  [['cf', 'Cash flows', '-100000, 30000, 35000, 40000, 45000', 'ta'], ['r', 'Discount rate (%)', 10]],
+  v => { const c = list(v.cf); if (c.length < 2) throw 'Enter at least two cash flows.'; const npv = r => c.reduce((s, x, t) => s + x / Math.pow(1 + r, t), 0);
+    let lo = -0.99, hi = 10, irr = NaN; if (npv(lo) * npv(hi) < 0){ for (let k = 0; k < 200; k++){ const m = (lo + hi) / 2; if (npv(lo) * npv(m) <= 0) hi = m; else lo = m; } irr = (lo + hi) / 2; }
+    return tiles([[money(npv(v.r / 100)), 'NPV'], [isFinite(irr) ? pct(irr * 100) : 'n/a', 'IRR']]); });
+add('finance', 'cagr', 'CAGR', 'Compound annual growth rate between two values.', [['a', 'Beginning value', 50000], ['b', 'Ending value', 92000], ['n', 'Years', 5]],
+  v => { pos(v.a, 'Beginning value'); pos(v.n, 'Years'); return tiles([[pct((Math.pow(v.b / v.a, 1 / v.n) - 1) * 100), 'CAGR'], [pct((v.b / v.a - 1) * 100), 'Total growth']]); });
+add('finance', 'roi', 'Return on investment (ROI)', 'Gain relative to cost, with annualised return.', [['c', 'Amount invested', 20000], ['g', 'Amount returned', 26500], ['t', 'Years held', 2]],
+  v => { pos(v.c, 'Investment'); return tiles([[pct((v.g - v.c) / v.c * 100), 'ROI'], [money(v.g - v.c), 'Gain'], [v.t > 0 ? pct((Math.pow(v.g / v.c, 1 / v.t) - 1) * 100) : '—', 'Annualised']]); });
+add('finance', 'discount', 'Discount & sale price', 'Price after a percentage discount (and optional extra discount).', [['p', 'Original price', 2499], ['d', 'Discount (%)', 20], ['d2', 'Extra discount (%)', 10]],
+  v => { const s = v.p * (1 - v.d / 100) * (1 - v.d2 / 100); return tiles([[money(s), 'Sale price'], [money(v.p - s), 'You save'], [pct((1 - s / v.p) * 100), 'Total discount']]); });
+add('finance', 'margin', 'Margin & markup', 'From cost and selling price.', [['c', 'Cost', 400], ['s', 'Selling price', 550]],
+  v => { pos(v.s, 'Selling price'); return tiles([[money(v.s - v.c), 'Profit'], [pct((v.s - v.c) / v.s * 100), 'Gross margin'], [pct((v.s - v.c) / v.c * 100), 'Markup']]); });
+add('finance', 'price-margin', 'Selling price for a target margin', 'Price needed for a desired margin or markup.', [['c', 'Cost', 400], ['m', 'Target (%)', 25], ['t', 'Target is', 'margin', 'sel', SEL([['margin', 'Margin'], ['markup', 'Markup']])]],
+  v => { const s = v.t === 'margin' ? v.c / (1 - v.m / 100) : v.c * (1 + v.m / 100); return tiles([[money(s), 'Selling price'], [money(s - v.c), 'Profit']]); });
+add('finance', 'gst', 'GST / sales tax', 'Add or remove tax from a price (GST 5 %, 12 %, 18 %, 28 %…).', [['p', 'Amount', 1000], ['r', 'Tax rate (%)', 18], ['m', 'Amount is', 'excl', 'sel', SEL([['excl', 'Before tax (add tax)'], ['incl', 'Including tax (remove tax)']])]],
+  v => { const base = v.m === 'excl' ? v.p : v.p / (1 + v.r / 100), tax = base * v.r / 100; return tiles([[money(base), 'Price before tax'], [money(tax), 'Tax'], [money(base + tax), 'Total with tax'], [money(tax / 2), 'CGST = SGST (½ each)']]); });
+add('finance', 'tip', 'Tip & bill split', 'Tip and per-person share.', [['b', 'Bill', 2400], ['t', 'Tip (%)', 10], ['n', 'People', 4]],
+  v => { pos(v.n, 'People'); const tip = v.b * v.t / 100; return tiles([[money(tip), 'Tip'], [money(v.b + tip), 'Total'], [money((v.b + tip) / v.n), 'Per person']]); });
+add('finance', 'inflation', 'Inflation adjustment', 'Future cost or present purchasing power at a constant inflation rate.', [['a', 'Amount today', 100000], ['r', 'Inflation rate (%)', 6], ['n', 'Years', 10]],
+  v => tiles([[money(v.a * Math.pow(1 + v.r / 100, v.n)), 'Cost after ' + f(v.n) + ' years'], [money(v.a / Math.pow(1 + v.r / 100, v.n)), 'Today’s value of that amount then']]));
+add('finance', 'rule72', 'Rule of 72 (doubling time)', 'Years for money to double at a given rate.', [['r', 'Annual rate (%)', 8]],
+  v => { pos(v.r, 'Rate'); return tiles([[f(72 / v.r, 2) + ' yrs', 'Rule of 72'], [f(Math.log(2) / Math.log(1 + v.r / 100), 2) + ' yrs', 'Exact']]); });
+add('finance', 'sip', 'SIP / recurring deposit', 'Future value of a fixed monthly investment.', [['m', 'Monthly investment', 5000], ['r', 'Expected annual return (%)', 12], ['y', 'Years', 15]],
+  v => { const i = v.r / 1200, n = v.y * 12, FV = i ? v.m * ((Math.pow(1 + i, n) - 1) / i) * (1 + i) : v.m * n; return tiles([[money(FV), 'Maturity value'], [money(v.m * n), 'Invested'], [money(FV - v.m * n), 'Gains']]); });
+add('finance', 'depr', 'Depreciation (straight line & declining)', 'Yearly depreciation schedule.', [['c', 'Asset cost', 500000], ['s', 'Salvage value', 50000], ['n', 'Useful life (years)', 5]],
+  v => { const n = Math.round(v.n); if (n < 1) throw 'Life must be at least 1 year.'; const sl = (v.c - v.s) / n, rate = 1 - Math.pow(v.s / v.c, 1 / n); let b1 = v.c, b2 = v.c; const rows = [];
+    for (let y = 1; y <= n; y++){ b1 -= sl; const d2 = b2 * rate; b2 -= d2; rows.push([y, money(sl), money(b1), money(d2), money(b2)]); }
+    return table(['Year', 'Straight-line', 'Book value', 'Declining (' + pct(rate * 100) + ')', 'Book value'], rows); });
+add('finance', 'salary', 'Hourly ↔ salary', 'Convert hourly pay to weekly, monthly and annual.', [['h', 'Hourly rate', 500], ['w', 'Hours per week', 40], ['wk', 'Weeks per year', 52]],
+  v => tiles([[money(v.h * v.w), 'Weekly'], [money(v.h * v.w * v.wk / 12), 'Monthly'], [money(v.h * v.w * v.wk), 'Annual']]));
+add('finance', 'breakeven', 'Break-even point', 'Units to sell to cover fixed costs.', [['fc', 'Fixed costs', 200000], ['p', 'Price per unit', 250], ['vc', 'Variable cost per unit', 150]],
+  v => { const cm = v.p - v.vc; if (cm <= 0) throw 'Price must be above variable cost.'; return tiles([[f(Math.ceil(v.fc / cm), 0), 'Break-even units'], [money(v.fc / cm * v.p), 'Break-even revenue'], [pct(cm / v.p * 100), 'Contribution margin']]); });
+
+/* ================= FINANCIAL RATIOS ================= */
+add('fratio', 'liquidity', 'Liquidity ratios', 'Current ratio, quick ratio, cash ratio and working capital.',
+  [['ca', 'Current assets', 500000], ['cl', 'Current liabilities', 250000], ['inv', 'Inventory', 120000], ['cash', 'Cash & equivalents', 80000]],
+  v => { pos(v.cl, 'Current liabilities'); return tiles([[f(v.ca / v.cl, 3), 'Current ratio'], [f((v.ca - v.inv) / v.cl, 3), 'Quick (acid-test) ratio'], [f(v.cash / v.cl, 3), 'Cash ratio'], [money(v.ca - v.cl), 'Working capital']]); });
+add('fratio', 'debt', 'Debt ratios', 'Debt ratio, debt-to-equity and times interest earned.',
+  [['td', 'Total liabilities (debt)', 400000], ['ta', 'Total assets', 1000000], ['te', 'Shareholders’ equity', 600000], ['ebit', 'EBIT', 150000], ['int', 'Interest expense', 30000]],
+  v => tiles([[f(v.td / v.ta, 3), 'Debt ratio'], [f(v.td / v.te, 3), 'Debt / equity'], [f(v.ebit / v.int, 2) + '×', 'Times interest earned'], [f(v.ta / v.te, 3), 'Equity multiplier']]));
+add('fratio', 'profitability', 'Profitability ratios', 'Margins, ROA, ROE, EPS and P/E.',
+  [['rev', 'Revenue', 2000000], ['cogs', 'Cost of goods sold', 1200000], ['op', 'Operating income', 350000], ['ni', 'Net income', 240000], ['ta', 'Total assets', 1500000], ['te', 'Shareholders’ equity', 900000], ['sh', 'Shares outstanding', 100000], ['px', 'Share price', 30]],
+  v => { const eps = v.ni / v.sh; return tiles([[pct((v.rev - v.cogs) / v.rev * 100), 'Gross margin'], [pct(v.op / v.rev * 100), 'Operating margin'], [pct(v.ni / v.rev * 100), 'Net margin'], [pct(v.ni / v.ta * 100), 'Return on assets'], [pct(v.ni / v.te * 100), 'Return on equity'], [money(eps), 'EPS'], [f(v.px / eps, 2), 'P/E ratio']]); });
+add('fratio', 'operations', 'Operations ratios', 'Inventory turnover, asset turnover, collection period, equity multiplier.',
+  [['cogs', 'Cost of goods sold', 1200000], ['inv', 'Average inventory', 150000], ['rev', 'Revenue', 2000000], ['ta', 'Total assets', 1500000], ['ar', 'Accounts receivable', 220000], ['te', 'Shareholders’ equity', 900000]],
+  v => { const it = v.cogs / v.inv; return tiles([[f(it, 2) + '×', 'Inventory turnover'], [f(365 / it, 1) + ' days', 'Days inventory'], [f(v.rev / v.ta, 3) + '×', 'Total asset turnover'], [f(v.ar / (v.rev / 365), 1) + ' days', 'Average collection period'], [f(v.ta / v.te, 3), 'Equity multiplier']]); });
+add('fratio', 'stock', 'Stock (market) ratios', 'EPS, P/E, price-to-sales, price-to-book and dividend payout.',
+  [['ni', 'Net income', 240000], ['sh', 'Shares outstanding', 100000], ['px', 'Share price', 30], ['rev', 'Revenue', 2000000], ['bv', 'Book value (equity)', 900000], ['div', 'Dividends paid', 60000]],
+  v => { const eps = v.ni / v.sh; return tiles([[money(eps), 'EPS'], [f(v.px / eps, 2), 'P/E'], [f(v.px / (v.rev / v.sh), 3), 'Price / sales'], [f(v.px / (v.bv / v.sh), 3), 'Price / book'], [pct(v.div / v.ni * 100), 'Dividend payout'], [pct(v.div / v.sh / v.px * 100), 'Dividend yield']]); });
+
+/* ================= CONSTRUCTION ================= */
+add('construction', 'concrete-vol', 'Concrete volume', 'Slab, footing, column or cylinder — volume with wastage.',
+  [['shape', 'Shape', 'slab', 'sel', SEL([['slab', 'Slab / footing / wall (L × W × D)'], ['col', 'Round column (diameter × height)']])], ['a', 'Length or diameter (m)', 5], ['b', 'Width (m) — slabs only', 4], ['c', 'Depth / height (m)', 0.15], ['q', 'Quantity', 1], ['w', 'Wastage (%)', 5]],
+  v => { const V = (v.shape === 'slab' ? v.a * v.b * v.c : Math.PI * v.a * v.a / 4 * v.c) * v.q * (1 + v.w / 100); return tiles([[f(V, 4) + ' m³', 'Volume (incl. wastage)'], [f(V * 35.3147, 2) + ' ft³', 'Cubic feet'], [f(V * 1.30795, 3) + ' yd³', 'Cubic yards'], [f(V * 2400 / 1000, 2) + ' t', 'Approx. mass (2400 kg/m³)']]); });
+add('construction', 'bricks', 'Bricks for a wall', 'Number of bricks and mortar for a wall (with mortar joints).',
+  [['l', 'Wall length (m)', 5], ['h', 'Wall height (m)', 3], ['t', 'Wall thickness (m)', 0.23], ['bl', 'Brick length (mm)', 190], ['bw', 'Brick width (mm)', 90], ['bh', 'Brick height (mm)', 90], ['j', 'Mortar joint (mm)', 10], ['w', 'Wastage (%)', 5]],
+  v => { const V = v.l * v.h * v.t, vb = (v.bl + v.j) * (v.bw + v.j) * (v.bh + v.j) / 1e9, n = V / vb, mortar = V - n * v.bl * v.bw * v.bh / 1e9;
+    return tiles([[f(Math.ceil(n * (1 + v.w / 100)), 0), 'Bricks (with wastage)'], [f(mortar, 3) + ' m³', 'Wet mortar'], [f(mortar * 1.33, 3) + ' m³', 'Dry mortar (×1.33)'], [f(V, 3) + ' m³', 'Wall volume']]); });
+add('construction', 'steel-wt', 'Steel bar weight', 'Weight of reinforcement bars (D² / 162 kg per metre).',
+  [['d', 'Bar diameter (mm)', 12], ['l', 'Length per bar (m)', 12], ['n', 'Number of bars', 10]],
+  v => { const kgm = v.d * v.d / 162.2; return tiles([[f(kgm, 4) + ' kg/m', 'Unit weight'], [f(kgm * v.l * v.n, 2) + ' kg', 'Total weight'], [f(Math.PI * v.d * v.d / 4, 2) + ' mm²', 'Area of one bar']]); });
+add('construction', 'sqft', 'Area / square footage', 'Floor area in m², ft² and other units.', [['l', 'Length', 12], ['w', 'Width', 10], ['u', 'Unit', 'ft', 'sel', SEL([['ft', 'feet'], ['m', 'metres']])]],
+  v => { const A = v.l * v.w, m2 = v.u === 'ft' ? A * 0.09290304 : A; return tiles([[f(m2, 3) + ' m²', 'Square metres'], [f(m2 / 0.09290304, 2) + ' ft²', 'Square feet'], [f(m2 / 0.83612736, 2) + ' yd²', 'Square yards'], [f(m2 / 4046.8564224, 5), 'Acres']]); });
+add('construction', 'paint', 'Paint required', 'Litres of paint for walls (minus doors and windows).', [['a', 'Wall area (m²)', 60], ['o', 'Openings area (m²)', 6], ['c', 'Coats', 2], ['cov', 'Coverage (m² per litre per coat)', 10]],
+  v => { pos(v.cov, 'Coverage'); const L = (v.a - v.o) * v.c / v.cov; return tiles([[f(L, 2) + ' L', 'Paint needed'], [f(Math.ceil(L / 4), 0), '4-litre cans']]); });
+add('construction', 'stairs', 'Stair calculator', 'Number of risers, riser height and going for a floor height.', [['h', 'Floor-to-floor height (mm)', 3000], ['r', 'Target riser (mm)', 150], ['t', 'Tread / going (mm)', 300]],
+  v => { const n = Math.round(v.h / v.r), rh = v.h / n; return tiles([[n, 'Risers'], [f(rh, 1) + ' mm', 'Riser height'], [n - 1, 'Treads'], [f((n - 1) * v.t / 1000, 3) + ' m', 'Total going'], [f(2 * rh + v.t, 0) + ' mm', '2R + T (aim 550–700)']]); });
+add('construction', 'slope-pct', 'Slope / gradient', 'Rise over run as %, angle and ratio (1 in n).', [['rise', 'Rise', 1], ['run', 'Run', 12]],
+  v => { pos(v.run, 'Run'); return tiles([[pct(v.rise / v.run * 100), 'Gradient'], [f(Math.atan(v.rise / v.run) * 180 / Math.PI, 3) + '°', 'Angle'], ['1 in ' + f(v.run / v.rise, 2), 'Ratio']]); });
+add('construction', 'tank', 'Water tank volume', 'Capacity of a rectangular or cylindrical tank.', [['shape', 'Shape', 'rect', 'sel', SEL([['rect', 'Rectangular (L × W × H)'], ['cyl', 'Cylindrical (D × H)']])], ['a', 'Length or diameter (m)', 2], ['b', 'Width (m)', 1.5], ['h', 'Height (m)', 1.2]],
+  v => { const V = v.shape === 'rect' ? v.a * v.b * v.h : Math.PI * v.a * v.a / 4 * v.h; return tiles([[f(V * 1000, 1) + ' L', 'Capacity'], [f(V, 3) + ' m³', 'Volume'], [f(V * 264.172, 1), 'US gallons']]); });
+
+/* ================= PHYSICS & CHEMISTRY ================= */
+add('physics', 'sdt', 'Speed, distance, time', 'Leave one value empty to solve for it.', [['d', 'Distance (km)', '120', 'text'], ['s', 'Speed (km/h)', '', 'text'], ['t', 'Time (hours)', '1.5', 'text']],
+  v => { const e = ['d', 's', 't'].filter(k => String(v[k]).trim() === ''); if (e.length !== 1) throw 'Leave exactly one value empty.'; let d = e[0] === 'd' ? NaN : num(v.d), s = e[0] === 's' ? NaN : num(v.s), t = e[0] === 't' ? NaN : num(v.t);
+    if (e[0] === 'd') d = s * t; if (e[0] === 's') s = d / t; if (e[0] === 't') t = d / s; const hh = Math.floor(t), mm = Math.round((t - hh) * 60);
+    return tiles([[f(d) + ' km', 'Distance'], [f(s) + ' km/h', 'Speed'], [f(t) + ' h (' + hh + ' h ' + mm + ' min)', 'Time'], [f(s / 3.6) + ' m/s', 'Speed in m/s']]); });
+add('physics', 'force', 'Force, mass, acceleration (F = ma)', 'Leave one value empty.', [['F', 'Force (N)', '', 'text'], ['m', 'Mass (kg)', '70', 'text'], ['a', 'Acceleration (m/s²)', '9.81', 'text']],
+  v => { const e = ['F', 'm', 'a'].filter(k => String(v[k]).trim() === ''); if (e.length !== 1) throw 'Leave exactly one value empty.'; let F = e[0] === 'F' ? NaN : num(v.F), m = e[0] === 'm' ? NaN : num(v.m), a = e[0] === 'a' ? NaN : num(v.a);
+    if (e[0] === 'F') F = m * a; if (e[0] === 'm') m = F / a; if (e[0] === 'a') a = F / m; return tiles([[f(F) + ' N', 'Force'], [f(m) + ' kg', 'Mass'], [f(a) + ' m/s²', 'Acceleration']]); });
+add('physics', 'energy', 'Kinetic & potential energy', 'KE = ½mv², PE = mgh.', [['m', 'Mass (kg)', 2], ['v', 'Velocity (m/s)', 10], ['h', 'Height (m)', 5]],
+  v => tiles([[f(0.5 * v.m * v.v * v.v) + ' J', 'Kinetic energy'], [f(v.m * 9.80665 * v.h) + ' J', 'Potential energy'], [f(v.m * v.v) + ' kg·m/s', 'Momentum']]));
+add('physics', 'density', 'Density, mass, volume', 'Leave one value empty.', [['rho', 'Density (kg/m³)', '', 'text'], ['m', 'Mass (kg)', '8.1', 'text'], ['V', 'Volume (m³)', '0.003375', 'text']],
+  v => { const e = ['rho', 'm', 'V'].filter(k => String(v[k]).trim() === ''); if (e.length !== 1) throw 'Leave exactly one value empty.'; let r = e[0] === 'rho' ? NaN : num(v.rho), m = e[0] === 'm' ? NaN : num(v.m), V = e[0] === 'V' ? NaN : num(v.V);
+    if (e[0] === 'rho') r = m / V; if (e[0] === 'm') m = r * V; if (e[0] === 'V') V = m / r; return tiles([[f(r) + ' kg/m³', 'Density'], [f(m) + ' kg', 'Mass'], [f(V) + ' m³', 'Volume'], [f(r / 1000, 4), 'Specific gravity']]); });
+add('physics', 'stress', 'Stress, strain & Young’s modulus', 'σ = F/A, ε = ΔL/L, E = σ/ε.', [['F', 'Force (kN)', 225], ['A', 'Area (mm²)', 4984], ['dL', 'Change in length (mm)', 0.12], ['L', 'Original length (mm)', 150]],
+  v => { const s = v.F * 1000 / v.A, e = v.dL / v.L; return tiles([[f(s, 3) + ' MPa', 'Stress'], [f(e, 6), 'Strain'], [f(s / e / 1000, 3) + ' GPa', 'Young’s modulus']]); });
+add('physics', 'ohm', 'Ohm’s law & power', 'Enter any two of V, I, R.', [['V', 'Voltage (V)', '230', 'text'], ['I', 'Current (A)', '', 'text'], ['R', 'Resistance (Ω)', '46', 'text']],
+  v => { const g = k => String(v[k]).trim() === '' ? NaN : num(v[k]); let V = g('V'), I = g('I'), R = g('R'); const known = [V, I, R].filter(isFinite).length; if (known !== 2) throw 'Enter exactly two of V, I and R.';
+    if (!isFinite(V)) V = I * R; else if (!isFinite(I)) I = V / R; else R = V / I; return tiles([[f(V) + ' V', 'Voltage'], [f(I) + ' A', 'Current'], [f(R) + ' Ω', 'Resistance'], [f(V * I) + ' W', 'Power']]); });
+add('physics', 'gas', 'Ideal gas law (PV = nRT)', 'Leave one value empty.', [['P', 'Pressure (kPa)', '101.325', 'text'], ['V', 'Volume (L)', '', 'text'], ['n', 'Amount (mol)', '1', 'text'], ['T', 'Temperature (K)', '273.15', 'text']],
+  v => { const R = 8.314462618; const e = ['P', 'V', 'n', 'T'].filter(k => String(v[k]).trim() === ''); if (e.length !== 1) throw 'Leave exactly one value empty.'; const g = k => e[0] === k ? NaN : num(v[k]);
+    let P = g('P'), V = g('V'), n = g('n'), T = g('T'); if (e[0] === 'P') P = n * R * T / V; if (e[0] === 'V') V = n * R * T / P; if (e[0] === 'n') n = P * V / (R * T); if (e[0] === 'T') T = P * V / (n * R);
+    return tiles([[f(P) + ' kPa', 'Pressure'], [f(V) + ' L', 'Volume'], [f(n) + ' mol', 'Amount'], [f(T) + ' K (' + f(T - 273.15) + ' °C)', 'Temperature']]); });
+add('physics', 'molarity', 'Molarity & dilution (C₁V₁ = C₂V₂)', 'Leave one value empty to solve a dilution.', [['c1', 'C₁', '1', 'text'], ['v1', 'V₁', '', 'text'], ['c2', 'C₂', '0.1', 'text'], ['v2', 'V₂', '500', 'text']],
+  v => { const ks = ['c1', 'v1', 'c2', 'v2'], e = ks.filter(k => String(v[k]).trim() === ''); if (e.length !== 1) throw 'Leave exactly one value empty.'; const x = {}; ks.forEach(k => { if (k !== e[0]) x[k] = num(v[k]); });
+    if (e[0] === 'c1') x.c1 = x.c2 * x.v2 / x.v1; if (e[0] === 'v1') x.v1 = x.c2 * x.v2 / x.c1; if (e[0] === 'c2') x.c2 = x.c1 * x.v1 / x.v2; if (e[0] === 'v2') x.v2 = x.c1 * x.v1 / x.c2; return tiles(ks.map(k => [f(x[k]), k.toUpperCase().replace('1', '₁').replace('2', '₂')])); });
+add('physics', 'emc2', 'E = mc²', 'Energy equivalent of mass.', [['m', 'Mass (kg)', 0.001]], v => { const E = v.m * 299792458 ** 2; return tiles([[E.toExponential(4) + ' J', 'Energy'], [f(E / 3.6e6) + ' kWh', 'kWh'], [f(E / 4.184e12, 4) + ' kt TNT', 'TNT equivalent']]); });
+add('physics', 'wave', 'Wavelength, frequency & speed', 'v = f λ. Leave one value empty.', [['v', 'Wave speed (m/s)', '299792458', 'text'], ['f', 'Frequency (Hz)', '2.4e9', 'text'], ['l', 'Wavelength (m)', '', 'text']],
+  v => { const e = ['v', 'f', 'l'].filter(k => String(v[k]).trim() === ''); if (e.length !== 1) throw 'Leave exactly one value empty.'; let s = e[0] === 'v' ? NaN : num(v.v), fr = e[0] === 'f' ? NaN : num(v.f), l = e[0] === 'l' ? NaN : num(v.l);
+    if (e[0] === 'v') s = fr * l; if (e[0] === 'f') fr = s / l; if (e[0] === 'l') l = s / fr; return tiles([[f(s) + ' m/s', 'Speed'], [f(fr) + ' Hz', 'Frequency'], [f(l) + ' m', 'Wavelength'], [f(1 / fr) + ' s', 'Period']]); });
+
+/* ================= UNIT CONVERSIONS ================= */
+Object.keys(UNITS).forEach(q => {
+  const T = UNITS[q], keys = Object.keys(T.u);
+  add('convert', 'conv-' + q.toLowerCase().replace(/\s+/g, '-'), q + ' conversion', 'Convert between ' + keys.slice(0, 6).join(', ') + ' and more.',
+    [['x', 'Value', 1], ['from', 'From', keys[Math.min(2, keys.length - 1)], 'sel', SEL(keys)]],
+    v => { const base = v.x * T.u[v.from]; return table(['Unit', 'Value'], keys.map(k => [k, f(base / T.u[k], 8)])); });
+});
+add('convert', 'conv-temp', 'Temperature conversion', '°C, °F, K and °R.', [['x', 'Value', 25], ['from', 'From', 'C', 'sel', SEL([['C', '°C'], ['F', '°F'], ['K', 'K'], ['R', '°R']])]],
+  v => { const C = v.from === 'C' ? v.x : v.from === 'F' ? (v.x - 32) * 5 / 9 : v.from === 'K' ? v.x - 273.15 : (v.x - 491.67) * 5 / 9; if (C < -273.15 - 1e-9) throw 'That is below absolute zero.';
+    return tiles([[f(C, 4) + ' °C', 'Celsius'], [f(C * 9 / 5 + 32, 4) + ' °F', 'Fahrenheit'], [f(C + 273.15, 4) + ' K', 'Kelvin'], [f((C + 273.15) * 9 / 5, 4) + ' °R', 'Rankine']]); });
+add('convert', 'conv-height', 'Height: feet & inches ↔ cm', 'Convert height both ways.', [['ft', 'Feet', 5], ['in', 'Inches', 9], ['cm', 'Centimetres (optional)', '']],
+  v => { const out = [[f((v.ft * 12 + v.in) * 2.54, 2) + ' cm', f(v.ft) + ' ft ' + f(v.in) + ' in']]; if (v.cm !== '' && isFinite(v.cm)){ const ti = v.cm / 2.54; out.push([Math.floor(ti / 12) + ' ft ' + f(ti % 12, 2) + ' in', f(v.cm) + ' cm']); } return tiles(out); });
+add('convert', 'dms', 'Decimal degrees ↔ degrees-minutes-seconds', 'For coordinates and angles.', [['d', 'Decimal degrees', 12.9716]],
+  v => { const s = Math.sign(v.d) < 0 ? '−' : '', a = Math.abs(v.d), D = Math.floor(a), M = Math.floor((a - D) * 60), S = ((a - D) * 60 - M) * 60; return tiles([[`${s}${D}° ${M}′ ${f(S, 3)}″`, 'DMS']]); });
+
+/* ================= TIME & DATE ================= */
+const today = () => new Date().toISOString().slice(0, 10);
+add('time', 'age', 'Age calculator', 'Exact age in years, months and days.', [['b', 'Date of birth', '1995-06-15', 'date'], ['t', 'Age on', today(), 'date']],
+  v => { const b = new Date(v.b + 'T00:00:00'), t = new Date(v.t + 'T00:00:00'); if (isNaN(b) || isNaN(t) || t < b) throw 'Check the dates.'; let y = t.getFullYear() - b.getFullYear(), m = t.getMonth() - b.getMonth(), d = t.getDate() - b.getDate();
+    if (d < 0){ m--; d += new Date(t.getFullYear(), t.getMonth(), 0).getDate(); } if (m < 0){ y--; m += 12; } const days = Math.round((t - b) / 864e5);
+    return tiles([[`${y} y ${m} m ${d} d`, 'Age'], [f(days, 0), 'Total days'], [f(Math.floor(days / 7), 0), 'Weeks'], [f(y * 12 + m, 0), 'Months']]); });
+add('time', 'date-diff', 'Days between dates', 'Calendar days and business days (Mon–Fri) between two dates.', [['a', 'Start date', today(), 'date'], ['b', 'End date', '2026-12-31', 'date']],
+  v => { const a = new Date(v.a + 'T00:00:00'), b = new Date(v.b + 'T00:00:00'); if (isNaN(a) || isNaN(b)) throw 'Check the dates.'; const s = a < b ? a : b, e = a < b ? b : a, days = Math.round((e - s) / 864e5);
+    let bd = 0; for (let d = new Date(s); d < e; d.setDate(d.getDate() + 1)){ const w = d.getDay(); if (w && w !== 6) bd++; } return tiles([[f(days, 0), 'Days'], [f(bd, 0), 'Business days'], [f(days / 7, 2), 'Weeks']]); });
+add('time', 'date-add', 'Add / subtract days', 'Date after adding or subtracting days, weeks, months or years.', [['a', 'Start date', today(), 'date'], ['n', 'Amount (negative to subtract)', 90], ['u', 'Unit', 'd', 'sel', SEL([['d', 'Days'], ['w', 'Weeks'], ['m', 'Months'], ['y', 'Years']])]],
+  v => { const d = new Date(v.a + 'T00:00:00'); if (isNaN(d)) throw 'Check the date.'; if (v.u === 'd') d.setDate(d.getDate() + v.n); if (v.u === 'w') d.setDate(d.getDate() + 7 * v.n); if (v.u === 'm') d.setMonth(d.getMonth() + v.n); if (v.u === 'y') d.setFullYear(d.getFullYear() + v.n);
+    return tiles([[d.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }), 'Result']]); });
+add('time', 'hours', 'Hours between two times', 'Duration between a start and end time (overnight works).', [['a', 'Start time', '09:15', 'time'], ['b', 'End time', '17:45', 'time'], ['br', 'Break (minutes)', 30]],
+  v => { const p = s => { const [h, m] = String(s).split(':').map(Number); return h * 60 + m; }; let d = p(v.b) - p(v.a); if (d < 0) d += 1440; d -= v.br; if (d < 0) throw 'Break is longer than the time worked.';
+    return tiles([[Math.floor(d / 60) + ' h ' + (d % 60) + ' min', 'Duration'], [f(d / 60, 4), 'Decimal hours'], [f(d, 0), 'Minutes']]); });
+add('time', 'time-decimal', 'Time ↔ decimal hours', 'Convert h:mm:ss to decimal hours and back.', [['t', 'Time (h:mm:ss)', '2:45:30', 'text'], ['d', 'Decimal hours (optional)', '']],
+  v => { const p = String(v.t).split(':').map(Number); if (p.some(x => !isFinite(x))) throw 'Use the format h:mm or h:mm:ss.'; const dec = (p[0] || 0) + (p[1] || 0) / 60 + (p[2] || 0) / 3600; const out = [[f(dec, 6), 'Decimal hours'], [f(dec * 60, 4), 'Minutes']];
+    if (v.d !== '' && isFinite(v.d)){ const h = Math.floor(v.d), mm = Math.floor((v.d - h) * 60), ss = Math.round(((v.d - h) * 60 - mm) * 60); out.push([`${h}:${String(mm).padStart(2, '0')}:${String(ss).padStart(2, '0')}`, f(v.d) + ' h as h:mm:ss']); } return tiles(out); });
+add('time', 'countdown', 'Countdown to a date', 'Time left until an event.', [['d', 'Event date', '2026-12-31', 'date'], ['t', 'Event time', '00:00', 'time']],
+  v => { const e = new Date(v.d + 'T' + (v.t || '00:00')), n = new Date(); if (isNaN(e)) throw 'Check the date.'; let s = Math.round((e - n) / 1000); const past = s < 0; s = Math.abs(s);
+    return tiles([[`${Math.floor(s / 86400)} d ${Math.floor(s % 86400 / 3600)} h ${Math.floor(s % 3600 / 60)} min`, past ? 'Time since' : 'Time left'], [f(s / 86400, 2), 'Days']]); });
+add('time', 'day-of-week', 'Day of the week', 'What day of the week any date falls on.', [['d', 'Date', today(), 'date']],
+  v => { const d = new Date(v.d + 'T00:00:00'); if (isNaN(d)) throw 'Check the date.'; const start = new Date(d.getFullYear(), 0, 1); return tiles([[d.toLocaleDateString('en-GB', { weekday: 'long' }), 'Day'], [Math.round((d - start) / 864e5) + 1, 'Day of the year']]); });
+
+/* ================= HEALTH ================= */
+add('health', 'bmi', 'BMI (body mass index)', 'BMI from weight and height, with the WHO category.', [['w', 'Weight (kg)', 70], ['h', 'Height (cm)', 175]],
+  v => { pos(v.h, 'Height'); const b = v.w / (v.h / 100) ** 2, c = b < 18.5 ? 'Underweight' : b < 25 ? 'Normal' : b < 30 ? 'Overweight' : 'Obese'; return tiles([[f(b, 1), 'BMI'], [c, 'WHO category'], [f(18.5 * (v.h / 100) ** 2, 1) + ' – ' + f(24.9 * (v.h / 100) ** 2, 1) + ' kg', 'Healthy weight range']]); });
+add('health', 'bmr', 'BMR & daily calories', 'Mifflin–St Jeor basal metabolic rate and daily energy needs.', [['sex', 'Sex', 'm', 'sel', SEL([['m', 'Male'], ['f', 'Female']])], ['age', 'Age (years)', 30], ['w', 'Weight (kg)', 70], ['h', 'Height (cm)', 175], ['act', 'Activity', '1.55', 'sel', SEL([['1.2', 'Sedentary'], ['1.375', 'Light'], ['1.55', 'Moderate'], ['1.725', 'Very active'], ['1.9', 'Extra active']])]],
+  v => { const bmr = 10 * v.w + 6.25 * v.h - 5 * v.age + (v.sex === 'm' ? 5 : -161); return tiles([[f(bmr, 0) + ' kcal', 'BMR'], [f(bmr * +v.act, 0) + ' kcal', 'Daily calories']]); });
+add('health', 'heart', 'Target heart rate', 'Karvonen heart-rate zones.', [['age', 'Age', 30], ['rest', 'Resting heart rate (bpm)', 65]],
+  v => { const mx = 220 - v.age, r = mx - v.rest, z = p => f(v.rest + r * p, 0); return table(['Zone', 'Intensity', 'bpm'], [['Warm-up', '50–60 %', z(.5) + '–' + z(.6)], ['Fat burn', '60–70 %', z(.6) + '–' + z(.7)], ['Aerobic', '70–80 %', z(.7) + '–' + z(.8)], ['Anaerobic', '80–90 %', z(.8) + '–' + z(.9)], ['Maximum', '90–100 %', z(.9) + '–' + mx]]); });
+add('health', 'water', 'Daily water intake', 'A simple guide based on body weight and activity.', [['w', 'Weight (kg)', 70], ['ex', 'Exercise (minutes / day)', 30]],
+  v => tiles([[f(v.w * 0.033 + v.ex / 30 * 0.35, 2) + ' L', 'Approx. daily water']]));
+add('health', 'pace', 'Running pace', 'Pace and speed from distance and time.', [['d', 'Distance (km)', 10], ['t', 'Time (h:mm:ss)', '0:52:30', 'text']],
+  v => { const p = String(v.t).split(':').map(Number); const s = p.length === 3 ? p[0] * 3600 + p[1] * 60 + p[2] : p[0] * 60 + (p[1] || 0); pos(v.d, 'Distance'); const pk = s / v.d;
+    return tiles([[Math.floor(pk / 60) + ':' + String(Math.round(pk % 60)).padStart(2, '0') + ' /km', 'Pace'], [f(v.d / (s / 3600), 2) + ' km/h', 'Speed']]); });
+
+/* ================= RANDOM & PROBABILITY ================= */
+const rnd = n => { const a = new Uint32Array(1); crypto.getRandomValues(a); return a[0] / 4294967296 * n; };
+add('random', 'rng', 'Random number generator', 'Random whole numbers in a range, with or without repeats.', [['lo', 'Minimum', 1], ['hi', 'Maximum', 100], ['n', 'How many', 5], ['rep', 'Allow repeats', 'no', 'sel', SEL([['no', 'No'], ['yes', 'Yes']])]],
+  v => { const lo = Math.ceil(Math.min(v.lo, v.hi)), hi = Math.floor(Math.max(v.lo, v.hi)), n = Math.round(v.n), span = hi - lo + 1; if (n < 1 || n > 10000) throw 'Choose 1 to 10 000 numbers.'; if (v.rep === 'no' && n > span) throw 'Not enough numbers in the range without repeats.';
+    const out = []; const seen = new Set(); while (out.length < n){ const x = lo + Math.floor(rnd(span)); if (v.rep === 'yes' || !seen.has(x)){ seen.add(x); out.push(x); } }
+    return `<div class="big">${out.join(', ')}</div><p class="note">Change any value or press “Reset” to draw again. Uses your browser’s secure random generator.</p>`; });
+add('random', 'coin', 'Coin flipper', 'Flip a coin up to 100 000 times and see the heads : tails ratio.', [['n', 'Number of flips', 100]],
+  v => { const n = Math.round(v.n); if (n < 1 || n > 100000) throw 'Choose 1 to 100 000 flips.'; let h = 0; for (let i = 0; i < n; i++) if (rnd(2) < 1) h++; const R = H.ratioInts([String(h), String(n - h)]);
+    return tiles([[h, 'Heads'], [n - h, 'Tails'], [pct(h / n * 100), 'Heads %'], [n - h && h ? R.ints.join(' : ') : '—', 'Heads : tails']]); });
+add('random', 'dice', 'Dice roller', 'Roll any number of dice with any number of sides.', [['n', 'Number of dice', 2], ['s', 'Sides per die', 6]],
+  v => { const n = Math.round(v.n), s = Math.round(v.s); if (n < 1 || n > 100 || s < 2) throw 'Use 1–100 dice with at least 2 sides.'; const r = Array.from({ length: n }, () => 1 + Math.floor(rnd(s))); return `<div class="big">${r.join('  ')}</div>` + tiles([[r.reduce((a, b) => a + b, 0), 'Total']]); });
+add('random', 'picker', 'Random name picker', 'Pick one or more names from a list.', [['x', 'Names (one per line)', 'Asha\nRahul\nMeera\nKiran\nArjun', 'ta'], ['n', 'How many to pick', 1]],
+  v => { const a = String(v.x).split('\n').map(s => s.trim()).filter(Boolean); const n = Math.round(v.n); if (!a.length) throw 'Enter some names.'; if (n < 1 || n > a.length) throw 'Pick between 1 and ' + a.length + '.';
+    const c = [...a]; for (let i = c.length - 1; i > 0; i--){ const j = Math.floor(rnd(i + 1)); [c[i], c[j]] = [c[j], c[i]]; } return `<div class="big">${c.slice(0, n).map(esc).join(', ')}</div>`; });
+add('random', 'password', 'Password generator', 'Strong random password (generated in your browser, never sent anywhere).', [['n', 'Length', 16], ['sym', 'Include symbols', 'yes', 'sel', SEL([['yes', 'Yes'], ['no', 'No']])]],
+  v => { const n = Math.round(v.n); if (n < 6 || n > 128) throw 'Length 6 to 128.'; const cs = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789' + (v.sym === 'yes' ? '!@#$%^&*()-_=+[]{};:,.?' : ''); let p = ''; for (let i = 0; i < n; i++) p += cs[Math.floor(rnd(cs.length))];
+    return `<div class="big mono">${esc(p)}</div>` + tiles([[f(n * Math.log2(cs.length), 0) + ' bits', 'Entropy']]); });
+add('random', 'probability', 'Probability of events', 'P(A and B), P(A or B), P(not A) for independent events.', [['a', 'P(A) (0–1)', 0.4], ['b', 'P(B) (0–1)', 0.25]],
+  v => { if (v.a < 0 || v.a > 1 || v.b < 0 || v.b > 1) throw 'Probabilities must be between 0 and 1.'; return tiles([[f(v.a * v.b), 'P(A and B)'], [f(v.a + v.b - v.a * v.b), 'P(A or B)'], [f(1 - v.a), 'P(not A)'], [f(v.a * (1 - v.b) + v.b * (1 - v.a)), 'P(exactly one)']]); });
+
+/* ================= TECHNOLOGY ================= */
+add('tech', 'base', 'Number base converter', 'Binary, octal, decimal and hexadecimal.', [['x', 'Number', '255', 'text'], ['from', 'From base', '10', 'sel', SEL([['2', 'Binary (2)'], ['8', 'Octal (8)'], ['10', 'Decimal (10)'], ['16', 'Hex (16)']])]],
+  v => { const s = String(v.x).trim().toLowerCase().replace(/^0[xbo]/, ''); const ok = { 2: /^[01]+$/, 8: /^[0-7]+$/, 10: /^\d+$/, 16: /^[0-9a-f]+$/ }[v.from]; if (!ok.test(s)) throw 'That is not a valid base-' + v.from + ' number.';
+    const n = BigInt(v.from === '10' ? s : (v.from === '16' ? '0x' : v.from === '8' ? '0o' : '0b') + s); return tiles([[n.toString(2), 'Binary'], [n.toString(8), 'Octal'], [n.toString(10), 'Decimal'], [n.toString(16).toUpperCase(), 'Hexadecimal']]); });
+add('tech', 'download', 'Download time', 'Time to download a file at a given speed.', [['s', 'File size', 4], ['su', 'Size unit', 'GB', 'sel', SEL(['MB', 'GB', 'TB'])], ['r', 'Speed (Mbps)', 100]],
+  v => { pos(v.r, 'Speed'); const bits = v.s * { MB: 8e6, GB: 8e9, TB: 8e12 }[v.su], t = bits / (v.r * 1e6); return tiles([[Math.floor(t / 3600) + ' h ' + Math.floor(t % 3600 / 60) + ' min ' + Math.round(t % 60) + ' s', 'Download time']]); });
+add('tech', 'chars', 'Word & character counter', 'Words, characters, sentences and reading time.', [['x', 'Text', 'Paste or type your text here to count words and characters.', 'ta']],
+  v => { const t = String(v.x), w = (t.match(/\S+/g) || []).length; return tiles([[w, 'Words'], [t.length, 'Characters'], [t.replace(/\s/g, '').length, 'Characters (no spaces)'], [(t.match(/[.!?]+(\s|$)/g) || []).length, 'Sentences'], [Math.max(1, Math.round(w / 230)) + ' min', 'Reading time']]); });
+
+(function(){
+"use strict";
+const $ = id => document.getElementById(id);
+const esc = H.esc;
+const byCat = c => HUB.filter(x => x.cat === c);
+function renderNav(q){
+  q = (q || '').trim().toLowerCase();
+  const match = x => !q || (x.t + ' ' + x.d + ' ' + x.cat).toLowerCase().includes(q);
+  $('nav').innerHTML = CATS.map(([c, name]) => { const items = byCat(c).filter(match); if (!items.length) return '';
+    return `<div class="ng" id="g-${c}"><p>${esc(name)} <span>${items.length}</span></p>${items.map(x => `<a href="#${x.id}" data-id="${x.id}">${esc(x.t)}</a>`).join('')}</div>`; }).join('') || '<p class="note">No calculator matches.</p>';
+  const cur = location.hash.slice(1); document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.id === cur));
+}
+$('pick').innerHTML = CATS.map(([c, n]) => `<optgroup label="${esc(n)}">${byCat(c).map(x => `<option value="${x.id}">${esc(x.t)}</option>`).join('')}</optgroup>`).join('');
+$('pick').addEventListener('change', e => { location.hash = e.target.value; });
+$('search').addEventListener('input', e => renderNav(e.target.value));
+$('count').textContent = HUB.length;
+function home(){
+  document.querySelectorAll('#nav a').forEach(a => a.classList.remove('on'));
+  $('panel').innerHTML = `<p class="grp">Calculators</p><h1>${HUB.length} free calculators</h1><p class="desc">Pick a category or search on the left. Ratio calculators are first. Everything runs in your browser.</p>
+    <div class="cats">${CATS.map(([c, n]) => `<a class="cat" href="#${byCat(c)[0].id}"><b>${esc(n)}</b><span>${byCat(c).length} calculators</span><small>${byCat(c).slice(0, 4).map(x => esc(x.t)).join(' · ')}${byCat(c).length > 4 ? ' …' : ''}</small></a>`).join('')}</div>`;
+  document.title = 'Calculators — ' + HUB.length + ' free online calculators';
+}
+function show(id){
+  const c = HUB.find(x => x.id === id); if (!c) return home();
+  document.querySelectorAll('#nav a').forEach(a => a.classList.toggle('on', a.dataset.id === c.id)); $('pick').value = c.id;
+  const catName = (CATS.find(k => k[0] === c.cat) || [, ''])[1];
+  $('panel').innerHTML = `<p class="grp"><a href="#" id="toHome">Calculators</a> › ${esc(catName)}</p><h1>${esc(c.t)}</h1><p class="desc">${esc(c.d)}</p>
+    <form id="cf" class="cgrid" autocomplete="off">${c.fields.map(fl => {
+      const [k, lab, val, type, opts] = fl;
+      if (type === 'ta') return `<label class="wide">${esc(lab)}<textarea name="${k}" rows="4">${esc(val)}</textarea></label>`;
+      if (type === 'sel') return `<label>${esc(lab)}<select name="${k}">${opts.map(o => `<option value="${esc(o[0])}"${String(o[0]) === String(val) ? ' selected' : ''}>${esc(o[1])}</option>`).join('')}</select></label>`;
+      const t = type === 'text' ? 'text' : type === 'date' ? 'date' : type === 'time' ? 'time' : 'number';
+      return `<label>${esc(lab)}<input name="${k}" type="${t}"${t === 'number' ? ' step="any"' : ''} value="${esc(val)}"></label>`; }).join('')}</form>
+    <div class="out" id="out" aria-live="polite"></div>
+    <div class="acts"><button class="btn" type="button" id="reset">Reset</button><button class="btn" type="button" id="copy">Copy results</button></div>`;
+  $('toHome').addEventListener('click', e => { e.preventDefault(); history.pushState('', '', location.pathname); home(); });
+  const form = $('cf');
+  const go = () => { const v = {}; c.fields.forEach(fl => { const el = form.elements[fl[0]]; const t = fl[3];
+      v[fl[0]] = (t === 'text' || t === 'ta' || t === 'sel' || t === 'date' || t === 'time') ? el.value : (el.value === '' ? '' : +el.value); });
+    try { $('out').innerHTML = c.run(v); } catch(e){ $('out').innerHTML = '<p class="err">' + esc(typeof e === 'string' ? e : 'Please check the values.') + '</p>'; if (typeof e !== 'string') console.error(e); } };
+  form.addEventListener('input', go); form.addEventListener('submit', e => e.preventDefault());
+  $('reset').addEventListener('click', () => show(c.id));
+  $('copy').addEventListener('click', () => { const t = c.t + '\n' + $('out').innerText; if (navigator.clipboard) navigator.clipboard.writeText(t).then(() => { $('copy').textContent = 'Copied'; setTimeout(() => $('copy').textContent = 'Copy results', 1400); }).catch(() => {}); });
+  go(); document.title = c.t + ' — Calculators';
+  if (window.innerWidth < 900) $('panel').scrollIntoView({ block: 'start' });
+}
+window.addEventListener('hashchange', () => show(location.hash.slice(1)));
+renderNav(''); show(location.hash.slice(1));
+})();
+</script>
+</body>
+</html>

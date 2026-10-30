@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-QqZKuPWeElNy+c6h5pntUAHTrY3+AnQWJpAOsNW/YcU='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'sha256-sWEx40MEvy6pPPPVE1Ha7/2FhLYKuubtzYCsgT/I4h0='; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
-<title>CV & Resume Builder — 10 free templates, PDF & Word download</title>
-<meta name="description" content="Free CV and resume builder for students and researchers. 10 professional templates, custom sections, and downloads as PDF, Word (.docx), HTML, Markdown or text. Runs entirely in your browser.">
+<title>CV & Resume Builder — 42 free templates, PDF & Word download</title>
+<meta name="description" content="Free CV and resume builder for students and researchers. 42 professional resume and CV templates with style filters, custom sections, and downloads as PDF, Word (.docx), HTML, Markdown or text. Runs entirely in your browser.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231F6B58'/%3E%3Crect x='18' y='12' width='28' height='40' rx='3' fill='%23F2F0EA'/%3E%3Crect x='23' y='20' width='18' height='3' fill='%239C5B36'/%3E%3Crect x='23' y='28' width='18' height='2' fill='%23C7C2B2'/%3E%3Crect x='23' y='34' width='14' height='2' fill='%23C7C2B2'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=STIX+Two+Text:wght@500;600&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -88,99 +88,34 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-
 .photo-row{display:flex;align-items:center;gap:.8rem;margin-top:.3rem}
 .photo-row img{width:54px;height:54px;border-radius:50%;object-fit:cover;border:2px solid var(--line)}
 
-/* ===== the CV page (A4) — web-safe fonts so Word looks the same ===== */
-.page{width:210mm;min-height:297mm;background:#fff;overflow:hidden;color:#222;box-shadow:0 10px 40px -10px rgba(0,0,0,.25);--ac:#1F6B58;--tint:#E8F0EE;position:relative}
-.cv{font-family:Arial,Helvetica,sans-serif;font-size:10pt;line-height:1.35;padding:17.6mm;min-height:297mm}
-.cv h1{font-size:24pt;line-height:1.1;margin:0;font-weight:700}
-.cv .hl{font-size:11pt;margin-top:2pt;color:#555}
-.cv .ct{font-size:9pt;color:#444;margin-top:5pt}
-.cv .ct span+span::before{content:"  ·  ";white-space:pre;color:#999}
-.cv h2{font-size:11pt;margin:13pt 0 5pt;font-weight:700;color:var(--ac);text-transform:uppercase;letter-spacing:.06em}
-.cv section:first-child h2{margin-top:0}
-.cv .ent{margin-bottom:6pt;break-inside:avoid}
-.cv .eh{display:flex;justify-content:space-between;gap:10pt;align-items:baseline}
-.cv .eh b{font-weight:700}
-.cv .dt{font-size:9pt;color:#666;white-space:nowrap}
-.cv .sub{font-style:italic;color:#444}
-.cv ul{margin:2pt 0 0 0;padding-left:14pt}
-.cv ol{margin:2pt 0 0 0;padding-left:16pt}
-.cv li{margin:1.5pt 0}
-.cv p.sm{margin:0}
-.cv .photo{width:30mm;height:30mm;border-radius:50%;object-fit:cover;display:block}
-.cv table.lay{width:100%;border-collapse:collapse}
-:where(.cv table.lay td){vertical-align:top;padding:0}
+/* ===== A4 page ===== */
+.page{width:210mm;min-height:297mm;background:#fff;color:#222;box-shadow:0 10px 40px -10px rgba(0,0,0,.25);position:relative;overflow:hidden}
 .page::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(to bottom,transparent 0 calc(297mm - 1px),rgba(220,60,60,.55) calc(297mm - 1px) 297mm)}
 .print-root .page::after{display:none}
-/* 1 classic academic */
-.t-classic{font-family:Georgia,'Times New Roman',serif}
-.t-classic header{text-align:center;border-bottom:1.5pt solid #222;padding-bottom:7pt;margin-bottom:11pt}
-.t-classic h2{color:#111;font-variant:small-caps;text-transform:none;letter-spacing:.05em;font-size:12.5pt;border-bottom:.75pt solid #999;padding-bottom:1.5pt}
-/* 2 harvard */
-.t-harvard{font-family:'Times New Roman',Times,serif;font-size:10.5pt}
-.t-harvard header{text-align:center;margin-bottom:9pt}
-.t-harvard h1{text-transform:uppercase;font-size:20pt;letter-spacing:.04em}
-.t-harvard h2{color:#000;font-size:11pt;border-bottom:1pt solid #000;padding-bottom:1pt;letter-spacing:.03em}
-.t-harvard .dt{color:#000}
-/* 3 elegant */
-.t-elegant{font-family:Georgia,serif}
-.t-elegant header{text-align:center;margin-bottom:12pt}
-.t-elegant h1{font-weight:400;font-size:27pt;letter-spacing:.06em;color:#222}
-.t-elegant .hl{color:var(--ac);letter-spacing:.12em;text-transform:uppercase;font-size:9.5pt;margin-top:4pt}
-.t-elegant h2{text-align:center;font-weight:400;letter-spacing:.3em;font-size:10pt;color:var(--ac);border-top:.75pt solid #ccc;border-bottom:.75pt solid #ccc;padding:2.5pt 0;margin-bottom:7pt}
-/* 4 modern sidebar */
-.t-sidebar{padding:0}
-.t-sidebar .side{background:var(--ac);color:#fff;width:66mm;padding:16mm 8mm 12mm 10mm;min-height:297mm}
-.t-sidebar .main{padding:16mm 13mm 12mm 10mm}
-.t-sidebar .side h1{font-size:20pt;color:#fff}
-.t-sidebar .side .hl{color:#fff;opacity:.88}
-.t-sidebar .side h2{color:#fff;border-bottom:.75pt solid rgba(255,255,255,.45);padding-bottom:2pt;margin-top:13pt}
-.t-sidebar .side .ct{color:#fff}
-.t-sidebar .side .ct span{display:block;margin:2pt 0;word-break:break-word}
-.t-sidebar .side .ct span+span::before{content:none}
-.t-sidebar .side .dt,.t-sidebar .side .sub{color:#fff;opacity:.9}
-.t-sidebar .photo{margin-bottom:9pt;border:2.5pt solid rgba(255,255,255,.6)}
-/* 5 creative */
-.t-creative{padding:0}
-.t-creative header{background:var(--tint);padding:12mm 15mm 9mm;display:flex;align-items:center;gap:8mm;border-bottom:3pt solid var(--ac)}
-.t-creative header h1{color:var(--ac);font-size:26pt}
-.t-creative .side{background:#F6F6F4;width:62mm;padding:9mm 7mm 12mm 12mm}
-.t-creative .main{padding:9mm 15mm 12mm 9mm}
-.t-creative h2{color:var(--ac);border-left:3pt solid var(--ac);padding-left:5pt;text-transform:none;letter-spacing:0;font-size:12pt}
-.t-creative .side .ct span{display:block;margin:2pt 0;word-break:break-word}
-.t-creative .side .ct span+span::before{content:none}
-/* 6 executive */
-.t-executive{padding:0}
-.t-executive header{background:var(--ac);color:#fff;padding:13mm 17.6mm 9mm}
-.t-executive header h1{font-family:Georgia,serif;font-size:28pt;color:#fff}
-.t-executive header .hl,.t-executive header .ct{color:#fff}
-.t-executive header .ct span+span::before{color:rgba(255,255,255,.7)}
-.t-executive .body{padding:7mm 17.6mm 14mm}
-.t-executive h2{color:#222;border-left:3.5pt solid var(--ac);padding-left:6pt}
-/* 7 minimal */
-.t-minimal h1{font-weight:400;font-size:28pt}
-.t-minimal header{margin-bottom:10pt}
-.t-minimal table.lay td.lab{width:35mm;padding-right:5mm}
-.t-minimal h2{font-size:8pt;letter-spacing:.1em;color:#999;font-weight:700;margin:2pt 0 0}
-.t-minimal table.lay tr td{padding-bottom:9pt}
-/* 8 timeline */
-.t-timeline header{border-left:5pt solid var(--ac);padding-left:10pt;margin-bottom:12pt}
-.t-timeline h2{color:var(--ac)}
-.t-timeline .ent{border-left:1.5pt solid var(--ac);padding-left:10pt;margin-left:3pt;padding-bottom:3pt}
-.t-timeline .ent .eh b::before{content:"● ";color:var(--ac);margin-left:-15.5pt;font-size:9pt}
-/* 9 compact two-column */
-.t-compact{font-size:9pt;padding:13mm}
-.t-compact header{border-bottom:2pt solid var(--ac);padding-bottom:6pt;margin-bottom:9pt}
-.t-compact h1{font-size:21pt}
-.t-compact h2{font-size:9.5pt;border-bottom:.75pt solid var(--ac);padding-bottom:1pt;margin-top:9pt}
-.t-compact td.cside{width:58mm;padding-left:7mm !important;border-left:.75pt solid #ddd}
-/* 10 ATS */
-.t-ats{color:#000}
-.t-ats h1{font-size:18pt}
-.t-ats h2{color:#000;border-bottom:1pt solid #000;padding-bottom:1pt}
-.t-ats .dt,.t-ats .sub,.t-ats .ct,.t-ats .hl{color:#000}
-.t-ats .ct span+span::before{content:" | ";color:#000}
-
-
+/* gallery */
+.layout>*{min-width:0}
+.fgroup{margin-top:.55rem}
+.fgroup>span{display:block;font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:.3rem}
+.fchips{display:flex;flex-wrap:wrap;gap:.35rem}
+.fchip{font:inherit;font-size:.76rem;padding:.28rem .65rem;border-radius:999px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink-2);cursor:pointer}
+.fchip small{color:var(--ink-3);font-size:.68rem}
+.fchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.fchip.on small{color:rgba(255,255,255,.8)}
+.frow{display:flex;gap:.5rem;margin-top:.6rem}
+.frow select,.frow input{flex:1;min-width:0}
+.galbar{display:flex;justify-content:space-between;align-items:center;margin:.8rem 0 .5rem;font-size:.76rem;color:var(--ink-3)}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:.6rem;max-height:520px;overflow:auto;padding:2px 4px 4px 2px}
+.gcard{font:inherit;text-align:left;background:var(--paper);border:2px solid var(--line);border-radius:10px;padding:.4rem;cursor:pointer;color:var(--ink);transition:border-color .2s,transform .2s}
+.gcard:hover{border-color:var(--line-2);transform:translateY(-2px)}
+.gcard.on{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+.gcard .thumb{display:block;position:relative;width:100%;aspect-ratio:210/297;overflow:hidden;border-radius:5px;background:#fff;border:1px solid var(--line)}
+.gcard .tpage{position:absolute;left:0;top:0;width:210mm;min-height:297mm;transform-origin:0 0;transform:scale(var(--k,.14));pointer-events:none;background:#fff;display:block}
+.gcard b{display:block;font-size:.76rem;margin-top:.35rem;line-height:1.25}
+.gcard .gtags{display:block;font-size:.64rem;color:var(--ink-3);line-height:1.3;margin-top:.1rem}
+.gcard .ty{font-style:normal;font-weight:700;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:0 .3rem;border-radius:3px;margin-right:.3rem;background:var(--accent-soft);color:var(--accent)}
+.gcard .ty.cv{background:rgba(156,91,54,.14);color:var(--clay)}
+.curtpl{font-size:.78rem;color:var(--ink-3);margin:-.3rem 0 .6rem}
+.curtpl b{color:var(--ink)}
 @media print{
   @page{size:A4;margin:0}
   body{background:#fff}
@@ -201,12 +136,18 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-
 <div class="layout">
   <div id="form">
     <div class="panel">
-      <h2>1 · Choose a template <small>10 designs</small></h2>
-      <div class="tpls" id="tpls"></div>
+      <h2>1 · Choose a template <small id="tplTotal"></small></h2>
+      <div class="fgroup"><span>Type</span><div class="fchips" id="fType"></div></div>
+      <div class="fgroup"><span>Style</span><div class="fchips" id="fStyle"></div></div>
+      <div class="fgroup"><span>Features</span><div class="fchips" id="fFeat"></div></div>
+      <div class="frow"><select id="fRole" aria-label="Role or industry"></select><input id="fSearch" type="search" placeholder="Search templates" aria-label="Search templates"></div>
+      <div class="galbar"><span id="galCount"></span><button class="btn btn-small" id="fClear" type="button">Clear filters</button></div>
+      <div class="gal" id="gal"></div>
       <label>Accent colour</label>
       <div class="sw" id="sw"></div>
       <div style="margin-top:.9rem;display:flex;gap:.5rem;flex-wrap:wrap">
-        <button class="btn btn-small" id="sample" type="button">Fill with an example</button>
+        <button class="btn btn-small" id="sample" type="button">Example: Resume</button>
+        <button class="btn btn-small" id="sampleCv" type="button">Example: Academic CV</button>
         <button class="btn btn-small" id="clear" type="button">Start empty</button>
         <label class="btn btn-small" style="margin:0;font-weight:600;color:var(--ink)">Open saved file<input type="file" id="openJson" accept="application/json,.json" hidden></label>
       </div>
@@ -225,7 +166,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-
         <div><label for="f_linkedin">LinkedIn</label><input id="f_linkedin" type="text" data-k="linkedin"></div>
         <div><label for="f_scholar">Google Scholar / ORCID</label><input id="f_scholar" type="text" data-k="scholar"></div>
       </div>
-      <label>Photo <span style="font-weight:400">(optional — shown in Modern Sidebar and Creative)</span></label>
+      <label>Photo <span style="font-weight:400">(optional — shown in templates marked “With photo”)</span></label>
       <div class="photo-row"><img id="photoPrev" alt="" hidden><label class="btn btn-small" style="margin:0;font-weight:600;color:var(--ink)">Choose photo<input type="file" id="photoFile" accept="image/*" hidden></label><button class="btn btn-small" id="photoRm" type="button" hidden>Remove</button></div>
       <label for="f_summary">Profile summary</label>
       <textarea id="f_summary" data-k="summary" rows="3" placeholder="2–3 sentences about who you are and what you do."></textarea>
@@ -276,6 +217,7 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-
       </div>
     </div>
     <p class="note" style="margin:-.2rem 0 .7rem">PDF: choose <b>“Save as PDF”</b> in the print window and turn off “Headers and footers”. Word: a real .docx with the same layout, colours and fonts — opens in Microsoft Word, Google Docs and LibreOffice.</p>
+    <p class="curtpl">Template: <b id="tplName"></b></p>
     <div class="stage" id="stage"><div class="scaler" id="scaler"><div class="page" id="page"></div></div></div>
   </div>
 </div>
@@ -283,6 +225,255 @@ input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);outline-
 <div class="toast" id="toast"></div>
 
 <script>
+/* ======================================================================
+   CV ENGINE — one template description → one layout model (IR) →
+   rendered identically as HTML (preview / PDF / HTML file) and DOCX.
+   ====================================================================== */
+const CVX = (() => {
+const STYLES = [['professional', 'Professional'], ['modern', 'Modern'], ['simple', 'Simple'], ['minimalist', 'Minimalist'], ['corporate', 'Corporate'], ['creative', 'Creative'],
+  ['infographic', 'Infographic'], ['photo', 'Photo'], ['colorful', 'Colourful'], ['elegant', 'Elegant'], ['academic', 'Academic'], ['ats', 'ATS-friendly']];
+const ROLES = [['student', 'Student / fresher'], ['research', 'Academic & research'], ['engineering', 'Engineering & science'], ['it', 'IT & developer'], ['business', 'Business & sales'],
+  ['design', 'Design & arts'], ['teaching', 'Teaching'], ['health', 'Healthcare'], ['acting', 'Acting & performing']];
+const FEATS = [['photo', 'With photo'], ['twocol', 'Two columns'], ['onecol', 'One column'], ['bars', 'Skill bars'], ['ats', 'ATS-friendly']];
+const SERIF = { Georgia: "Georgia,'Times New Roman',serif", 'Times New Roman': "'Times New Roman',Times,serif", 'Palatino Linotype': "'Palatino Linotype','Book Antiqua',Palatino,Georgia,serif", Cambria: 'Cambria,Georgia,serif', Garamond: "Garamond,'EB Garamond','Palatino Linotype',Georgia,serif" };
+const SANS = { Arial: 'Arial,Helvetica,sans-serif', Verdana: 'Verdana,Geneva,sans-serif', Tahoma: 'Tahoma,Verdana,sans-serif', 'Trebuchet MS': "'Trebuchet MS',Arial,sans-serif", Calibri: 'Calibri,Carlito,Arial,sans-serif', 'Courier New': "'Courier New',Courier,monospace" };
+const cssFont = f => SERIF[f] || SANS[f] || f;
+
+/* ---------- 42 templates ----------
+   L = layout: single | sideL | sideR | creative | gutter | twocol
+   hd = header: plain | rule | band | tint | split | leftbar | photo
+   h  = section heading: caps | rule | smallcaps | leftbar | box | boxsolid | lines | thick | plain | double                         */
+const T = (id, name, o) => ({ id, name, type: 'resume', roles: [], feats: [], font: 'Arial', size: 10, margin: 17.6, L: 'single', hd: 'plain', align: 'left', h: 'caps', hc: 'accent', nameSize: 24, nameColor: 'ink', nameCaps: false, nameBold: true, nameSp: 0, skills: 'inline', side: 'accent', ...o });
+const TEMPLATES = [
+  T('classic', 'Classic Academic', { styles: ['professional', 'simple', 'academic'], type: 'cv', roles: ['research', 'teaching'], font: 'Georgia', align: 'center', hd: 'rule', h: 'smallcaps', hc: 'ink' }),
+  T('harvard', 'Harvard', { styles: ['professional', 'simple', 'ats'], roles: ['student', 'business'], font: 'Times New Roman', size: 10.5, align: 'center', nameSize: 20, nameCaps: true, nameSp: 1, h: 'rule', hc: 'black' }),
+  T('elegant', 'Elegant', { styles: ['elegant', 'minimalist', 'professional'], roles: ['business', 'teaching'], font: 'Georgia', align: 'center', nameSize: 27, nameBold: false, nameSp: 1.6, h: 'lines', hlAccent: true }),
+  T('sidebar', 'Modern Sidebar', { styles: ['modern', 'creative', 'photo', 'colorful'], roles: ['design', 'business'], L: 'sideL', side: 'accent', nameSize: 20, photo: true }),
+  T('creative', 'Creative', { styles: ['creative', 'photo', 'modern'], roles: ['design', 'acting'], L: 'creative', nameSize: 26, nameColor: 'accent', h: 'leftbar', photo: true }),
+  T('executive', 'Executive', { styles: ['corporate', 'professional', 'modern'], roles: ['business'], hd: 'band', nameFont: 'Georgia', nameSize: 28, h: 'leftbar', hc: 'ink' }),
+  T('minimal', 'Minimal', { styles: ['minimalist', 'modern'], roles: ['design', 'it'], L: 'gutter', nameSize: 28, nameBold: false, h: 'plain', hc: 'gray', hSize: 8, hSp: .8 }),
+  T('timeline', 'Timeline', { styles: ['modern', 'creative'], roles: ['engineering', 'it'], hd: 'leftbar', timeline: true }),
+  T('compact', 'Compact', { styles: ['professional', 'simple'], roles: ['engineering', 'business'], L: 'twocol', size: 9, margin: 13, hd: 'rule', nameSize: 21, h: 'rule' }),
+  T('ats', 'ATS-friendly', { styles: ['simple', 'ats', 'corporate'], roles: ['business', 'it', 'engineering', 'student'], nameSize: 18, h: 'rule', hc: 'black', mono: true }),
+  T('navy', 'Navy Corporate', { styles: ['corporate', 'professional'], roles: ['business', 'engineering'], hd: 'split', h: 'rule', color: '#1D4E89' }),
+  T('boardroom', 'Boardroom', { styles: ['corporate', 'elegant'], roles: ['business'], hd: 'band', bandInk: true, font: 'Georgia', nameSize: 26, h: 'rule', hc: 'ink' }),
+  T('slate', 'Slate Right Column', { styles: ['modern', 'professional'], roles: ['it', 'engineering'], L: 'sideR', side: 'tint', h: 'caps' }),
+  T('mono', 'Mono Minimal', { styles: ['minimalist', 'simple'], roles: ['design', 'it'], margin: 22, nameSize: 22, nameBold: false, h: 'plain', hc: 'gray', hSize: 8.5, hSp: 1 }),
+  T('swiss', 'Swiss', { styles: ['modern', 'minimalist'], roles: ['design', 'business'], nameSize: 32, h: 'thick', hc: 'ink' }),
+  T('scholar', 'Scholar CV', { styles: ['academic', 'professional', 'simple'], type: 'cv', roles: ['research', 'teaching'], font: 'Times New Roman', size: 11, align: 'center', hd: 'rule', h: 'rule', hc: 'ink' }),
+  T('oxford', 'Oxford CV', { styles: ['academic', 'elegant'], type: 'cv', roles: ['research', 'teaching'], font: 'Palatino Linotype', align: 'center', nameCaps: true, nameSp: 2, nameSize: 22, h: 'lines', hc: 'ink' }),
+  T('research', 'Research CV', { styles: ['academic', 'modern'], type: 'cv', roles: ['research', 'engineering'], font: 'Georgia', hd: 'leftbar', h: 'caps' }),
+  T('graduate', 'Graduate', { styles: ['simple', 'colorful'], roles: ['student'], align: 'center', h: 'box' }),
+  T('fresher', 'Fresher', { styles: ['modern', 'simple'], roles: ['student'], font: 'Verdana', size: 9.5, hd: 'tint', h: 'leftbar' }),
+  T('infographic', 'Infographic', { styles: ['infographic', 'creative', 'colorful', 'photo'], roles: ['design', 'it'], feats: ['bars'], L: 'sideL', side: 'accent', skills: 'bars', photo: true, nameSize: 20 }),
+  T('infolight', 'Infographic Light', { styles: ['infographic', 'modern'], roles: ['engineering', 'it'], feats: ['bars'], L: 'twocol', skills: 'bars', hd: 'rule', h: 'rule' }),
+  T('developer', 'Developer', { styles: ['modern', 'creative'], roles: ['it'], font: 'Trebuchet MS', hd: 'band', bandInk: true, nameFont: 'Courier New', skills: 'tags', h: 'caps', color: '#2E7D9A' }),
+  T('engineer', 'Engineer', { styles: ['professional', 'simple'], roles: ['engineering'], hd: 'split', h: 'caps' }),
+  T('designer', 'Designer', { styles: ['creative', 'colorful'], roles: ['design'], font: 'Trebuchet MS', L: 'creative', nameColor: 'accent', h: 'boxsolid', photo: true, color: '#B23A48' }),
+  T('coral', 'Coral', { styles: ['colorful', 'modern', 'photo'], roles: ['design', 'student'], L: 'sideL', side: 'tint', h: 'caps', photo: true, color: '#C8553D' }),
+  T('forest', 'Forest', { styles: ['colorful', 'professional'], roles: ['engineering', 'research'], hd: 'tint', nameColor: 'accent', h: 'leftbar', color: '#5B6B1F' }),
+  T('regal', 'Regal', { styles: ['elegant', 'corporate'], roles: ['business'], font: 'Georgia', align: 'center', hd: 'double', h: 'double', hc: 'accent', color: '#6B2D5C' }),
+  T('consultant', 'Consultant', { styles: ['corporate', 'minimalist'], roles: ['business'], L: 'gutter', h: 'plain', hc: 'accent', hSize: 9, hSp: .4 }),
+  T('teacher', 'Teacher', { styles: ['simple', 'professional'], roles: ['teaching'], font: 'Georgia', align: 'center', h: 'box' }),
+  T('sales', 'Sales Pro', { styles: ['corporate', 'modern'], roles: ['business'], hd: 'band', h: 'rule', color: '#1D4E89' }),
+  T('medical', 'Clinical', { styles: ['professional', 'simple'], roles: ['health'], font: 'Calibri', size: 10.5, hd: 'leftbar', h: 'caps', color: '#2E7D9A' }),
+  T('photopro', 'Photo Professional', { styles: ['photo', 'professional'], roles: ['business', 'health'], hd: 'photo', h: 'rule', photo: true }),
+  T('photoright', 'Photo Right Column', { styles: ['photo', 'modern'], roles: ['business', 'design'], L: 'sideR', side: 'accent', photo: true }),
+  T('onepage', 'One-Page Compact', { styles: ['simple', 'ats'], roles: ['student', 'it', 'business'], size: 9, margin: 12, nameSize: 18, h: 'rule', mono: true }),
+  T('boldtype', 'Bold Type', { styles: ['modern', 'creative'], roles: ['design', 'business'], nameSize: 34, nameColor: 'accent', h: 'thick', hc: 'ink' }),
+  T('classictwo', 'Classic Two-Column', { styles: ['professional', 'simple'], roles: ['business', 'teaching'], font: 'Georgia', L: 'sideL', side: 'gray', nameSize: 20, h: 'rule', hc: 'ink' }),
+  T('terminal', 'Terminal', { styles: ['creative', 'minimalist'], roles: ['it'], font: 'Courier New', size: 9.5, nameSize: 22, h: 'plain', hc: 'accent', hPrefix: '> ', color: '#2B2B2B' }),
+  T('stage', 'Stage', { styles: ['creative', 'photo'], roles: ['acting', 'design'], L: 'creative', font: 'Georgia', nameSize: 30, nameColor: 'accent', h: 'lines', photo: true, color: '#6B2D5C' }),
+  T('nordic', 'Nordic', { styles: ['minimalist', 'modern'], roles: ['design', 'it'], font: 'Tahoma', L: 'gutter', h: 'plain', hc: 'accent', hSize: 8.5, hSp: .6, color: '#2E7D9A' }),
+  T('plaincv', 'Plain Academic CV', { styles: ['academic', 'simple', 'ats'], type: 'cv', roles: ['research', 'teaching', 'engineering'], font: 'Times New Roman', size: 11, nameSize: 18, h: 'plain', hc: 'ink', hSize: 12, mono: true }),
+  T('profilecv', 'Research Profile CV', { styles: ['academic', 'photo', 'modern'], type: 'cv', roles: ['research', 'health', 'engineering'], font: 'Georgia', L: 'sideL', side: 'tint', h: 'rule', photo: true, nameSize: 20 }),
+  T('execcv', 'Executive CV', { styles: ['academic', 'corporate', 'elegant'], type: 'cv', roles: ['research', 'business'], font: 'Cambria', hd: 'band', bandInk: true, nameFont: 'Cambria', nameSize: 26, h: 'rule', hc: 'ink' }),
+  T('azure', 'Azure', { styles: ['modern', 'colorful', 'professional'], roles: ['it', 'health', 'student'], hd: 'tint', align: 'center', h: 'boxsolid', color: '#1D4E89' })
+];
+TEMPLATES.forEach(t => {
+  const tw = ['sideL', 'sideR', 'creative', 'twocol'].includes(t.L);
+  t.feats = [...new Set([...(t.feats || []), tw ? 'twocol' : 'onecol', ...(t.photo ? ['photo'] : []), ...(t.styles.includes('ats') ? ['ats'] : [])])];
+});
+
+/* ---------- colour helpers ---------- */
+const mix = (hex, k) => { const n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255, m = c => Math.round(c + (255 - c) * k); return '#' + [m(r), m(g), m(b)].map(v => v.toString(16).padStart(2, '0')).join(''); };
+const lines = s => String(s || '').split('\n').map(x => x.trim()).filter(Boolean);
+const commas = s => String(s || '').split(/[,\n]/).map(x => x.trim()).filter(Boolean);
+const parseSkill = s => { let m = s.match(/^(.*?)[\s(:–-]+(\d{1,3})\s*%\)?$/); if (m) return [m[1].trim(), Math.min(100, +m[2])]; m = s.match(/^(.*?)[\s(:–-]+(\d(?:\.\d)?)\s*\/\s*(\d+)\)?$/); if (m) return [m[1].trim(), Math.min(100, m[2] / m[3] * 100)]; return [s, 80]; };
+
+/* ---------- build the layout model (IR) ---------- */
+function build(S, model, contact, tplId){
+  const t = TEMPLATES.find(x => x.id === tplId) || TEMPLATES[0];
+  const ac = S.color || t.color || '#1F6B58', tint = mix(ac, .88), soft = mix(ac, .94);
+  const ink = '#222222', gray = '#888888', sub = t.mono ? '#000000' : '#444444', dt = t.mono ? '#000000' : '#666666';
+  const font = t.font, size = t.size;
+  const hcol = { accent: ac, ink: '#111111', black: '#000000', gray: '#999999' }[t.hc] || ac;
+  const R = (text, o = {}) => ({ t: text, ...o });
+  const P = (runs, o = {}) => ({ k: 'p', runs: Array.isArray(runs) ? runs : [runs], ...o });
+  const W = { white: true };
+  /* section heading */
+  const heading = (title, ctx = {}) => {
+    const onDark = ctx.dark, c = onDark ? '#FFFFFF' : hcol, s = t.hSize || (t.h === 'smallcaps' ? 12.5 : t.h === 'lines' ? 10 : 11);
+    const run = R((t.hPrefix || '') + title, { b: t.h !== 'lines', color: c, size: s, caps: !['smallcaps', 'leftbar'].includes(t.h) || ctx.forceCaps, sc: t.h === 'smallcaps', sp: t.hSp != null ? t.hSp : (t.h === 'lines' ? 3 : 0.6) });
+    const o = { before: ctx.first ? 0 : 12, after: 5, keep: true, align: t.h === 'lines' ? 'center' : 'left' };
+    if (onDark){ o.bBottom = { w: .75, color: '#FFFFFF' }; return P(run, o); }
+    if (t.h === 'rule' || t.h === 'smallcaps') o.bBottom = { w: t.h === 'rule' && t.hc === 'black' ? 1 : .75, color: t.hc === 'black' ? '#000000' : (t.h === 'smallcaps' ? '#999999' : ac) };
+    if (t.h === 'thick') o.bBottom = { w: 2.25, color: ink };
+    if (t.h === 'double') o.bBottom = { w: 2.25, color: ac, double: true };
+    if (t.h === 'leftbar'){ o.bLeft = { w: 3, color: ac, gap: 5 }; run.caps = t.L === 'creative' ? false : true; run.size = t.L === 'creative' ? 12 : 11; if (t.hc === 'ink') run.color = ink; }
+    if (t.h === 'lines'){ o.bTop = { w: .75, color: '#CCCCCC' }; o.bBottom = { w: .75, color: '#CCCCCC' }; run.b = false; }
+    if (t.h === 'box'){ o.shd = tint; o.indL = 4; run.color = t.hc === 'ink' ? ink : ac; }
+    if (t.h === 'boxsolid'){ o.shd = ac; o.indL = 4; run.color = '#FFFFFF'; }
+    return P(run, o);
+  };
+  /* section body */
+  const body = (m, ctx = {}) => {
+    const dark = ctx.dark, col = dark ? '#FFFFFF' : null, subc = dark ? '#FFFFFF' : sub, dtc = dark ? '#FFFFFF' : dt, out = [];
+    const tl = t.timeline && !dark ? { bLeft: { w: 1.5, color: ac, gap: 9 } } : {};
+    if (m.type === 'text') m.text.forEach(l => out.push(P(R(l, { color: col }), { after: 2 })));
+    else if (m.type === 'inline'){
+      const isSkill = ['skills', 'languages'].includes(m.key);
+      if (isSkill && t.skills === 'bars') m.list.forEach(s => { const [nm, p] = parseSkill(s); out.push(P(R(nm, { color: col, size: size - .5 }), { after: 1, keep: true })); out.push({ k: 'bar', pct: p, color: dark ? '#FFFFFF' : ac, track: dark ? mix(ac, .45) : tint }); });
+      else if (isSkill && t.skills === 'tags') out.push(P(m.list.map((s, i) => R((i ? '   ' : '') + '▪ ' + parseSkill(s)[0], { color: col })), { after: 2 }));
+      else out.push(P(R(m.list.map(s => parseSkill(s)[0]).join(t.mono ? ', ' : ' · '), { color: col }), { after: 2 }));
+    }
+    else if (m.type === 'bullets' || m.type === 'numbered') m.list.forEach((x, i) => out.push(P(R(x, { color: col }), { bullet: m.type === 'numbered' ? (i + 1) + '.' : '•', bcolor: col, indL: m.type === 'numbered' ? 17 : 14, hang: m.type === 'numbered' ? 17 : 14, after: 1.5 })));
+    else m.items.forEach(x => {
+      const pre = t.timeline && !dark ? [R('● ', { color: ac, size: size - 1 })] : [];
+      out.push(P([...pre, R(x.title, { b: true, color: col })], { rruns: x.dates ? [R(x.dates, { color: dtc, size: size - 1 })] : null, keep: true, ...tl }));
+      if (x.sub) out.push(P(R(x.sub, { i: true, color: subc }), { keep: !!x.lines.length, ...tl }));
+      x.lines.forEach(l => out.push(P(R(l, { color: col }), { bullet: '•', bcolor: col, indL: 14 + (tl.bLeft ? 0 : 0), hang: 14, after: 1, ...tl })));
+      out.push(P(R(''), { line: 0.4, after: 4, ...tl }));
+    });
+    return out;
+  };
+  const secs = (arr, ctx = {}) => arr.flatMap((m, i) => [heading(m.title, { ...ctx, first: i === 0 && ctx.flush }), ...body(m, ctx)]);
+  /* header pieces */
+  const nm = S.name || 'Your Name', initials = nm.split(/\s+/).filter(Boolean).map(w => w[0]).slice(0, 2).join('').toUpperCase();
+  const nameColor = { ink, accent: ac, white: '#FFFFFF' }[t.nameColor] || ink;
+  const nameP = (o = {}) => P(R(t.nameCaps ? nm.toUpperCase() : nm, { b: t.nameBold, size: o.size || t.nameSize, color: o.color || nameColor, font: t.nameFont, sp: t.nameSp }), { align: o.align || t.align, line: 1.05, bLeft: o.bLeft });
+  const hlP = (o = {}) => S.headline ? P(R(S.headline, { color: o.color || (t.hlAccent ? ac : '#555555'), size: t.hlAccent ? 9.5 : 11, caps: !!t.hlAccent, sp: t.hlAccent ? 1.2 : 0 }), { align: o.align || t.align, before: 2, bLeft: o.bLeft }) : null;
+  const sep = t.mono ? '  |  ' : '  ·  ';
+  const ctP = (o = {}) => contact.length ? P(R(contact.join(sep), { color: o.color || (t.mono ? '#000000' : '#444444'), size: 9 }), { align: o.align || t.align, before: 5, after: o.after || 0, bBottom: o.bBottom, bLeft: o.bLeft }) : null;
+  const photo = (mm, o = {}) => ({ k: 'img', src: S.photo || null, initials, size: mm, align: o.align || 'left', ring: o.ring, bg: o.bg || ac });
+  const sideKeys = ['skills', 'languages', 'certs'];
+  const SIDE = model.filter(m => sideKeys.includes(m.key)), MAIN = model.filter(m => !sideKeys.includes(m.key));
+  const contactLines = (dark) => contact.map(x => P(R(x, { color: dark ? '#FFFFFF' : null, size: 9 }), { after: 1.5 }));
+  let blocks = [], margin = t.margin;
+  const C = (bl, o = {}) => ({ blocks: bl.filter(Boolean), ...o });
+
+  if (t.L === 'single'){
+    if (t.hd === 'band'){ margin = 0; const band = t.bandInk ? '#2B2B2B' : ac;
+      blocks.push({ k: 't', cols: [210], rows: [{ cells: [C([nameP({ color: '#FFFFFF', align: 'left' }), hlP({ color: '#FFFFFF', align: 'left' }), ctP({ color: '#FFFFFF', align: 'left' })], { shd: band, pad: [13, 17.6, 9, 17.6] })] }] });
+      if (t.bandInk) blocks.push(P(R(''), { line: .2, bBottom: { w: 3, color: ac } }));
+      blocks.push({ k: 't', cols: [210], rows: [{ cells: [C(secs(model, { flush: true }), { pad: [7, 17.6, 0, 17.6] })] }] });
+    } else if (t.hd === 'tint'){ margin = 0;
+      blocks.push({ k: 't', cols: [210], rows: [{ cells: [C([nameP({ align: t.align }), hlP(), ctP()], { shd: tint, pad: [12, 17.6, 8, 17.6] })] }] });
+      blocks.push({ k: 't', cols: [210], rows: [{ cells: [C(secs(model, { flush: true }), { pad: [7, 17.6, 0, 17.6] })] }] });
+    } else if (t.hd === 'split'){
+      blocks.push({ k: 't', cols: [210 - 2 * margin - 70, 70], rows: [{ cells: [C([nameP({ align: 'left' }), hlP({ align: 'left' })], { valign: 'bottom' }), C(contact.map(x => P(R(x, { size: 8.5, color: '#444444' }), { align: 'right' })), { valign: 'bottom' })] }] });
+      blocks.push(P(R(''), { line: .3, after: 9, bBottom: { w: 2, color: ac } }));
+      blocks.push(...secs(model, { flush: true }));
+    } else if (t.hd === 'photo'){
+      blocks.push({ k: 't', cols: [36, 210 - 2 * margin - 36], rows: [{ cells: [C([photo(30)], { valign: 'center' }), C([nameP({ align: 'left' }), hlP({ align: 'left' }), ctP({ align: 'left' })], { valign: 'center' })] }] });
+      blocks.push(P(R(''), { line: .3, after: 9, bBottom: { w: 1, color: ac } }));
+      blocks.push(...secs(model, { flush: true }));
+    } else {
+      const bl = t.hd === 'leftbar' ? { w: 5, color: ac, gap: 10 } : null;
+      blocks.push(nameP({ bLeft: bl }), hlP({ bLeft: bl }));
+      blocks.push(ctP({ after: t.hd === 'rule' || t.hd === 'double' ? 7 : 9, bLeft: bl, bBottom: t.hd === 'rule' ? { w: 1.5, color: t.font === 'Georgia' || t.hc === 'ink' ? '#222222' : ac } : t.hd === 'double' ? { w: 2.25, color: ac, double: true } : null }) || P(R(''), { after: 9 }));
+      if (t.hd === 'rule' || t.hd === 'double') blocks.push(P(R(''), { line: .4, after: 6 }));
+      blocks.push(...secs(model, { flush: true }));
+    }
+  }
+  else if (t.L === 'sideL' || t.L === 'sideR'){ margin = 0;
+    const dark = t.side === 'accent', sbg = dark ? ac : t.side === 'tint' ? tint : '#F2F2F2', sw = 66, mw = 210 - sw;
+    const sideBlocks = [t.photo ? photo(32, { ring: dark }) : null, nameP({ color: dark ? '#FFFFFF' : nameColor, align: 'left', size: t.nameSize }), hlP({ color: dark ? '#FFFFFF' : '#555555', align: 'left' }),
+      heading('Contact', { dark }), ...contactLines(dark), ...secs(SIDE, { dark })];
+    const sideCell = C(sideBlocks, { shd: sbg, pad: [16, 8, 12, 10] }), mainCell = C(secs(MAIN, { flush: true }), { pad: [16, 13, 12, 10] });
+    blocks.push({ k: 't', cols: t.L === 'sideL' ? [sw, mw] : [mw, sw], rows: [{ minH: 296, cells: t.L === 'sideL' ? [sideCell, mainCell] : [mainCell, sideCell] }] });
+  }
+  else if (t.L === 'creative'){ margin = 0;
+    blocks.push({ k: 't', cols: t.photo ? [48, 162] : [210], rows: [{ cells: [t.photo ? C([photo(30)], { shd: tint, pad: [11, 0, 8, 15], valign: 'center' }) : null, C([nameP({ align: 'left' }), hlP({ align: 'left' })], { shd: tint, pad: [11, 15, 8, t.photo ? 2 : 15], valign: 'center' })].filter(Boolean) }] });
+    blocks.push(P(R(''), { line: .2, bBottom: { w: 3, color: ac } }));
+    blocks.push({ k: 't', cols: [62, 148], rows: [{ minH: 250, cells: [C([heading('Contact', { first: true }), ...contactLines(false), ...secs(SIDE)], { shd: '#F6F6F4', pad: [9, 7, 12, 12] }), C(secs(MAIN, { flush: true }), { pad: [9, 15, 12, 9] })] }] });
+  }
+  else if (t.L === 'gutter'){
+    blocks.push(nameP(), hlP(), ctP({ after: 10 }));
+    const lw = 40, cw = 210 - 2 * margin - lw;
+    blocks.push({ k: 't', cols: [lw, cw], rows: model.map(m => ({ cells: [C([heading(m.title, { first: true })], { pad: [0, 5, 4, 0] }), C(body(m), { pad: [0, 0, 4, 0] })] })) });
+  }
+  else if (t.L === 'twocol'){
+    blocks.push(nameP(), hlP(), ctP({ after: 6, bBottom: { w: 2, color: ac } }));
+    blocks.push(P(R(''), { line: .4, after: 5 }));
+    const sw = 58, mw = 210 - 2 * margin - sw;
+    blocks.push({ k: 't', cols: [mw, sw], rows: [{ cells: [C(secs(MAIN, { flush: true }), { pad: [0, 5, 0, 0] }), C(secs(SIDE, { flush: true }), { pad: [0, 0, 0, 6], bLeft: { w: .75, color: '#DDDDDD' } })] }] });
+  }
+  return { tpl: t, font, size, margin, blocks: blocks.filter(Boolean), ac };
+}
+
+/* ---------- HTML backend ---------- */
+const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function htmlRun(r, base){ const st = []; if (r.b) st.push('font-weight:700'); else st.push('font-weight:400'); if (r.i) st.push('font-style:italic'); if (r.color) st.push('color:' + r.color);
+  if (r.size && r.size !== base.size) st.push('font-size:' + r.size + 'pt'); if (r.font) st.push('font-family:' + cssFont(r.font)); if (r.caps) st.push('text-transform:uppercase'); if (r.sc) st.push('font-variant:small-caps'); if (r.sp) st.push('letter-spacing:' + r.sp + 'pt');
+  return `<span style="${st.join(';')}">${esc(r.t)}</span>`; }
+const bcss = (side, b) => b ? `border-${side}:${b.w}pt ${b.double ? 'double' : 'solid'} ${b.color};` : '';
+function htmlBlocks(bl, base){ return bl.map(b => {
+  if (b.k === 'p'){
+    let st = `margin:${b.before || 0}pt 0 ${b.after || 0}pt;text-align:${b.align || 'left'};line-height:${b.line != null ? b.line * 1.3 : 1.3};`;
+    st += bcss('top', b.bTop) + bcss('bottom', b.bBottom) + bcss('left', b.bLeft);
+    if (b.bTop) st += 'padding-top:2pt;'; if (b.bBottom) st += 'padding-bottom:' + (b.bBottom.double ? 2 : 1.5) + 'pt;';
+    let padL = (b.indL || 0) + (b.bLeft ? b.bLeft.gap : 0); if (b.shd){ st += 'background:' + b.shd + ';padding-top:1.5pt;padding-bottom:1.5pt;'; }
+    const inner = b.runs.map(r => htmlRun(r, base)).join('') || '&nbsp;';
+    if (b.bullet){ return `<div style="${st}display:flex;padding-left:${padL - b.hang}pt"><span style="flex:none;width:${b.hang}pt;${b.bcolor ? 'color:' + b.bcolor : ''}">${esc(b.bullet)}</span><span style="flex:1">${inner}</span></div>`; }
+    if (padL) st += 'padding-left:' + padL + 'pt;';
+    if (b.rruns) return `<div style="${st}display:flex;justify-content:space-between;align-items:baseline;gap:8pt"><span>${inner}</span><span style="white-space:nowrap">${b.rruns.map(r => htmlRun(r, base)).join('')}</span></div>`;
+    if (b.line != null && b.line < 1 && !b.runs.some(r => r.t)) st += `height:${b.line * base.size * 1.3}pt;line-height:0;`;
+    return `<div style="${st}">${inner}</div>`;
+  }
+  if (b.k === 'bar') return `<div style="height:4pt;background:${b.track};border-radius:2pt;margin:1pt 0 5pt"><div style="width:${b.pct}%;height:100%;background:${b.color};border-radius:2pt"></div></div>`;
+  if (b.k === 'img'){ const s = b.size + 'mm', st = `width:${s};height:${s};border-radius:50%;display:block;margin:${b.align === 'center' ? '0 auto' : '0'} 0 8pt;${b.ring ? 'border:2.5pt solid rgba(255,255,255,.6);' : ''}`;
+    return b.src ? `<img src="${b.src}" alt="" style="${st}object-fit:cover">` : `<div style="${st}background:${mix(b.bg, b.ring ? .25 : .55)};color:#fff;display:flex;align-items:center;justify-content:center;font-size:${b.size * 0.9}pt;font-weight:700">${esc(b.initials)}</div>`; }
+  if (b.k === 't') return `<table style="width:${b.cols.reduce((a, c) => a + c, 0)}mm;border-collapse:collapse;table-layout:fixed"><colgroup>${b.cols.map(c => `<col style="width:${c}mm">`).join('')}</colgroup>${b.rows.map(r => `<tr${r.minH ? ` style="height:${r.minH}mm"` : ''}>${r.cells.map(c => `<td style="vertical-align:${c.valign === 'center' ? 'middle' : c.valign || 'top'};padding:${(c.pad || [0, 0, 0, 0]).map(x => x + 'mm').join(' ')};${c.shd ? 'background:' + c.shd + ';' : ''}${c.bLeft ? bcss('left', c.bLeft) : ''}">${htmlBlocks(c.blocks, base)}</td>`).join('')}</tr>`).join('')}</table>`;
+  return ''; }).join(''); }
+function toHTML(ir){ return `<div class="cvp" style="font-family:${cssFont(ir.font)};font-size:${ir.size}pt;color:#222;padding:${ir.margin}mm;min-height:297mm;box-sizing:border-box;line-height:1.3">${htmlBlocks(ir.blocks, ir)}</div>`; }
+
+/* ---------- DOCX backend ---------- */
+const X = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const TW = mm => Math.round(mm * 56.6929), hx = c => c.replace('#', '').toUpperCase();
+function toDOCXBody(ir, photoRel){
+  const base = ir;
+  const run = (r) => { const f = r.font || base.font, sz = Math.round((r.size || base.size) * 2);
+    return `<w:r><w:rPr><w:rFonts w:ascii="${X(f)}" w:hAnsi="${X(f)}" w:cs="${X(f)}"/>${r.b ? '<w:b/>' : ''}${r.i ? '<w:i/>' : ''}${r.caps ? '<w:caps/>' : ''}${r.sc ? '<w:smallCaps/>' : ''}${r.color ? `<w:color w:val="${hx(r.color)}"/>` : ''}${r.sp ? `<w:spacing w:val="${Math.round(r.sp * 20)}"/>` : ''}<w:sz w:val="${sz}"/><w:szCs w:val="${sz}"/></w:rPr>${r.tab ? '<w:tab/>' : `<w:t xml:space="preserve">${X(r.t)}</w:t>`}</w:r>`; };
+  const bd = (side, b, space) => b ? `<w:${side} w:val="${b.double ? 'double' : 'single'}" w:sz="${Math.max(2, Math.round(b.w * 8 / (b.double ? 3 : 1)))}" w:space="${space}" w:color="${hx(b.color)}"/>` : '';
+  const para = (b, width, inCell) => {
+    const empty = !b.runs.some(r => r.t);
+    const lineAttr = b.line != null && b.line < 1 && empty ? `w:line="${Math.max(20, Math.round(b.line * base.size * 1.3 * 20))}" w:lineRule="exact"` : `w:line="${Math.round(276 * (b.line || 1))}" w:lineRule="auto"`;
+    const left = (b.indL || 0) + (b.bLeft ? b.bLeft.gap : 0);
+    let ppr = (b.keep && !inCell ? '<w:keepNext/>' : '') + ((b.bTop || b.bBottom || b.bLeft) ? `<w:pBdr>${bd('top', b.bTop, 2)}${bd('left', b.bLeft, b.bLeft ? Math.round(b.bLeft.gap) : 0)}${bd('bottom', b.bBottom, 2)}</w:pBdr>` : '') +
+      (b.shd ? `<w:shd w:val="clear" w:color="auto" w:fill="${hx(b.shd)}"/>` : '') + (b.rruns ? `<w:tabs><w:tab w:val="right" w:pos="${width}"/></w:tabs>` : '') +
+      `<w:spacing w:before="${Math.round((b.before || 0) * 20)}" w:after="${Math.round((b.after || 0) * 20)}" ${lineAttr}/>` +
+      ((left || b.hang) ? `<w:ind w:left="${Math.round(left * 20)}" w:hanging="${Math.round((b.hang || 0) * 20)}"/>` : '') + `<w:jc w:val="${b.align === 'center' ? 'center' : b.align === 'right' ? 'right' : 'left'}"/>`;
+    let runs = b.runs.map(run).join('');
+    if (b.bullet) runs = run({ t: b.bullet, color: b.bcolor }) + run({ tab: true }) + runs;
+    if (b.rruns) runs += run({ tab: true }) + b.rruns.map(run).join('');
+    return `<w:p><w:pPr>${ppr}</w:pPr>${runs}</w:p>`;
+  };
+  const img = (b) => photoRel && b.src ? (() => { const e = Math.round(b.size * 36000);
+    return `<w:p><w:pPr><w:spacing w:before="0" w:after="160"/><w:jc w:val="${b.align === 'center' ? 'center' : 'left'}"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${e}" cy="${e}"/><wp:docPr id="1" name="Photo"/><a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="1" name="photo.jpg"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${photoRel}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${e}" cy="${e}"/></a:xfrm><a:prstGeom prst="ellipse"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>`; })() : '';
+  const tblPr = w => `<w:tblPr><w:tblW w:w="${w}" w:type="dxa"/><w:tblLayout w:type="fixed"/><w:tblBorders><w:top w:val="nil"/><w:left w:val="nil"/><w:bottom w:val="nil"/><w:right w:val="nil"/><w:insideH w:val="nil"/><w:insideV w:val="nil"/></w:tblBorders><w:tblCellMar><w:top w:w="0" w:type="dxa"/><w:left w:w="0" w:type="dxa"/><w:bottom w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr>`;
+  const bar = (b, width) => { const a = Math.max(1, Math.round(width * b.pct / 100)), r = width - a;
+    const cell = (w, fill) => `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/><w:shd w:val="clear" w:color="auto" w:fill="${hx(fill)}"/></w:tcPr><w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="80" w:lineRule="exact"/></w:pPr></w:p></w:tc>`;
+    return `<w:tbl>${tblPr(width)}<w:tblGrid><w:gridCol w:w="${a}"/>${r > 0 ? `<w:gridCol w:w="${r}"/>` : ''}</w:tblGrid><w:tr><w:trPr><w:trHeight w:val="80" w:hRule="exact"/></w:trPr>${cell(a, b.color)}${r > 0 ? cell(r, b.track) : ''}</w:tr></w:tbl><w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="100" w:lineRule="exact"/></w:pPr></w:p>`; };
+  const blocks = (bl, width, inCell) => bl.map(b => b.k === 'p' ? para(b, width, inCell) : b.k === 'bar' ? bar(b, width) : b.k === 'img' ? img(b) : b.k === 't' ? table(b) : '').join('');
+  const table = (b) => { const ws = b.cols.map(TW), total = ws.reduce((x, y) => x + y, 0);
+    return `<w:tbl>${tblPr(total)}<w:tblGrid>${ws.map(w => `<w:gridCol w:w="${w}"/>`).join('')}</w:tblGrid>${b.rows.map(r => `<w:tr>${r.minH ? `<w:trPr><w:trHeight w:val="${TW(r.minH)}" w:hRule="atLeast"/></w:trPr>` : ''}${r.cells.map((c, i) => { const pad = (c.pad || [0, 0, 0, 0]).map(TW), inner = ws[i] - pad[1] - pad[3];
+      return `<w:tc><w:tcPr><w:tcW w:w="${ws[i]}" w:type="dxa"/>${c.shd ? `<w:shd w:val="clear" w:color="auto" w:fill="${hx(c.shd)}"/>` : ''}${c.bLeft ? `<w:tcBorders>${bd('left', c.bLeft, 0)}</w:tcBorders>` : ''}<w:tcMar><w:top w:w="${pad[0]}" w:type="dxa"/><w:left w:w="${pad[3]}" w:type="dxa"/><w:bottom w:w="${pad[2]}" w:type="dxa"/><w:right w:w="${pad[1]}" w:type="dxa"/></w:tcMar>${c.valign === 'center' ? '<w:vAlign w:val="center"/>' : c.valign === 'bottom' ? '<w:vAlign w:val="bottom"/>' : ''}</w:tcPr>${blocks(c.blocks, inner, true) || '<w:p/>'}${/<\/w:tbl>$/.test(blocks(c.blocks, inner, true)) ? '<w:p/>' : ''}</w:tc>`; }).join('')}</w:tr>`).join('')}</w:tbl>`; };
+  return blocks(ir.blocks, TW(210 - 2 * ir.margin), false);
+}
+return { STYLES, ROLES, FEATS, TEMPLATES, build, toHTML, toDOCXBody, mix, TW, X, hx, esc };
+})();
+
 (function(){
 "use strict";
 const $ = id => document.getElementById(id);
@@ -291,12 +482,7 @@ const lines = s => String(s || '').split('\n').map(x => x.trim()).filter(Boolean
 const commas = s => String(s || '').split(/[,\n]/).map(x => x.trim()).filter(Boolean);
 const uid = () => 'c' + Math.random().toString(36).slice(2, 8);
 const COLORS = ['#1F6B58', '#1D4E89', '#9C5B36', '#6B2D5C', '#2B2B2B', '#B23A48', '#2E7D9A', '#5B6B1F'];
-const TPL = [
-  ['classic', 'Classic Academic', 'Serif, centred — academic CV'], ['harvard', 'Harvard', 'University-style, very formal'],
-  ['elegant', 'Elegant', 'Refined serif with spaced titles'], ['sidebar', 'Modern Sidebar', 'Colour column + photo'],
-  ['creative', 'Creative', 'Header with photo, two columns'], ['executive', 'Executive', 'Bold colour header band'],
-  ['minimal', 'Minimal', 'Labels in a side gutter'], ['timeline', 'Timeline', 'Entries on a vertical line'],
-  ['compact', 'Compact', 'Two columns — fits more on a page'], ['ats', 'ATS-friendly', 'Plain — best for job portals']];
+const TPL = CVX.TEMPLATES.map(t => [t.id, t.name, '']);
 const BUILTIN = { summary: ['Profile', 'text'], education: ['Education', 'entries'], experience: ['Experience', 'entries'], projects: ['Projects', 'entries'],
   publications: ['Publications', 'numbered'], skills: ['Skills', 'inline'], awards: ['Awards & Honours', 'bullets'], certs: ['Certifications', 'bullets'],
   languages: ['Languages', 'inline'], refs: ['References', 'text'] };
@@ -324,6 +510,13 @@ const SAMPLE = () => ({ ...EMPTY(), name: 'Alex Morgan', headline: 'Ph.D. Candid
   certs: 'STAAD.Pro — structural analysis (2019)', languages: 'English, Hindi', refs: 'Available on request',
   custom: [{ id: 'cvol', title: 'Teaching & Outreach', kind: 'entries', items: [{ title: 'Teaching Assistant — Construction Materials', sub: 'Institute of Science', dates: '2023', details: 'Ran weekly lab sessions for 40 students' }], text: '' }],
   order: ['summary', 'education', 'experience', 'projects', 'publications', 'cvol', 'skills', 'awards', 'certs', 'languages', 'refs'] });
+
+const SAMPLE_CV = () => ({ ...SAMPLE(), headline: 'Ph.D. Scholar — Sustainable Construction Materials', summary: 'Doctoral researcher working on low-carbon, 3D-printable earth-based materials and CO₂ mineralisation. Experienced in rheology, durability testing and multi-scale characterisation (XRD, TGA, FTIR, SEM, MIP).',
+  publications: 'Morgan A, Lee S (2024). Carbon dioxide sequestration in soil-based mortars. Journal of Cleaner Materials, 12, 1001.\nMorgan A, Patel R, Lee S (2024). 3D printing with stabilised earth: fresh and hardened properties. Construction Science, 45, 220–234.\nPatel R, Morgan A, Lee S (2023). Recycled brick powder in carbonated mortars. Building Materials Letters, 9, 77–88.\nMorgan A, Lee S (2023). Carbonation of natural clay in cement–lime mortars. Built Environment Research, 16, 100270.',
+  custom: [{ id: 'cconf', title: 'Conference Presentations', kind: 'list', items: [], text: 'International Workshop on Low-Carbon Construction, Chennai (2024) — poster, Best Poster Award\nInternational Conference on Bio-Based Building Materials (2025) — oral' },
+           { id: 'cteach', title: 'Teaching & Mentoring', kind: 'entries', items: [{ title: 'Teaching Assistant — Construction Materials Lab', sub: 'Institute of Science', dates: '2023 – 2024', details: 'Ran weekly lab sessions for 40 students\nMentored 6 undergraduate interns' }], text: '' },
+           { id: 'cgrant', title: 'Grants & Patents', kind: 'list', items: [], text: 'Indian Patent No. 000000 — 3D-printable construction material (granted 2026)\nTravel grant, Indo-French research collaboration (2025)' }],
+  order: ['summary', 'education', 'experience', 'publications', 'cconf', 'projects', 'cteach', 'cgrant', 'skills', 'awards', 'certs', 'languages', 'refs'] });
 
 /* migrate drafts from the first version of the builder */
 function migrate(o){
@@ -367,48 +560,56 @@ function model(){
 }
 const contactList = () => [S.email, S.phone, S.location, S.web, S.linkedin, S.scholar].map(x => String(x || '').trim().replace(/^https?:\/\//, '').replace(/\/$/, '')).filter(Boolean);
 
-/* ---------- HTML preview ---------- */
-function secHTML(m){
-  let b = '';
-  if (m.type === 'text') b = m.text.map(l => `<p class="sm">${esc(l)}</p>`).join('');
-  else if (m.type === 'inline') b = `<p class="sm">${m.list.map(esc).join(' · ')}</p>`;
-  else if (m.type === 'bullets') b = `<ul>${m.list.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
-  else if (m.type === 'numbered') b = `<ol>${m.list.map(x => `<li>${esc(x)}</li>`).join('')}</ol>`;
-  else b = m.items.map(x => `<div class="ent"><div class="eh"><b>${esc(x.title)}</b>${x.dates ? `<span class="dt">${esc(x.dates)}</span>` : ''}</div>${x.sub ? `<div class="sub">${esc(x.sub)}</div>` : ''}${x.lines.length ? `<ul>${x.lines.map(l => `<li>${esc(l)}</li>`).join('')}</ul>` : ''}</div>`).join('');
-  return `<section><h2>${esc(m.title)}</h2>${b}</section>`;
-}
-function cvHTML(){
-  const M = model(), tpl = S.tpl, name = esc(S.name || 'Your Name'), hl = S.headline ? `<div class="hl">${esc(S.headline)}</div>` : '';
-  const ct = `<div class="ct">${contactList().map(x => `<span>${esc(x)}</span>`).join('')}</div>`;
-  const photo = S.photo ? `<img class="photo" src="${S.photo}" alt="">` : '';
-  const all = arr => arr.map(secHTML).join('');
-  const split = () => [M.filter(m => SIDE.includes(m.key)), M.filter(m => !SIDE.includes(m.key))];
-  if (tpl === 'sidebar'){ const [sd, mn] = split();
-    return `<div class="cv t-sidebar"><table class="lay"><tr><td class="side">${photo}<h1>${name}</h1>${hl}<section><h2>Contact</h2>${ct}</section>${all(sd)}</td><td class="main">${all(mn)}</td></tr></table></div>`; }
-  if (tpl === 'creative'){ const [sd, mn] = split();
-    return `<div class="cv t-creative"><header>${photo}<div><h1>${name}</h1>${hl}</div></header><table class="lay"><tr><td class="side"><section><h2>Contact</h2>${ct}</section>${all(sd)}</td><td class="main">${all(mn)}</td></tr></table></div>`; }
-  if (tpl === 'executive') return `<div class="cv t-executive"><header><h1>${name}</h1>${hl}${ct}</header><div class="body">${all(M)}</div></div>`;
-  if (tpl === 'minimal') return `<div class="cv t-minimal"><header><h1>${name}</h1>${hl}${ct}</header><table class="lay">${M.map(m => { const h = secHTML(m); const body = h.replace(/^<section><h2>.*?<\/h2>/, '').replace(/<\/section>$/, ''); return `<tr><td class="lab"><h2>${esc(m.title)}</h2></td><td>${body}</td></tr>`; }).join('')}</table></div>`;
-  if (tpl === 'compact'){ const [sd, mn] = split();
-    return `<div class="cv t-compact"><header><h1>${name}</h1>${hl}${ct}</header><table class="lay"><tr><td>${all(mn)}</td><td class="cside">${all(sd)}</td></tr></table></div>`; }
-  return `<div class="cv t-${tpl}"><header><h1>${name}</h1>${hl}${ct}</header>${all(M)}</div>`;
-}
-const tint = (hex, k = .88) => { const n = parseInt(hex.slice(1), 16), r = n >> 16, g = (n >> 8) & 255, b = n & 255, m = c => Math.round(c + (255 - c) * k);
-  return '#' + [m(r), m(g), m(b)].map(v => v.toString(16).padStart(2, '0')).join(''); };
-function render(){ const p = $('page'); p.style.setProperty('--ac', S.color); p.style.setProperty('--tint', tint(S.color)); p.innerHTML = cvHTML(); fit(); }
+/* ---------- preview (shared engine) ---------- */
+const getTpl = id => CVX.TEMPLATES.find(t => t.id === id) || CVX.TEMPLATES[0];
+const ir = (state) => { const st = state || S; const saved = S; S = st; try { return CVX.build(st, model(), contactList(), st.tpl); } finally { S = saved; } };
+const cvHTML = state => CVX.toHTML(ir(state));
+function render(){ const p = $('page'); p.innerHTML = cvHTML(); fit(); $('tplName').textContent = getTpl(S.tpl).name; }
 function fit(){ const stage = $('stage'), sc = $('scaler'), page = $('page'); const k = Math.min(1, (stage.clientWidth - 36) / page.offsetWidth);
   sc.style.transform = `scale(${k})`; stage.style.height = (page.offsetHeight * k + 36) + 'px'; }
 window.addEventListener('resize', fit);
 
+/* ---------- template gallery with filters ---------- */
+const F = { type: 'all', styles: new Set(), role: '', feats: new Set(), q: '' };
+function tplMatch(t){
+  if (F.type !== 'all' && t.type !== F.type) return false;
+  if (F.styles.size && !t.styles.some(x => F.styles.has(x))) return false;
+  if (F.role && !t.roles.includes(F.role)) return false;
+  for (const f of F.feats) if (!t.feats.includes(f)) return false;
+  if (F.q && !(t.name + ' ' + t.styles.join(' ') + ' ' + t.roles.join(' ')).toLowerCase().includes(F.q)) return false;
+  return true;
+}
+let thumbObs = null;
+function thumbState(t){ const base = (S.name || S.summary) ? JSON.parse(JSON.stringify(S)) : SAMPLE(); base.tpl = t.id; base.color = t.color || (S.color && (S.name || S.summary) ? S.color : COLORS[0]); return base; }
+function renderGallery(){
+  const list = CVX.TEMPLATES.filter(tplMatch);
+  $('galCount').textContent = `Showing ${list.length} of ${CVX.TEMPLATES.length} templates`;
+  const lab = Object.fromEntries(CVX.STYLES);
+  $('gal').innerHTML = list.map(t => `<button class="gcard${t.id === S.tpl ? ' on' : ''}" data-t="${t.id}" type="button"><span class="thumb"><span class="tpage" data-thumb="${t.id}"></span></span><b>${esc(t.name)}</b><span class="gtags"><i class="ty ${t.type}">${t.type === 'cv' ? 'CV' : 'Resume'}</i>${t.styles.slice(0, 2).map(x => esc(lab[x])).join(' · ')}</span></button>`).join('') || '<p class="note">No template matches these filters.</p>';
+  if (thumbObs) thumbObs.disconnect();
+  thumbObs = new IntersectionObserver(es => es.forEach(en => { if (!en.isIntersecting) return; const el = en.target; thumbObs.unobserve(el); el.innerHTML = cvHTML(thumbState(getTpl(el.dataset.thumb))); }), { root: $('gal'), rootMargin: '200px' });
+  document.querySelectorAll('#gal [data-thumb]').forEach(el => thumbObs.observe(el));
+  requestAnimationFrame(sizeThumbs);
+}
+function sizeThumbs(){ const th = document.querySelector('#gal .thumb'); if (th && th.clientWidth) $('gal').style.setProperty('--k', th.clientWidth / 793.7); }
+window.addEventListener('resize', sizeThumbs);
+let galT = null; const refreshThumbs = () => { clearTimeout(galT); galT = setTimeout(renderGallery, 600); };
+function buildFilters(){
+  $('fType').innerHTML = [['all', 'All'], ['resume', 'Resume'], ['cv', 'CV (academic)']].map(([k, l]) => `<button type="button" class="fchip${F.type === k ? ' on' : ''}" data-ftype="${k}">${l}</button>`).join('');
+  $('fStyle').innerHTML = CVX.STYLES.map(([k, l]) => `<button type="button" class="fchip${F.styles.has(k) ? ' on' : ''}" data-fstyle="${k}">${l} <small>${CVX.TEMPLATES.filter(t => t.styles.includes(k)).length}</small></button>`).join('');
+  $('fRole').innerHTML = '<option value="">Any role / industry</option>' + CVX.ROLES.map(([k, l]) => `<option value="${k}"${F.role === k ? ' selected' : ''}>${l} (${CVX.TEMPLATES.filter(t => t.roles.includes(k)).length})</option>`).join('');
+  $('fFeat').innerHTML = CVX.FEATS.map(([k, l]) => `<button type="button" class="fchip${F.feats.has(k) ? ' on' : ''}" data-ffeat="${k}">${l}</button>`).join('');
+}
+
 /* ---------- form ---------- */
 function buildStatic(){
-  $('tpls').innerHTML = TPL.map(t => `<button class="tpl" data-t="${t[0]}" type="button"><i></i><b>${esc(t[1])}</b><span>${esc(t[2])}</span></button>`).join('');
   $('sw').innerHTML = COLORS.map(c => `<button type="button" data-c="${c}" style="background:${c}" aria-label="Colour ${c}"></button>`).join('') +
     `<label class="swc" title="Custom colour"><input type="color" id="colorPick" aria-label="Custom colour"></label>`;
+  buildFilters();
 }
 function fillForm(){
   document.querySelectorAll('[data-k]').forEach(el => el.value = S[el.dataset.k] || '');
-  document.querySelectorAll('#tpls .tpl').forEach(b => { b.classList.toggle('on', b.dataset.t === S.tpl); b.style.setProperty('--sw', S.color); });
+  document.querySelectorAll('#gal .gcard').forEach(b => b.classList.toggle('on', b.dataset.t === S.tpl));
   document.querySelectorAll('#sw button').forEach(b => b.classList.toggle('on', b.dataset.c.toLowerCase() === S.color.toLowerCase()));
   $('colorPick').value = S.color;
   $('photoPrev').hidden = !S.photo; $('photoPrev').src = S.photo || ''; $('photoRm').hidden = !S.photo;
@@ -441,15 +642,21 @@ document.addEventListener('input', e => {
     if (el.dataset.cf === 'title'){ delete S.titles[c.id]; renderOrderSoon(); } }
   else if (el.dataset.show){ if (el.checked) delete S.hidden[el.dataset.show]; else S.hidden[el.dataset.show] = true; }
   else if (el.dataset.title){ const k = el.dataset.title; const c = S.custom.find(x => x.id === k); if (c){ c.title = el.value; const t = document.querySelector(`[data-cid="${k}"] [data-cf="title"]`); if (t) t.value = el.value; } else S.titles[k] = el.value; }
-  else if (el.id === 'colorPick'){ S.color = el.value; fillForm(); }
+  else if (el.id === 'colorPick'){ S.color = el.value; fillForm(); refreshThumbs(); }
+  else if (el.id === 'fSearch'){ F.q = el.value.trim().toLowerCase(); renderGallery(); return; }
+  else if (el.id === 'fRole'){ F.role = el.value; renderGallery(); return; }
   else return;
   save(); render();
 });
 let roT = null; const renderOrderSoon = () => { clearTimeout(roT); roT = setTimeout(renderOrder, 500); };
 document.addEventListener('click', e => {
   const t = e.target;
-  const tp = t.closest('#tpls .tpl'); if (tp){ S.tpl = tp.dataset.t; fillForm(); save(); render(); return; }
-  const sw = t.closest('#sw button'); if (sw){ S.color = sw.dataset.c; fillForm(); save(); render(); return; }
+  const tp = t.closest('#gal .gcard'); if (tp){ const tt = getTpl(tp.dataset.t); S.tpl = tt.id; if (tt.color) S.color = tt.color; fillForm(); save(); render(); if (window.innerWidth < 980) $('stage').scrollIntoView({ block: 'start', behavior: 'smooth' }); return; }
+  const ft = t.closest('[data-ftype]'); if (ft){ F.type = ft.dataset.ftype; buildFilters(); renderGallery(); return; }
+  const fs = t.closest('[data-fstyle]'); if (fs){ const k = fs.dataset.fstyle; F.styles.has(k) ? F.styles.delete(k) : F.styles.add(k); buildFilters(); renderGallery(); return; }
+  const ff = t.closest('[data-ffeat]'); if (ff){ const k = ff.dataset.ffeat; F.feats.has(k) ? F.feats.delete(k) : F.feats.add(k); buildFilters(); renderGallery(); return; }
+  if (t.id === 'fClear'){ F.type = 'all'; F.styles.clear(); F.feats.clear(); F.role = ''; F.q = ''; $('fSearch').value = ''; buildFilters(); renderGallery(); return; }
+  const sw = t.closest('#sw button'); if (sw){ S.color = sw.dataset.c; fillForm(); save(); render(); refreshThumbs(); return; }
   if (t.classList.contains('add')){ const n = t.closest('[data-list]').dataset.list; (S[n] = S[n] || []).push({}); renderList(n); save(); render(); return; }
   if (t.classList.contains('cadd')){ const c = S.custom.find(x => x.id === t.closest('[data-cid]').dataset.cid); (c.items = c.items || []).push({}); renderCustom(); save(); render(); return; }
   if (t.dataset.rm != null){ const lp = t.closest('[data-list]'), cp = t.closest('[data-cid]');
@@ -463,7 +670,8 @@ document.addEventListener('click', e => {
 $('addCustom').addEventListener('click', () => { const id = uid(); S.custom.push({ id, title: 'New section', kind: 'entries', items: [{}], text: '' }); S.order.push(id); renderCustom(); renderOrder(); save(); render();
   const el = document.querySelector(`[data-cid="${id}"] [data-cf="title"]`); if (el){ el.focus(); el.select(); el.scrollIntoView({ block: 'center' }); } });
 const hasContent = () => !!(S.name || S.summary || (S.experience || []).some(x => Object.values(x).some(Boolean)));
-$('sample').addEventListener('click', () => { if (hasContent() && !confirm('Replace what you have typed with the example?')) return; S = SAMPLE(); fillForm(); save(); render(); });
+$('sample').addEventListener('click', () => { if (hasContent() && !confirm('Replace what you have typed with the example?')) return; const k = { tpl: S.tpl, color: S.color }; S = { ...SAMPLE(), ...k }; fillForm(); save(); render(); refreshThumbs(); });
+$('sampleCv').addEventListener('click', () => { if (hasContent() && !confirm('Replace what you have typed with the example?')) return; const k = { tpl: S.tpl, color: S.color }; S = { ...SAMPLE_CV(), ...k }; fillForm(); save(); render(); refreshThumbs(); });
 $('clear').addEventListener('click', () => { if (hasContent() && !confirm('Clear everything and start empty?')) return; S = EMPTY(); fillForm(); save(); render(); });
 $('openJson').addEventListener('change', async e => { const f = e.target.files[0]; if (!f) return;
   try { const j = JSON.parse(await f.text()); if (!j || typeof j !== 'object' || !('name' in j)) throw 0; S = migrate(j); fillForm(); save(); render(); toast('Saved file opened'); }
@@ -472,98 +680,16 @@ $('photoFile').addEventListener('change', async e => { const f = e.target.files[
   try { const url = URL.createObjectURL(f); const img = new Image(); await new Promise((r, j) => { img.onload = r; img.onerror = j; img.src = url; });
     const s = Math.min(img.naturalWidth, img.naturalHeight), o = Math.min(500, s), c = document.createElement('canvas'); c.width = c.height = o;
     c.getContext('2d').drawImage(img, (img.naturalWidth - s) / 2, (img.naturalHeight - s) / 2, s, s, 0, 0, o, o); URL.revokeObjectURL(url);
-    S.photo = c.toDataURL('image/jpeg', 0.88); fillForm(); save(); render(); if (!['sidebar', 'creative'].includes(S.tpl)) toast('Photo added — it shows in the Modern Sidebar and Creative templates');
+    S.photo = c.toDataURL('image/jpeg', 0.88); fillForm(); save(); render(); if (!getTpl(S.tpl).photo) toast('Photo added — choose a template with the “With photo” filter to show it');
   } catch(err){ toast('Could not read that image'); } e.target.value = ''; });
 $('photoRm').addEventListener('click', () => { S.photo = ''; fillForm(); save(); render(); });
 
-/* ---------- Word (.docx) export — real Word document with the same layout ---------- */
-const X = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-const MM = 56.6929, PAGE_W = 11906, PAGE_H = 16838;
-const hx = c => c.replace('#', '').toUpperCase();
-function wordCfg(){
-  const ac = hx(S.color), base = { font: 'Arial', size: 10, nameSize: 24, nameColor: '222222', nameFont: null, nameBold: true, nameCaps: false, nameSpacing: 0, align: 'left',
-    hlColor: '555555', hlSize: 11, hlCaps: false, ctColor: '444444', headerRule: null,
-    h: { size: 11, color: ac, caps: true, smallCaps: false, bold: true, align: 'left', spacing: 20, bottom: null, top: null, left: null }, margin: Math.round(17.6 * MM), sub: '444444', dt: '666666', layout: 'single' };
-  const c = { ...base, h: { ...base.h } };
-  switch (S.tpl){
-    case 'classic': Object.assign(c, { font: 'Georgia', align: 'center', headerRule: { sz: 12, color: '222222' } }); Object.assign(c.h, { size: 12.5, color: '111111', caps: false, smallCaps: true, spacing: 10, bottom: { sz: 6, color: '999999' } }); break;
-    case 'harvard': Object.assign(c, { font: 'Times New Roman', size: 10.5, nameSize: 20, nameCaps: true, nameSpacing: 16, align: 'center', nameColor: '000000', dt: '000000' }); Object.assign(c.h, { color: '000000', spacing: 6, bottom: { sz: 8, color: '000000' } }); break;
-    case 'elegant': Object.assign(c, { font: 'Georgia', nameSize: 27, nameBold: false, nameSpacing: 32, align: 'center', hlColor: ac, hlSize: 9.5, hlCaps: true }); Object.assign(c.h, { size: 10, bold: false, align: 'center', spacing: 60, top: { sz: 6, color: 'CCCCCC' }, bottom: { sz: 6, color: 'CCCCCC' } }); break;
-    case 'sidebar': Object.assign(c, { layout: 'sidebar', nameSize: 20 }); break;
-    case 'creative': Object.assign(c, { layout: 'creative', nameSize: 26, nameColor: ac }); Object.assign(c.h, { size: 12, caps: false, spacing: 0, left: { sz: 24, color: ac } }); break;
-    case 'executive': Object.assign(c, { layout: 'band', nameSize: 28, nameFont: 'Georgia', nameColor: 'FFFFFF', hlColor: 'FFFFFF', ctColor: 'FFFFFF' }); Object.assign(c.h, { color: '222222', left: { sz: 28, color: ac } }); break;
-    case 'minimal': Object.assign(c, { layout: 'gutter', nameSize: 28, nameBold: false }); Object.assign(c.h, { size: 8, color: '999999', spacing: 16 }); break;
-    case 'timeline': Object.assign(c, { timeline: true, headerLeft: { sz: 40, color: ac } }); break;
-    case 'compact': Object.assign(c, { layout: 'compact', size: 9, nameSize: 21, margin: Math.round(13 * MM), headerRule: { sz: 16, color: ac } }); Object.assign(c.h, { size: 9.5, bottom: { sz: 6, color: ac } }); break;
-    case 'ats': Object.assign(c, { nameSize: 18, nameColor: '000000', hlColor: '000000', ctColor: '000000', sub: '000000', dt: '000000' }); Object.assign(c.h, { color: '000000', bottom: { sz: 8, color: '000000' } }); break;
-  }
-  return c;
-}
+/* ---------- Word (.docx) export — built from the same layout model as the preview ---------- */
+const X = CVX.X;
 function docxXML(photoRel){
-  const C = wordCfg(), ac = hx(S.color), M = model();
-  const run = (t, o = {}) => `<w:r><w:rPr>${o.font || C.font ? `<w:rFonts w:ascii="${X(o.font || C.font)}" w:hAnsi="${X(o.font || C.font)}" w:cs="${X(o.font || C.font)}"/>` : ''}${o.b ? '<w:b/>' : ''}${o.i ? '<w:i/>' : ''}${o.caps ? '<w:caps/>' : ''}${o.sc ? '<w:smallCaps/>' : ''}${o.color ? `<w:color w:val="${o.color}"/>` : ''}${o.sp ? `<w:spacing w:val="${o.sp}"/>` : ''}<w:sz w:val="${Math.round((o.size || C.size) * 2)}"/><w:szCs w:val="${Math.round((o.size || C.size) * 2)}"/></w:rPr>${t === '\t' ? '<w:tab/>' : `<w:t xml:space="preserve">${X(t)}</w:t>`}</w:r>`;
-  const bdr = (side, b) => b ? `<w:${side} w:val="single" w:sz="${b.sz}" w:space="${b.space || 3}" w:color="${b.color}"/>` : '';
-  let INCELL = false;
-  const para = (runs, o = {}) => `<w:p><w:pPr>${o.keep && !INCELL ? '<w:keepNext/>' : ''}${(o.top || o.bottom || o.left) ? `<w:pBdr>${bdr('top', o.top)}${bdr('left', o.left)}${bdr('bottom', o.bottom)}</w:pBdr>` : ''}${o.shd ? `<w:shd w:val="clear" w:color="auto" w:fill="${o.shd}"/>` : ''}${o.tab ? `<w:tabs><w:tab w:val="right" w:pos="${o.tab}"/></w:tabs>` : ''}<w:spacing w:before="${o.before || 0}" w:after="${o.after || 0}" w:line="${o.line || 276}" w:lineRule="${o.exact ? 'exact' : 'auto'}"/>${o.ind ? `<w:ind w:left="${o.ind.left || 0}" w:right="${o.ind.right || 0}" w:hanging="${o.ind.hanging || 0}"/>` : ''}<w:jc w:val="${o.align || 'left'}"/></w:pPr>${runs}</w:p>`;
-  /* a section heading */
-  const heading = (title, ctx) => { const h = ctx.h || C.h;
-    return para(run(title, { b: h.bold, caps: h.caps, sc: h.smallCaps, color: h.color, size: h.size, sp: h.spacing }),
-      { before: ctx.first ? 0 : 260, after: 100, keep: true, align: h.align, bottom: h.bottom, top: h.top && { ...h.top, space: 2 }, left: h.left && { ...h.left, space: 5 } }); };
-  /* the body of one section, for a container of width w (twips) */
-  const body = (m, w, ctx) => {
-    const col = ctx.light ? 'FFFFFF' : null, tl = C.timeline && !ctx.light;
-    const tlBdr = tl ? { left: { sz: 12, color: ac, space: 9 }, ind: { left: 260 } } : {};
-    if (m.type === 'text') return m.text.map(l => para(run(l, { color: col }), { after: 40 })).join('');
-    if (m.type === 'inline') return para(run(m.list.join(' · '), { color: col }), { after: 40 });
-    if (m.type === 'bullets' || m.type === 'numbered') return m.list.map((x, i) => para(run(m.type === 'numbered' ? (i + 1) + '.' : '•', { color: col }) + run('\t') + run(x, { color: col }), { ind: { left: m.type === 'numbered' ? 340 : 284, hanging: m.type === 'numbered' ? 340 : 284 }, after: 30 })).join('');
-    return m.items.map(x => {
-      const ind = tl ? { left: 260 } : null, tabPos = w - (tl ? 0 : 0);
-      let s = para((tl ? run('● ', { color: ac, size: C.size - 1 }) : '') + run(x.title, { b: true, color: col }) + (x.dates ? run('\t') + run(x.dates, { color: col || C.dt, size: C.size - 1 }) : ''), { tab: tabPos, keep: true, ind, left: tlBdr.left });
-      if (x.sub) s += para(run(x.sub, { i: true, color: col || C.sub }), { ind, left: tlBdr.left, keep: !!x.lines.length });
-      s += x.lines.map(l => para(run('•', { color: col }) + run('\t') + run(l, { color: col }), { ind: { left: (tl ? 260 : 0) + 284, hanging: 284 }, after: 20, left: tlBdr.left })).join('');
-      return s + para('', { after: 0, ind, left: tlBdr.left, line: 120, exact: true });
-    }).join('');
-  };
-  const sections = (arr, w, ctx = {}) => arr.map((m, i) => heading(m.title, { ...ctx, first: i === 0 && ctx.firstFlush }) + body(m, w, ctx)).join('');
-  const ct = contactList();
-  const nameP = (o = {}) => para(run(o.caps || C.nameCaps ? (S.name || 'Your Name').toUpperCase() : (S.name || 'Your Name'), { b: C.nameBold, size: o.size || C.nameSize, color: o.color || C.nameColor, font: C.nameFont, sp: C.nameSpacing }), { align: o.align || C.align, line: 240, left: o.left });
-  const hlP = (o = {}) => S.headline ? para(run(S.headline, { color: o.color || C.hlColor, size: C.hlSize, caps: C.hlCaps, sp: C.hlCaps ? 24 : 0 }), { align: o.align || C.align, before: 40, left: o.left }) : '';
-  const ctP = (o = {}) => ct.length ? para(run(ct.join(S.tpl === 'ats' ? '  |  ' : '  ·  '), { color: o.color || C.ctColor, size: 9 }), { align: o.align || C.align, before: 100, after: o.after || 0, bottom: o.bottom, left: o.left }) : '';
-  const photoXML = (emu) => photoRel ? `<w:p><w:pPr><w:spacing w:before="0" w:after="160"/></w:pPr><w:r><w:drawing><wp:inline distT="0" distB="0" distL="0" distR="0"><wp:extent cx="${emu}" cy="${emu}"/><wp:docPr id="1" name="Photo"/><a:graphic xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main"><a:graphicData uri="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:pic xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><pic:nvPicPr><pic:cNvPr id="1" name="photo.jpg"/><pic:cNvPicPr/></pic:nvPicPr><pic:blipFill><a:blip r:embed="${photoRel}"/><a:stretch><a:fillRect/></a:stretch></pic:blipFill><pic:spPr><a:xfrm><a:off x="0" y="0"/><a:ext cx="${emu}" cy="${emu}"/></a:xfrm><a:prstGeom prst="ellipse"><a:avLst/></a:prstGeom></pic:spPr></pic:pic></a:graphicData></a:graphic></wp:inline></w:drawing></w:r></w:p>` : '';
-  const cell = (w, inner, o = {}) => `<w:tc><w:tcPr><w:tcW w:w="${w}" w:type="dxa"/>${o.shd ? `<w:shd w:val="clear" w:color="auto" w:fill="${o.shd}"/>` : ''}${o.left ? `<w:tcBorders>${bdr('left', o.left)}</w:tcBorders>` : ''}<w:tcMar><w:top w:w="${o.mt || 0}" w:type="dxa"/><w:left w:w="${o.ml || 0}" w:type="dxa"/><w:bottom w:w="${o.mb || 0}" w:type="dxa"/><w:right w:w="${o.mr || 0}" w:type="dxa"/></w:tcMar>${o.vc ? '<w:vAlign w:val="center"/>' : ''}</w:tcPr>${inner || '<w:p/>'}</w:tc>`;
-  const table = (widths, rowsXML) => `<w:tbl><w:tblPr><w:tblW w:w="${widths.reduce((a, b) => a + b, 0)}" w:type="dxa"/><w:tblLayout w:type="fixed"/><w:tblBorders><w:top w:val="nil"/><w:left w:val="nil"/><w:bottom w:val="nil"/><w:right w:val="nil"/><w:insideH w:val="nil"/><w:insideV w:val="nil"/></w:tblBorders><w:tblCellMar><w:left w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr><w:tblGrid>${widths.map(w => `<w:gridCol w:w="${w}"/>`).join('')}</w:tblGrid>${rowsXML}</w:tbl>`;
-  const row = (cells, h) => `<w:tr>${h ? `<w:trPr><w:trHeight w:val="${h}" w:hRule="atLeast"/></w:trPr>` : ''}${cells}</w:tr>`;
-  const SIDEm = M.filter(m => SIDE.includes(m.key)), MAINm = M.filter(m => !SIDE.includes(m.key));
-  let bodyXML = '', margins = { t: C.margin, r: C.margin, b: C.margin, l: C.margin };
-  INCELL = C.layout !== 'single';
-  if (C.layout === 'single'){
-    const w = PAGE_W - 2 * C.margin;
-    bodyXML = nameP({ left: C.headerLeft && { ...C.headerLeft, space: 10 } }) + hlP({ left: C.headerLeft && { ...C.headerLeft, space: 10 } }) + ctP({ after: C.headerRule ? 100 : 160, bottom: C.headerRule && { ...C.headerRule, space: 6 }, left: C.headerLeft && { ...C.headerLeft, space: 10 } }) + para('', { after: C.headerRule ? 120 : 60, line: 120 }) + sections(M, w, { firstFlush: true });
-  } else if (C.layout === 'sidebar'){
-    margins = { t: 0, r: 0, b: 0, l: 0 }; const sw = Math.round(66 * MM), mw = PAGE_W - sw, sml = Math.round(10 * MM), smr = Math.round(8 * MM), mml = Math.round(10 * MM), mmr = Math.round(13 * MM), mt = Math.round(16 * MM);
-    const light = { light: true, h: { ...C.h, color: 'FFFFFF', bottom: { sz: 6, color: 'FFFFFF' } } };
-    const side = photoXML(1080000) + nameP({ color: 'FFFFFF', align: 'left' }) + hlP({ color: 'FFFFFF', align: 'left' }) + heading('Contact', light) + ct.map(x => para(run(x, { color: 'FFFFFF', size: 9 }), { after: 30 })).join('') + sections(SIDEm, sw - sml - smr, light);
-    bodyXML = table([sw, mw], row(cell(sw, side, { shd: ac, ml: sml, mr: smr, mt, mb: 600 }) + cell(mw, sections(MAINm, mw - mml - mmr, { firstFlush: true }), { ml: mml, mr: mmr, mt, mb: 600 }), PAGE_H - 20));
-  } else if (C.layout === 'creative'){
-    margins = { t: 0, r: 0, b: 0, l: 0 }; const sw = Math.round(62 * MM), mw = PAGE_W - sw, tnt = hx(tint(S.color));
-    const hdr = table(photoRel ? [Math.round(48 * MM), PAGE_W - Math.round(48 * MM)] : [PAGE_W], row((photoRel ? cell(Math.round(48 * MM), photoXML(1080000), { shd: tnt, ml: Math.round(15 * MM), mt: Math.round(12 * MM), mb: Math.round(6 * MM), vc: true }) : '') +
-      cell(photoRel ? PAGE_W - Math.round(48 * MM) : PAGE_W, nameP({ align: 'left' }) + hlP({ align: 'left' }), { shd: tnt, ml: photoRel ? 0 : Math.round(15 * MM), mr: Math.round(15 * MM), mt: Math.round(12 * MM), mb: Math.round(9 * MM), vc: true })));
-    bodyXML = hdr + para('', { line: 60, bottom: { sz: 24, color: ac, space: 0 } }) + table([sw, mw], row(cell(sw, heading('Contact', { first: true }) + ct.map(x => para(run(x, { size: 9 }), { after: 30 })).join('') + sections(SIDEm, sw - Math.round(19 * MM)), { shd: 'F6F6F4', ml: Math.round(12 * MM), mr: Math.round(7 * MM), mt: Math.round(9 * MM), mb: 600 }) +
-      cell(mw, sections(MAINm, mw - Math.round(24 * MM), { firstFlush: true }), { ml: Math.round(9 * MM), mr: Math.round(15 * MM), mt: Math.round(9 * MM), mb: 600 }), PAGE_H - 4600));
-  } else if (C.layout === 'band'){
-    margins = { t: 0, r: 0, b: Math.round(14 * MM), l: 0 }; const pad = Math.round(17.6 * MM);
-    bodyXML = table([PAGE_W], row(cell(PAGE_W, nameP({ align: 'left' }) + hlP({ align: 'left' }) + ctP({ align: 'left' }), { shd: ac, ml: pad, mr: pad, mt: Math.round(13 * MM), mb: Math.round(9 * MM) }))) +
-      table([PAGE_W], row(cell(PAGE_W, sections(M, PAGE_W - 2 * pad, { firstFlush: true }), { ml: pad, mr: pad, mt: Math.round(7 * MM) })));
-  } else if (C.layout === 'gutter'){
-    const w = PAGE_W - 2 * C.margin, lw = Math.round(40 * MM), cw = w - lw;
-    bodyXML = nameP() + hlP() + ctP({ after: 200 }) + table([lw, cw], M.map(m => row(cell(lw, heading(m.title, { first: true }), { mr: Math.round(5 * MM), mb: 180 }) + cell(cw, body(m, cw, {}), { mb: 180 }))).join(''));
-  } else if (C.layout === 'compact'){
-    const w = PAGE_W - 2 * C.margin, sw = Math.round(58 * MM), mw = w - sw;
-    bodyXML = nameP() + hlP() + ctP({ after: 120, bottom: { ...C.headerRule, space: 6 } }) + para('', { after: 100, line: 120 }) +
-      table([mw, sw], row(cell(mw, sections(MAINm, mw - Math.round(5 * MM), { firstFlush: true }), { mr: Math.round(5 * MM) }) + cell(sw, sections(SIDEm, sw - Math.round(7 * MM), { firstFlush: true }), { ml: Math.round(7 * MM), left: { sz: 6, color: 'DDDDDD' } })));
-  }
+  const m = ir(), mg = CVX.TW(m.margin);
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><w:body>${bodyXML}<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/></w:pPr></w:p><w:sectPr><w:pgSz w:w="${PAGE_W}" w:h="${PAGE_H}"/><w:pgMar w:top="${margins.t}" w:right="${margins.r}" w:bottom="${margins.b}" w:left="${margins.l}" w:header="0" w:footer="0" w:gutter="0"/></w:sectPr></w:body></w:document>`;
+<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" xmlns:pic="http://schemas.openxmlformats.org/drawingml/2006/picture"><w:body>${CVX.toDOCXBody(m, photoRel)}<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/></w:pPr></w:p><w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="${mg}" w:right="${mg}" w:bottom="${m.margin ? mg : CVX.TW(12)}" w:left="${mg}" w:header="0" w:footer="0" w:gutter="0"/></w:sectPr></w:body></w:document>`;
 }
 /* minimal ZIP (stored) writer */
 const CRC = (() => { const t = new Uint32Array(256); for (let n = 0; n < 256; n++){ let c = n; for (let k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } return t; })();
@@ -582,20 +708,21 @@ function zip(files){
   return new Blob([...parts, ...cd, new Uint8Array(end.buffer)], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
 }
 function buildDocx(){
-  const usePhoto = S.photo && ['sidebar', 'creative'].includes(S.tpl);
+  const usePhoto = S.photo && getTpl(S.tpl).photo;
   const photoBytes = usePhoto ? Uint8Array.from(atob(S.photo.split(',')[1]), c => c.charCodeAt(0)) : null;
-  const C = wordCfg();
+  const C = { font: getTpl(S.tpl).font, size: getTpl(S.tpl).size };
   const files = [
     { name: '[Content_Types].xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Default Extension="jpg" ContentType="image/jpeg"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/styles.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.styles+xml"/><Override PartName="/docProps/core.xml" ContentType="application/vnd.openxmlformats-package.core-properties+xml"/></Types>` },
     { name: '_rels/.rels', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/><Relationship Id="rId2" Type="http://schemas.openxmlformats.org/package/2006/relationships/metadata/core-properties" Target="docProps/core.xml"/></Relationships>` },
     { name: 'docProps/core.xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><cp:coreProperties xmlns:cp="http://schemas.openxmlformats.org/package/2006/metadata/core-properties" xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:title>${X((S.name || 'CV') + ' — CV')}</dc:title><dc:creator>${X(S.name || '')}</dc:creator></cp:coreProperties>` },
-    { name: 'word/styles.xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="${X(C.font)}" w:hAnsi="${X(C.font)}" w:cs="${X(C.font)}" w:eastAsia="${X(C.font)}"/><w:color w:val="222222"/><w:sz w:val="${C.size * 2}"/><w:szCs w:val="${C.size * 2}"/><w:lang w:val="en-GB"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:qFormat/></w:style><w:style w:type="table" w:default="1" w:styleId="TableNormal"><w:name w:val="Normal Table"/><w:tblPr><w:tblInd w:w="0" w:type="dxa"/><w:tblCellMar><w:top w:w="0" w:type="dxa"/><w:left w:w="0" w:type="dxa"/><w:bottom w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr></w:style></w:styles>` },
+    { name: 'word/styles.xml', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:styles xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:docDefaults><w:rPrDefault><w:rPr><w:rFonts w:ascii="${X(C.font)}" w:hAnsi="${X(C.font)}" w:cs="${X(C.font)}" w:eastAsia="${X(C.font)}"/><w:color w:val="222222"/><w:sz w:val="${Math.round(C.size * 2)}"/><w:szCs w:val="${Math.round(C.size * 2)}"/><w:lang w:val="en-GB"/></w:rPr></w:rPrDefault><w:pPrDefault><w:pPr><w:spacing w:before="0" w:after="0" w:line="276" w:lineRule="auto"/></w:pPr></w:pPrDefault></w:docDefaults><w:style w:type="paragraph" w:default="1" w:styleId="Normal"><w:name w:val="Normal"/><w:qFormat/></w:style><w:style w:type="table" w:default="1" w:styleId="TableNormal"><w:name w:val="Normal Table"/><w:tblPr><w:tblInd w:w="0" w:type="dxa"/><w:tblCellMar><w:top w:w="0" w:type="dxa"/><w:left w:w="0" w:type="dxa"/><w:bottom w:w="0" w:type="dxa"/><w:right w:w="0" w:type="dxa"/></w:tblCellMar></w:tblPr></w:style></w:styles>` },
     { name: 'word/_rels/document.xml.rels', data: `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/styles" Target="styles.xml"/>${usePhoto ? '<Relationship Id="rId9" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="media/photo.jpg"/>' : ''}</Relationships>` },
     { name: 'word/document.xml', data: docxXML(usePhoto ? 'rId9' : null) }
   ];
   if (usePhoto) files.push({ name: 'word/media/photo.jpg', data: photoBytes });
   return zip(files);
 }
+window.__cvTest = { buildDocx, setState: s => { S = migrate(s); fillForm(); render(); }, sample: SAMPLE };
 
 /* ---------- text exports ---------- */
 function toText(md){
@@ -613,19 +740,19 @@ function toText(md){
 const fname = ext => ((S.name || 'CV').trim().replace(/[^\w\- ]+/g, '').replace(/\s+/g, '_') || 'CV') + '_CV.' + ext;
 function saveBlob(blob, ext){ const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname(ext); document.body.appendChild(a); a.click();
   setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 1500); toast('Downloaded ' + a.download); }
-function cssText(){ let out = ''; for (const sh of document.styleSheets){ try { for (const r of sh.cssRules){ const t = r.cssText; if (/^(\.cv|\.page|\.t-)/.test(t)) out += t + '\n'; } } catch(e){} } return out; }
 function download(kind){
-  if (kind === 'pdf'){ const pr = $('printRoot'); pr.innerHTML = `<div class="page" style="--ac:${S.color};--tint:${tint(S.color)}">${cvHTML()}</div>`;
+  if (kind === 'pdf'){ const pr = $('printRoot'); pr.innerHTML = `<div class="page">${cvHTML()}</div>`;
     const old = document.title; document.title = fname('pdf').replace(/\.pdf$/, ''); setTimeout(() => { window.print(); document.title = old; }, 80); return; }
   if (kind === 'docx'){ try { saveBlob(buildDocx(), 'docx'); } catch(e){ toast('Could not create the Word file'); } return; }
   if (kind === 'json') return saveBlob(new Blob([JSON.stringify(S, null, 2)], { type: 'application/json' }), 'json');
   if (kind === 'md') return saveBlob(new Blob([toText(true)], { type: 'text/markdown;charset=utf-8' }), 'md');
   if (kind === 'txt') return saveBlob(new Blob([toText(false)], { type: 'text/plain;charset=utf-8' }), 'txt');
-  if (kind === 'html'){ const doc = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(S.name || 'CV')}</title><style>body{margin:0;background:#eee;display:flex;justify-content:center;padding:20px}@page{size:A4;margin:0}@media print{body{background:#fff;padding:0}.page{box-shadow:none!important}}${cssText()}</style></head><body><div class="page" style="--ac:${S.color};--tint:${tint(S.color)}">${cvHTML()}</div></body></html>`;
+  if (kind === 'html'){ const doc = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(S.name || 'CV')}</title><style>body{margin:0;background:#eee;display:flex;justify-content:center;padding:20px}@page{size:A4;margin:0}.page{width:210mm;min-height:297mm;background:#fff;box-shadow:0 4px 30px rgba(0,0,0,.2)}@media print{body{background:#fff;padding:0}.page{box-shadow:none}}</style></head><body><div class="page">${cvHTML()}</div></body></html>`;
     return saveBlob(new Blob([doc], { type: 'text/html;charset=utf-8' }), 'html'); }
 }
 
-buildStatic(); fillForm(); render(); setTimeout(fit, 300);
+buildStatic(); fillForm(); render(); renderGallery(); setTimeout(fit, 300);
+document.getElementById('tplTotal').textContent = CVX.TEMPLATES.length + ' designs';
 })();
 </script>
 </body>
